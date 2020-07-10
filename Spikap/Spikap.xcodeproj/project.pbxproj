@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
+		6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60324B81B47003EEC87 /* practiceVC.swift */; };
+		6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60524B81B73003EEC87 /* communityVC.swift */; };
+		6CC1C60B24B81BF2003EEC87 /* Onboarding.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C60A24B81BF2003EEC87 /* Onboarding.storyboard */; };
+		6CC1C60D24B81E44003EEC87 /* home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C60C24B81E44003EEC87 /* home.storyboard */; };
+		6CC1C60F24B81E62003EEC87 /* practice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C60E24B81E62003EEC87 /* practice.storyboard */; };
+		6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C61024B81E7B003EEC87 /* community.storyboard */; };
+		6CC1C61324B81F0D003EEC87 /* onboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C61224B81F0D003EEC87 /* onboardVC.swift */; };
 		6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DA24B579370052D58D /* AppDelegate.swift */; };
 		6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DC24B579370052D58D /* SceneDelegate.swift */; };
 		6CD173DF24B579370052D58D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DE24B579370052D58D /* ViewController.swift */; };
@@ -16,6 +24,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
+		6CC1C60324B81B47003EEC87 /* practiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = practiceVC.swift; path = Spikap/Practice/Controller/practiceVC.swift; sourceTree = SOURCE_ROOT; };
+		6CC1C60524B81B73003EEC87 /* communityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communityVC.swift; sourceTree = "<group>"; };
+		6CC1C60A24B81BF2003EEC87 /* Onboarding.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Onboarding.storyboard; sourceTree = "<group>"; };
+		6CC1C60C24B81E44003EEC87 /* home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = home.storyboard; sourceTree = "<group>"; };
+		6CC1C60E24B81E62003EEC87 /* practice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = practice.storyboard; sourceTree = "<group>"; };
+		6CC1C61024B81E7B003EEC87 /* community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = community.storyboard; sourceTree = "<group>"; };
+		6CC1C61224B81F0D003EEC87 /* onboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardVC.swift; sourceTree = "<group>"; };
 		6CD173D724B579370052D58D /* Spikap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spikap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD173DA24B579370052D58D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CD173DC24B579370052D58D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +53,120 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6CC1C5F424B819E2003EEC87 /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C5FD24B81AAA003EEC87 /* Controller */,
+				6CC1C5FE24B81AB6003EEC87 /* View */,
+			);
+			path = Community;
+			sourceTree = "<group>";
+		};
+		6CC1C5F524B81A0B003EEC87 /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C5FC24B81A9D003EEC87 /* Controller */,
+				6CC1C5FB24B81A97003EEC87 /* View */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		6CC1C5F624B81A15003EEC87 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C5FF24B81ABE003EEC87 /* Controller */,
+				6CC1C60024B81AC6003EEC87 /* View */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		6CC1C5F724B81A33003EEC87 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		6CC1C5F824B81A39003EEC87 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		6CC1C5FB24B81A97003EEC87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60C24B81E44003EEC87 /* home.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6CC1C5FC24B81A9D003EEC87 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60124B81B28003EEC87 /* homeVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6CC1C5FD24B81AAA003EEC87 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60524B81B73003EEC87 /* communityVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6CC1C5FE24B81AB6003EEC87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C61024B81E7B003EEC87 /* community.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6CC1C5FF24B81ABE003EEC87 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60324B81B47003EEC87 /* practiceVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6CC1C60024B81AC6003EEC87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60E24B81E62003EEC87 /* practice.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		6CC1C60724B81B8D003EEC87 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60924B81BA1003EEC87 /* View */,
+				6CC1C60824B81B99003EEC87 /* Controller */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		6CC1C60824B81B99003EEC87 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C61224B81F0D003EEC87 /* onboardVC.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		6CC1C60924B81BA1003EEC87 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				6CC1C60A24B81BF2003EEC87 /* Onboarding.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		6CD173CE24B579370052D58D = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +186,12 @@
 		6CD173D924B579370052D58D /* Spikap */ = {
 			isa = PBXGroup;
 			children = (
+				6CC1C60724B81B8D003EEC87 /* Onboarding */,
+				6CC1C5F824B81A39003EEC87 /* Helper */,
+				6CC1C5F724B81A33003EEC87 /* Model */,
+				6CC1C5F624B81A15003EEC87 /* Practice */,
+				6CC1C5F524B81A0B003EEC87 /* Home */,
+				6CC1C5F424B819E2003EEC87 /* Community */,
 				6CD173DA24B579370052D58D /* AppDelegate.swift */,
 				6CD173DC24B579370052D58D /* SceneDelegate.swift */,
 				6CD173DE24B579370052D58D /* ViewController.swift */,
@@ -125,9 +261,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CC1C60D24B81E44003EEC87 /* home.storyboard in Resources */,
+				6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */,
 				6CD173E724B579390052D58D /* LaunchScreen.storyboard in Resources */,
 				6CD173E424B579390052D58D /* Assets.xcassets in Resources */,
 				6CD173E224B579370052D58D /* Main.storyboard in Resources */,
+				6CC1C60B24B81BF2003EEC87 /* Onboarding.storyboard in Resources */,
+				6CC1C60F24B81E62003EEC87 /* practice.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -139,7 +279,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
+				6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */,
+				6CC1C61324B81F0D003EEC87 /* onboardVC.swift in Sources */,
 				6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */,
+				6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */,
+				6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */,
 				6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
