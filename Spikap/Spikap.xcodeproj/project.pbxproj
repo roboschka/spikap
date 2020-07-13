@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4793FAE524BC1D0800207604 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4793FAE424BC1D0800207604 /* CloudKit.framework */; };
 		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
 		6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60324B81B47003EEC87 /* practiceVC.swift */; };
 		6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60524B81B73003EEC87 /* communityVC.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4793FAE224BC1CA500207604 /* Spikap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spikap.entitlements; sourceTree = "<group>"; };
+		4793FAE424BC1D0800207604 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		6CC1C60324B81B47003EEC87 /* practiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = practiceVC.swift; path = Spikap/Practice/Controller/practiceVC.swift; sourceTree = SOURCE_ROOT; };
 		6CC1C60524B81B73003EEC87 /* communityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communityVC.swift; sourceTree = "<group>"; };
@@ -47,12 +50,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4793FAE524BC1D0800207604 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4793FAE324BC1D0800207604 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4793FAE424BC1D0800207604 /* CloudKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6CC1C5F424B819E2003EEC87 /* Community */ = {
 			isa = PBXGroup;
 			children = (
@@ -172,6 +184,7 @@
 			children = (
 				6CD173D924B579370052D58D /* Spikap */,
 				6CD173D824B579370052D58D /* Products */,
+				4793FAE324BC1D0800207604 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -186,6 +199,7 @@
 		6CD173D924B579370052D58D /* Spikap */ = {
 			isa = PBXGroup;
 			children = (
+				4793FAE224BC1CA500207604 /* Spikap.entitlements */,
 				6CC1C60724B81B8D003EEC87 /* Onboarding */,
 				6CC1C5F824B81A39003EEC87 /* Helper */,
 				6CC1C5F724B81A33003EEC87 /* Model */,
@@ -428,8 +442,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 43F85566S2;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -446,8 +461,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 43F85566S2;
+				DEVELOPMENT_TEAM = 64D4KPKN55;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
