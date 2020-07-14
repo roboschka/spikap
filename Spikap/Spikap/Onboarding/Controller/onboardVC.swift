@@ -14,6 +14,7 @@ class onboardVC: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        Post.createPosts(postID: UUID().uuidString, postTitle: "Test Title", postAudio: "Test Audio", postLikes: 59, userID: UUID().uuidString)
     }
     
 
