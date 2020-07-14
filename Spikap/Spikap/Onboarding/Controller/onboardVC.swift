@@ -14,9 +14,8 @@ class onboardVC: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        Post.createPosts(postID: UUID().uuidString, postTitle: "Test Title", postAudio: "Test Audio", postLikes: 59, userID: UUID().uuidString)
+        User.createUser(userID: UUID().uuidString, userEmail: "hello@email.com", userPassword: "testPassword", firstName: "John", lastName: "Appleseed", daysOnStreak: 8, isOnStreak: true, userPoints: 280)
     }
-    
 
     /*
     // MARK: - Navigation
