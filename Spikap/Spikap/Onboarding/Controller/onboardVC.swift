@@ -14,7 +14,6 @@ class onboardVC: UITabBarController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        User.createUser(userID: UUID().uuidString, userEmail: "hello@email.com", userPassword: "testPassword", firstName: "John", lastName: "Appleseed", daysOnStreak: 8, isOnStreak: true, userPoints: 280)
     }
 
     /*
