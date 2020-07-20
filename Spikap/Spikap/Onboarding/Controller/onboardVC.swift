@@ -10,6 +10,11 @@ import UIKit
 
 class onboardVC: UITabBarController {
 
+    @IBOutlet var AppleSignIn: UIView!
+    
+    @IBOutlet var Continue: UIView!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
