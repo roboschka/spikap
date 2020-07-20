@@ -9,6 +9,7 @@
 import UIKit
 
 class homeVC: UIViewController {
+
     //MARK: Variables
     var dayInAWeek = 7
     var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -20,11 +21,13 @@ class homeVC: UIViewController {
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true)
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,8 +47,7 @@ class homeVC: UIViewController {
         progressView.center = CGPoint(x: 5 , y:  4.5)
         progressView.layer.frame.size = CGSize(width: viewWidth, height: 0.7 * progressBarBackgroundView.bounds.size.height)
         progressView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
-        progressView.layer.cornerRadius = 10
-        
+        progressView.layer.cornerRadius = 10        
         progressBarBackgroundView.addSubview(progressView)
         
     }
@@ -68,6 +70,7 @@ class homeVC: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
     }
     
+    
 
     /*
     // MARK: - Navigation
@@ -78,6 +81,7 @@ class homeVC: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+
 }
 
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -95,4 +99,5 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         
         return cell
     }
+
 }
