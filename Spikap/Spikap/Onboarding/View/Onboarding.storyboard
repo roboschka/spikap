@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4g6-jJ-yvy">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Xxd-c0-PBV">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,21 +7,20 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--OnboardVC-->
+        <!--Login View Controller-->
         <scene sceneID="n3W-cB-lZ9">
             <objects>
-                <viewController id="Xxd-c0-PBV" customClass="onboardVC" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="loginViewController" id="Xxd-c0-PBV" customClass="LoginViewController" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ook-l0-1aX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VtN-zk-AwJ">
-                                <rect key="frame" x="48" y="741" width="325" height="58"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="1WG-DV-eDg">
+                                <rect key="frame" x="20" y="782" width="374" height="71"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                            </view>
+                            </stackView>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qU4-VV-8QI">
-                                <rect key="frame" x="45" y="650" width="325" height="58"/>
+                                <rect key="frame" x="20" y="700" width="374" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
@@ -30,8 +29,8 @@
                         <viewLayoutGuide key="safeArea" id="yHN-FH-kxt"/>
                     </view>
                     <connections>
-                        <outlet property="AppleSignIn" destination="VtN-zk-AwJ" id="twX-uW-9Q1"/>
-                        <outlet property="Continue" destination="qU4-VV-8QI" id="0yg-5n-hGZ"/>
+                        <outlet property="Continue" destination="qU4-VV-8QI" id="XbX-S5-fh2"/>
+                        <outlet property="loginProviderStackView" destination="1WG-DV-eDg" id="s2Z-nL-vYC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diO-Mq-Lbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
