@@ -56,6 +56,7 @@ extension UIViewController {
             navigationItem.title = title
         }
     }
+
     
     func changeToSystemFont(label: UILabel, fontSize: CGFloat) {
         let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)

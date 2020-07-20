@@ -89,7 +89,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayStreakCell", for: indexPath) as! DayStreakCollectionViewCell
         cell.streakIndicator.layer.cornerRadius = 0.5 * cell.streakIndicator.bounds.size.width
         cell.streakIndicator.layer.borderWidth = 1.5
-        cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2392156869, green: 0.6745098233, blue: 0.9686274529, alpha: 1)
         
         cell.dayName.text = days[indexPath.row]
         
