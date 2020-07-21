@@ -125,7 +125,7 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="FLk-xH-avn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="mxn-qE-YDI" kind="relationship" relationship="viewControllers" id="1qc-Ve-QLS"/>
@@ -141,7 +141,7 @@
         <scene sceneID="4dZ-QG-np7">
             <objects>
                 <viewControllerPlaceholder storyboardName="home" id="mxn-qE-YDI" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" id="5q3-rK-qhH"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" id="5q3-rK-qhH"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucF-qQ-7Ye" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -189,5 +189,7 @@
     <resources>
         <image name="person.3" catalog="system" width="128" height="62"/>
         <image name="speaker.3" catalog="system" width="128" height="90"/>
+        <image name="house" catalog="system" width="128" height="110"/>
+
     </resources>
 </document>
