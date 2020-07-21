@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="4g6-jJ-yvy">
+
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JfH-O9-Gif">
+
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -16,9 +18,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU4-VV-8QI">
+
                                 <rect key="frame" x="39" y="660" width="336" height="50"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Continue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PjM-Jv-Kgu">
+
                                         <rect key="frame" x="131" y="15" width="75" height="21"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                         <color key="textColor" red="1" green="0.99998790029999995" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -47,6 +51,7 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWM-nL-bkN">
                                 <rect key="frame" x="168" y="277" width="0.0" height="0.0"/>
+
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -137,6 +142,7 @@
                             <constraint firstItem="gh7-fj-bEV" firstAttribute="top" secondItem="yHN-FH-kxt" secondAttribute="top" constant="83" id="rqc-9L-Wta"/>
                             <constraint firstItem="1WG-DV-eDg" firstAttribute="top" secondItem="qU4-VV-8QI" secondAttribute="bottom" constant="15" id="sRJ-G7-Qjl"/>
                             <constraint firstItem="rPQ-zE-zm5" firstAttribute="top" secondItem="gh7-fj-bEV" secondAttribute="bottom" constant="1" id="zKZ-vv-NMp"/>
+
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="yHN-FH-kxt"/>
                     </view>
@@ -149,6 +155,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diO-Mq-Lbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1004.3478260869566" y="-89.732142857142847"/>
+
         </scene>
         <!--Landing Tab BarVC-->
         <scene sceneID="xPx-Lu-WBW">
@@ -167,7 +174,9 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xMB-vZ-7R9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
+
             <point key="canvasLocation" x="2071.0144927536235" y="-93.080357142857139"/>
+
         </scene>
         <!--home-->
         <scene sceneID="4dZ-QG-np7">
@@ -200,11 +209,13 @@
             <point key="canvasLocation" x="206" y="742"/>
         </scene>
         <!--Navigation Controller-->
+
         <scene sceneID="q3R-3r-Kc5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="p8h-tP-Hal" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QxY-F1-nMO">
+
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -216,6 +227,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vsI-EZ-Sly" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="94.20289855072464" y="-89.732142857142847"/>
+
         </scene>
     </scenes>
     <resources>
