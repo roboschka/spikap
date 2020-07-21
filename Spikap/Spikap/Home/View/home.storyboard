@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HyW-q3-sgM">
-    <device id="ipad12_9" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,11 +13,11 @@
             <objects>
                 <viewController title="Home" id="CV0-8w-vKD" customClass="homeVC" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dHH-0E-AiR">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ezo-zs-5O2">
-                                <rect key="frame" x="20" y="287" width="984" height="653"/>
+                                <rect key="frame" x="20" y="325" width="374" height="112"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Days on Streak" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ORm-eT-HPi">
                                         <rect key="frame" x="5" y="-7" width="351" height="37"/>
@@ -74,18 +74,17 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PeC-4V-hm9">
-                                <rect key="frame" x="20" y="132" width="984" height="137"/>
+                                <rect key="frame" x="20" y="170" width="374" height="137"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest Level" textAlignment="natural" <<<<<<< HEAD
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest Level" textAlignment="natural" lineBreakMode="tailTruncation" id="lb6-MD-b9o">
                                         <rect key="frame" x="106" y="37" width="870" height="22"/>
-
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="16"/>
                                         <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fK0-aR-Rzb">
-                                        <rect key="frame" x="106" y="67" width="870" height="30"/>
-
+                                        <rect key="frame" x="98" y="67" width="268" height="25"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFn-0x-wYT">
                                                 <rect key="frame" x="4" y="4" width="260" height="17"/>
@@ -95,7 +94,6 @@
                                                 </constraints>
                                             </view>
                                         </subviews>
-
                                         <color key="backgroundColor" red="0.92941176470588238" green="0.92941176470588238" blue="0.92941176470588238" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstItem="oFn-0x-wYT" firstAttribute="top" secondItem="fK0-aR-Rzb" secondAttribute="top" constant="4" id="FUO-zv-EHe"/>
@@ -111,32 +109,26 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Guest" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fb-hS-L1t">
-                                        <rect key="frame" x="106" y="3" width="695.5" height="21"/>
-
+                                        <rect key="frame" x="98" y="3" width="45.5" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="exp point star" translatesAutoresizingMaskIntoConstraints="NO" id="3Ic-q5-ux2">
-
-                                        <rect key="frame" x="860" y="109" width="24" height="24"/>
-
+                                        <rect key="frame" x="250" y="104" width="24" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="3Ic-q5-ux2" secondAttribute="height" multiplier="1:1" id="CAL-w1-Jm9"/>
                                             <constraint firstAttribute="height" constant="24" id="iHc-r3-Ocm"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/5000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te2-EZ-qKk">
-                                        <rect key="frame" x="926" y="108" width="50" height="25"/>
-
+                                        <rect key="frame" x="316" y="103" width="50" height="25"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="0.47058823529999999" green="0.47058823529999999" blue="0.47058823529999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="500" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nWm-QG-hT8">
-
-                                        <rect key="frame" x="892" y="109" width="32.5" height="24"/>
-
+                                        <rect key="frame" x="282" y="104" width="32.5" height="24"/>
                                         <fontDescription key="fontDescription" name="AvenirNext-Medium" family="Avenir Next" pointSize="18"/>
                                         <color key="textColor" red="0.47058823529411764" green="0.47058823529411764" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -153,10 +145,8 @@
                                     <constraint firstItem="te2-EZ-qKk" firstAttribute="leading" secondItem="nWm-QG-hT8" secondAttribute="trailing" constant="1.5" id="MfM-CB-MoX"/>
                                     <constraint firstItem="fK0-aR-Rzb" firstAttribute="trailing" secondItem="8fb-hS-L1t" secondAttribute="trailing" constant="174.5" id="Oop-fs-TPP"/>
                                     <constraint firstItem="nWm-QG-hT8" firstAttribute="leading" secondItem="3Ic-q5-ux2" secondAttribute="trailing" constant="8" id="Q1G-vD-TaU"/>
-                                    <constraint firstItem="fK0-aR-Rzb" firstAttribute="leading" secondItem="EHq-Gh-acr" secondAttribute="leading" id="QnB-jg-a5G"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="123" id="Rez-RH-XiD"/>
                                     <constraint firstItem="fK0-aR-Rzb" firstAttribute="leading" secondItem="48V-dR-61H" secondAttribute="trailing" constant="20" id="U6v-Nq-GoT"/>
-                                    <constraint firstItem="fK0-aR-Rzb" firstAttribute="top" secondItem="EHq-Gh-acr" secondAttribute="bottom" constant="8" id="WMV-xW-epT"/>
                                     <constraint firstAttribute="height" constant="137" id="XvA-ML-5Zb"/>
                                     <constraint firstItem="fK0-aR-Rzb" firstAttribute="leading" secondItem="PeC-4V-hm9" secondAttribute="leading" constant="106" id="bC2-7R-rOd"/>
                                     <constraint firstItem="3Ic-q5-ux2" firstAttribute="centerY" secondItem="nWm-QG-hT8" secondAttribute="centerY" id="bqp-RN-wHW"/>
@@ -167,14 +157,12 @@
                                     <constraint firstItem="48V-dR-61H" firstAttribute="top" secondItem="PeC-4V-hm9" secondAttribute="top" constant="10" id="rlz-U3-A2l"/>
                                     <constraint firstItem="te2-EZ-qKk" firstAttribute="leading" secondItem="nWm-QG-hT8" secondAttribute="trailing" constant="1.5" id="sIl-Ca-lr4"/>
                                     <constraint firstAttribute="bottom" secondItem="48V-dR-61H" secondAttribute="bottom" constant="44" id="vGv-20-qHU"/>
-                                    <constraint firstItem="fK0-aR-Rzb" firstAttribute="trailing" secondItem="EHq-Gh-acr" secondAttribute="trailing" id="wv7-9L-ddy"/>
                                     <constraint firstItem="nWm-QG-hT8" firstAttribute="top" secondItem="fK0-aR-Rzb" secondAttribute="bottom" constant="12" id="yxL-br-g5b"/>
                                 </constraints>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Oop-fs-TPP"/>
                                         <exclude reference="bC2-7R-rOd"/>
-                                        <exclude reference="wv7-9L-ddy"/>
                                     </mask>
                                 </variation>
                             </view>
@@ -223,7 +211,7 @@
                         <outlet property="progressBarBackgroundView" destination="fK0-aR-Rzb" id="jpa-Y3-uBX"/>
                         <outlet property="progressBarView" destination="oFn-0x-wYT" id="xdj-Pp-HNh"/>
                         <outlet property="progressBarWitdth" destination="p2X-0a-Tzm" id="rwk-2Y-ob5"/>
-                        <outlet property="userLevelLabel" destination="EHq-Gh-acr" id="H6B-6f-wH6"/>
+                        <outlet property="userLevelLabel" destination="lb6-MD-b9o" id="Gdc-DV-l7I"/>
                         <outlet property="userNameLabel" destination="8fb-hS-L1t" id="W3g-07-seX"/>
                         <outlet property="userPointLabel" destination="nWm-QG-hT8" id="sEG-G3-4sj"/>
                     </connections>
@@ -240,7 +228,7 @@
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="YK7-1p-JAI">
-                        <rect key="frame" x="0.0" y="0.0" width="1024" height="104"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="98"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
