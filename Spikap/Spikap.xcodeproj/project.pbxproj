@@ -12,8 +12,10 @@
 		4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */; };
 		478BC12E24C6835D005994AB /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12D24C6835D005994AB /* Guest.swift */; };
 		478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12F24C683A4005994AB /* Model.xcdatamodeld */; };
+		478BC13724C6BE12005994AB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC13624C6BE12005994AB /* DateHelper.swift */; };
 		4793FAE524BC1D0800207604 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4793FAE424BC1D0800207604 /* CloudKit.framework */; };
 		479C917224C14913009E7DF1 /* DayStreakCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479C917124C14913009E7DF1 /* DayStreakCollectionViewCell.swift */; };
+		47A33E7024C6D3B20090894B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A33E6F24C6D3B20090894B /* ProfileViewController.swift */; };
 		6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CD24C6B48300C72C70 /* LoginViewController.swift */; };
 		6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */; };
 		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
@@ -38,9 +40,11 @@
 		4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		478BC12D24C6835D005994AB /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		478BC13024C683A4005994AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		478BC13624C6BE12005994AB /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
 		4793FAE224BC1CA500207604 /* Spikap.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Spikap.entitlements; sourceTree = "<group>"; };
 		4793FAE424BC1D0800207604 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		479C917124C14913009E7DF1 /* DayStreakCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayStreakCollectionViewCell.swift; sourceTree = "<group>"; };
+		47A33E6F24C6D3B20090894B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		6C4720CD24C6B48300C72C70 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
@@ -123,6 +127,7 @@
 				4704C29B24BEE5C900447D20 /* postExtension.swift */,
 				4704C29A24BEE5C900447D20 /* userExtention.swift */,
 				4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */,
+				478BC13624C6BE12005994AB /* DateHelper.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -140,6 +145,7 @@
 			children = (
 				6CC1C60124B81B28003EEC87 /* homeVC.swift */,
 				479C917124C14913009E7DF1 /* DayStreakCollectionViewCell.swift */,
+				47A33E6F24C6D3B20090894B /* ProfileViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -324,9 +330,14 @@
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
 				6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */,
+
 				6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */,
+
+				47A33E7024C6D3B20090894B /* ProfileViewController.swift in Sources */,
+
 				4704C29C24BEE5C900447D20 /* userExtention.swift in Sources */,
 				6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */,
+				478BC13724C6BE12005994AB /* DateHelper.swift in Sources */,
 				6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */,
 				6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */,
 				4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */,
