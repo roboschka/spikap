@@ -9,11 +9,15 @@
 import UIKit
 
 class practiceDetailVC: UIViewController {
-
+    
+    @IBOutlet weak var backgroundImageView: UIImageView!
+    var practiceTypeId:Int?
+    let practiceBackgroundImage:[UIImage] = [#imageLiteral(resourceName: "challenge background"),#imageLiteral(resourceName: "self talk background"),#imageLiteral(resourceName: "speech shadowing background")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        backgroundImageView.image = practiceBackgroundImage[practiceTypeId!]
     }
     
 
