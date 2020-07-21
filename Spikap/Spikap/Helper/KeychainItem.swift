@@ -133,7 +133,7 @@ struct KeychainItem {
      */
     static var currentUserIdentifier: String {
         do {
-            let storedIdentifier = try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").readItem()
+            let storedIdentifier = try KeychainItem(service: "aries.Spikap", account: "userIdentifier").readItem()
             return storedIdentifier
         } catch {
             return ""
