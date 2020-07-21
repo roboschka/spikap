@@ -31,7 +31,7 @@ class community2VC: UIViewController {
     
     func showPage()
     {
-        var user_status : Boolean = false
+        let user_status : Bool = false
         //check user login status
         if user_status {
             //if logged in
@@ -41,7 +41,7 @@ class community2VC: UIViewController {
         {
             //if not logged in
             //show alert
-            showAlert("You are not Signed In", "You need to login to access Community")
+            showAlert(alert_title: "You are not Signed In", alert_message : "You need to login to access Community")
         }
     }
     
