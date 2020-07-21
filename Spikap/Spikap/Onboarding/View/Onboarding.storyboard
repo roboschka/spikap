@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="JfH-O9-Gif">
+
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -15,6 +17,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qU4-VV-8QI">
                                 <rect key="frame" x="39" y="668" width="336" height="50"/>
                                 <subviews>
@@ -104,6 +107,7 @@
                         <viewLayoutGuide key="safeArea" id="yHN-FH-kxt"/>
                     </view>
                     <navigationItem key="navigationItem" id="i0h-cz-QPh"/>
+
                     <connections>
                         <outlet property="Continue" destination="qU4-VV-8QI" id="XbX-S5-fh2"/>
                         <outlet property="loginProviderStackView" destination="1WG-DV-eDg" id="s2Z-nL-vYC"/>
@@ -112,6 +116,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diO-Mq-Lbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-814.49275362318849" y="-89.0625"/>
+
         </scene>
         <!--OnboardVC-->
         <scene sceneID="xPx-Lu-WBW">

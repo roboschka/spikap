@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         Continue.setGradientColor(colorOne: #colorLiteral(red: 1, green: 0.6156862745, blue: 0.3137254902, alpha: 1), colorTwo: #colorLiteral(red: 1, green: 0.6980392157, blue: 0.2980392157, alpha: 1))
         Continue.layer.cornerRadius = 10
         Continue.layer.masksToBounds = true
-        
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -53,7 +53,8 @@ class LoginViewController: UIViewController {
         
         self.loginProviderStackView.addArrangedSubview(authorizationButton)
     }
-    
+
+
     // - Tag: perform_appleid_password_request
     /// Prompts the user if an existing iCloud Keychain credential or Apple ID credential is found.
     func performExistingAccountSetupFlows() {
