@@ -23,7 +23,7 @@
 		6CC1C60D24B81E44003EEC87 /* home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C60C24B81E44003EEC87 /* home.storyboard */; };
 		6CC1C60F24B81E62003EEC87 /* practice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C60E24B81E62003EEC87 /* practice.storyboard */; };
 		6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C61024B81E7B003EEC87 /* community.storyboard */; };
-		6CC1C61324B81F0D003EEC87 /* onboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C61224B81F0D003EEC87 /* onboardVC.swift */; };
+		6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */; };
 		6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DA24B579370052D58D /* AppDelegate.swift */; };
 		6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DC24B579370052D58D /* SceneDelegate.swift */; };
 		6CD173DF24B579370052D58D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DE24B579370052D58D /* ViewController.swift */; };
@@ -50,7 +50,7 @@
 		6CC1C60C24B81E44003EEC87 /* home.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = home.storyboard; sourceTree = "<group>"; };
 		6CC1C60E24B81E62003EEC87 /* practice.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = practice.storyboard; sourceTree = "<group>"; };
 		6CC1C61024B81E7B003EEC87 /* community.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = community.storyboard; sourceTree = "<group>"; };
-		6CC1C61224B81F0D003EEC87 /* onboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = onboardVC.swift; sourceTree = "<group>"; };
+		6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTabBarVC.swift; sourceTree = "<group>"; };
 		6CD173D724B579370052D58D /* Spikap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spikap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD173DA24B579370052D58D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CD173DC24B579370052D58D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				6C4720CD24C6B48300C72C70 /* LoginViewController.swift */,
-				6CC1C61224B81F0D003EEC87 /* onboardVC.swift */,
+				6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
 				6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */,
-				6CC1C61324B81F0D003EEC87 /* onboardVC.swift in Sources */,
+				6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */,
 				4704C29C24BEE5C900447D20 /* userExtention.swift in Sources */,
 				6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */,
 				6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */,
