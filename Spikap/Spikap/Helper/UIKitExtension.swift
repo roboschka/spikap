@@ -21,10 +21,10 @@ extension UIViewController {
         }
     }
     
-    func configureNavigationBar(largeTitleColor: UIColor, backgroundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
+    func configureNavigationBar(largeTitleColor: UIColor, backgroundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool, fontSize: CGFloat) {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
-            let fontSize: CGFloat = 40
+            let fontSize: CGFloat = fontSize
             let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
             let font : UIFont
             
@@ -39,11 +39,7 @@ extension UIViewController {
             navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor, .font: font]
             navBarAppearance.backgroundColor = backgroundColor
             
-            navigationController?.navigationBar.standardAppearance = navBarAppearance
-            navigationController?.navigationBar.compactAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            
-            navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
             navigationController?.navigationBar.isTranslucent = true
             navigationController?.navigationBar.tintColor = tintColor
             
