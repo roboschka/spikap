@@ -13,26 +13,40 @@ class homeVC: UIViewController {
     var dayInAWeek = 7
     var days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
     
+    var currentDay = 2
+    var isTodayDone = true
+    var daysOnStreak = 2
+    var isOnStreak = false
+    
     //MARK: IB Outlets
     @IBOutlet weak var progressBarBackgroundView: UIView!
     @IBOutlet weak var dayStreakCollection: UICollectionView!
     @IBOutlet weak var daysOnStreakLabel: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var userLevelLabel: UILabel!
+    @IBOutlet weak var userPointLabel: UILabel!
+    @IBOutlet weak var levelPointLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         profileImageButtonSetup()
-        progressBarSetup(100, 500)
+        
+        progressBarSetup(CGFloat(guestStruct.guestPoints), 500)
+        userLevelLabel.text = guestStruct.guestLevel
+        userPointLabel.text = String(guestStruct.guestPoints)
+        manageLevelPoint(levelName: guestStruct.guestLevel)
+        
         changeToSystemFont(label: daysOnStreakLabel, fontSize: 24)
         changeToSystemFont(label: userNameLabel, fontSize: 24)
     }
+    
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
         progressBarBackgroundView.layer.cornerRadius = 15
         progressBarBackgroundView.layer.borderWidth = 2.5
@@ -48,13 +62,16 @@ class homeVC: UIViewController {
         
         progressBarBackgroundView.addSubview(progressView)
         
+        UserDefaults.standard.set(currentUserXP, forKey: "guestPoints");
     }
+    
     func profileImageButtonSetup(){
         profileImageButton.frame = CGRect(x: 5, y: 5, width: 80, height: 80)
-        let color = UIColor(cgColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))
+        let color = UIColor(cgColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1))
         profileImageButton.backgroundColor = color
         profileImageButton.layer.cornerRadius = 0.5 * profileImageButton.bounds.size.width
     }
+    
     func profileBarButtonItem(){
         let profileButton = UIButton(type: .custom)
         profileButton.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
@@ -68,16 +85,25 @@ class homeVC: UIViewController {
         self.navigationItem.rightBarButtonItem = barButton
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func manageLevelPoint(levelName: String){
+        switch levelName {
+        case "Beginner":
+            levelPointLabel.text = "/500"
+            break;
+        case "Medium":
+            levelPointLabel.text = "/1000"
+            break;
+        case "Intermediate":
+            levelPointLabel.text = "/2500"
+            break;
+        case "Advanced":
+            levelPointLabel.text = "/5000"
+            break;
+        default:
+            levelPointLabel.text = "/0"
+            break
+        }
     }
-    */
 }
 
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -89,8 +115,29 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DayStreakCell", for: indexPath) as! DayStreakCollectionViewCell
         cell.streakIndicator.layer.cornerRadius = 0.5 * cell.streakIndicator.bounds.size.width
         cell.streakIndicator.layer.borderWidth = 1.5
-        cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2588235438, green: 0.7568627596, blue: 0.9686274529, alpha: 1)
+        cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
         
+        if (guestStruct.isOnStreak) {
+            if currentDay <= guestStruct.daysOnStreak {
+                if (indexPath.row < (currentDay-1)) {
+                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                }
+            } else if currentDay > guestStruct.daysOnStreak {
+                if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1)) {
+                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                }
+            }
+            
+            if (guestStruct.isTodayDone) {
+                if(indexPath.row == (currentDay-1)) {
+                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                }
+            } else {
+                if(indexPath.row == (currentDay-1)) {
+                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                }
+            }
+        }
         cell.dayName.text = days[indexPath.row]
         
         return cell
