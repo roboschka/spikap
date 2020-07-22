@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Home-->
+        <!--View Controller-->
         <scene sceneID="Q7w-Bg-XRz">
             <objects>
                 <viewController title="Home" id="CV0-8w-vKD" customClass="homeVC" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
