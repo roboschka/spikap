@@ -131,18 +131,90 @@ struct KeychainItem {
      For the purpose of this demo app, the user identifier will be stored in the device keychain.
      You should store the user identifier in your account management system.
      */
-    static var currentUserIdentifier: String {
-        do {
-            let storedIdentifier = try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").readItem()
-            return storedIdentifier
-        } catch {
-            return ""
+    
+    
+}
+
+extension KeychainItem {
+    static var bundleIdentifier: String {
+        return Bundle.main.bundleIdentifier ?? "caries.Spikap"
+    }
+    
+    static var currentUserIdentifier: String? {
+        get {
+            return try? KeychainItem(service: bundleIdentifier, account: "userIdentifier").readItem()
+        }
+        set {
+            guard let value = newValue else {
+                try? KeychainItem(service: bundleIdentifier, account: "userIdentifier").deleteItem()
+                return
+            }
+            do {
+                try KeychainItem(service: bundleIdentifier, account: "userIdentifier").saveItem(value)
+            } catch {
+                print("Unable to save userIdentifier to keychain.")
+            }
+        }
+    }
+    
+    //Get and Set Current User First Name. Set nil to delete.
+    static var currentUserGivenName: String? {
+        get {
+            return try? KeychainItem(service: bundleIdentifier, account: "givenName").readItem()
+        }
+        set {
+            guard let value = newValue else {
+                try? KeychainItem(service: bundleIdentifier, account: "givenName").deleteItem()
+                return
+            }
+            do {
+                try KeychainItem(service: bundleIdentifier, account: "givenName").saveItem(value)
+            } catch {
+                print("Unable to save userFirstName to keychain.")
+            }
+        }
+    }
+    
+    //Get and Set Current User Last Name. Set nil to delete.
+    static var currentUserBirthName: String? {
+        get {
+            return try? KeychainItem(service: bundleIdentifier, account: "birthName").readItem()
+        }
+        set {
+            guard let value = newValue else {
+                try? KeychainItem(service: bundleIdentifier, account: "birthName").deleteItem()
+                return
+            }
+            do {
+                try KeychainItem(service: bundleIdentifier, account: "birthName").saveItem(value)
+            } catch {
+                print("Unable to save userLastName to keychain.")
+            }
+        }
+    }
+    
+    
+    //Get and Set Current User Email. Set nil to delete.
+    static var currentUserEmail: String? {
+        get {
+            return try? KeychainItem(service: bundleIdentifier, account: "userEmail").readItem()
+        }
+        set {
+            guard let value = newValue else {
+                try? KeychainItem(service: bundleIdentifier, account: "userEmail").deleteItem()
+                return
+            }
+            do {
+                try KeychainItem(service: bundleIdentifier, account: "userEmail").saveItem(value)
+            } catch {
+                print("Unable to save userEmail to keychain.")
+            }
         }
     }
     
     static func deleteUserIdentifierFromKeychain() {
         do {
-            try KeychainItem(service: "aries.Spikap", account: "userIdentifier").deleteItem()
+            try KeychainItem(service: "MC1-G7.Plano", account: "userIdentifier").deleteItem()
         } catch {
             print("Unable to delete userIdentifier from keychain")
         }

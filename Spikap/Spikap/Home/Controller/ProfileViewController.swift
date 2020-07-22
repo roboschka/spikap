@@ -1,21 +1,29 @@
 //
-//  onboardVC.swift
+//  ProfileViewController.swift
 //  Spikap
 //
-//  Created by Aries Dwi Prasetiyo on 10/07/20.
+//  Created by Maria Jeffina on 21/07/20.
 //  Copyright © 2020 Aries Dwi Prasetiyo. All rights reserved.
 //
 
 import UIKit
 
-class onboardVC: UITabBarController {
+class ProfileViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
-
+    
+    @IBAction func goBack(_ sender: Any) {
+        if let nav = self.navigationController {
+            nav.popViewController(animated: true)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
