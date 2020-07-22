@@ -21,10 +21,10 @@ extension UIViewController {
         }
     }
     
-    func configureNavigationBar(largeTitleColor: UIColor, backgroundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool) {
+    func configureNavigationBar(largeTitleColor: UIColor, backgroundColor: UIColor, tintColor: UIColor, title: String, preferredLargeTitle: Bool, fontSize: CGFloat) {
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
-            let fontSize: CGFloat = 40
+            let fontSize: CGFloat = fontSize
             let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
             let font : UIFont
             
@@ -39,11 +39,7 @@ extension UIViewController {
             navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor, .font: font]
             navBarAppearance.backgroundColor = backgroundColor
             
-            navigationController?.navigationBar.standardAppearance = navBarAppearance
-            navigationController?.navigationBar.compactAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
-            
-            navigationController?.navigationBar.prefersLargeTitles = preferredLargeTitle
             navigationController?.navigationBar.isTranslucent = true
             navigationController?.navigationBar.tintColor = tintColor
             
@@ -56,6 +52,7 @@ extension UIViewController {
             navigationItem.title = title
         }
     }
+
     
     func changeToSystemFont(label: UILabel, fontSize: CGFloat) {
         let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
@@ -67,5 +64,20 @@ extension UIViewController {
         }
         
         return label.font = font
+    }
+}
+
+
+extension UIView {
+    func setGradientColor(colorOne: UIColor, colorTwo:UIColor ){
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame =  bounds
+        gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+        gradientLayer.locations = [0.0 , 0.1]
+        gradientLayer.startPoint = CGPoint(x: 1.0 , y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.0)
+        
+        layer.insertSublayer(gradientLayer, at: 0)
     }
 }
