@@ -26,7 +26,7 @@ class LandingTabBarVC: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if showOnboarding == true {
-            pushTo(viewController: .home)
+//            pushTo(viewController: .home)
         }else {
             //            pushTo(viewController: .home)
             pushTo(viewController: .welcome)
@@ -50,7 +50,7 @@ class LandingTabBarVC: UITabBarController {
         }
     }
 }
-
+    
 
 
 
