@@ -27,6 +27,7 @@ class LandingTabBarVC: UITabBarController {
         super.viewDidAppear(animated)
         if showOnboarding == true {
 //            pushTo(viewController: .home)
+
         }else {
             //            pushTo(viewController: .home)
             pushTo(viewController: .welcome)
