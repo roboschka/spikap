@@ -16,6 +16,8 @@ class practiceDetailVC: UIViewController {
     let practiceBackgroundImage:[UIImage] = [#imageLiteral(resourceName: "challenge background"),#imageLiteral(resourceName: "self talk background"),#imageLiteral(resourceName: "speech shadowing background")]
     var practiceDetail:[String] = []
     var practiceTopic:[String] = []
+    var practiceImage:[UIImage] = [#imageLiteral(resourceName: "challenge a"),#imageLiteral(resourceName: "challenge b"),#imageLiteral(resourceName: "challenge c")]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -53,7 +55,7 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "practiceDetailCell") as! PracticeDetailTableViewCell
         cell.selectionStyle = .none
-//        cell.practiceDetailImage =
+        cell.practiceDetailImage.image = practiceImage[indexPath.row]
         cell.practiceTopicLabel.text = practiceTopic[indexPath.row]
         cell.practiceDetailLabel.text = practiceDetail[indexPath.row]
         return cell
