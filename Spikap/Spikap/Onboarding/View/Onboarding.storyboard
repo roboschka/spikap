@@ -107,7 +107,7 @@
                                     <constraint firstAttribute="height" constant="50" id="xuk-RM-cVE"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
-                                <state key="normal" title="Countinue">
+                                <state key="normal" title="Continue">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="titleShadowColor" red="0.54129564760000004" green="0.54086291789999996" blue="0.55686521529999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
@@ -191,7 +191,7 @@
         <scene sceneID="bzS-dy-FH6">
             <objects>
                 <viewControllerPlaceholder storyboardName="community" id="4aW-Sr-23n" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Community" id="pEp-Xs-nj8"/>
+                    <tabBarItem key="tabBarItem" title="Community" image="person.3.fill" catalog="system" id="pEp-Xs-nj8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9PG-hK-gVk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -220,6 +220,7 @@
         <image name="house" catalog="system" width="128" height="110"/>
         <image name="person" catalog="system" width="128" height="117"/>
         <image name="person.3" catalog="system" width="128" height="62"/>
+        <image name="person.3.fill" catalog="system" width="128" height="61"/>
         <image name="radiowaves.right" catalog="system" width="90" height="128"/>
     </resources>
 </document>
