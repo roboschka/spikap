@@ -20,9 +20,15 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     var info = ["This is the definition of the word. Please do write some long sentences just to test out auto layout"]
     var result = true
     
-    
+    let audioEngine = AVAudioEngine()
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    var inputFormat: AVAudioFormat!
+    var audioFileName: URL!
+    
+    let player = AVQueuePlayer()
+    
+    var isRecording: Bool = false
     
     //MARK: IB Outlet
     @IBOutlet weak var topicLabel: UILabel!
@@ -32,14 +38,17 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var contentInfoLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var progressBarView: UICollectionView!
+    @IBOutlet weak var playAudioButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         setupNextButton()
         setupTokenLabel(progress: currentProgress)
+        recordPermission()
+        playAudioButton.isEnabled = true
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         changeToSystemFont(label: topicLabel, fontSize: 20)
@@ -66,30 +75,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
         self.present(alert, animated: true)
     }
     
-    @IBAction func recordVoice(_ sender: Any) {
-        recordPermission()
-        let audioFilename = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-            
-            print("tap to stop")
-        } catch {
-            finishRecording(success: false)
-        }
-    }
     
     @IBAction func nextProgressButton(_ sender: Any) {
-        weak var pvc = self.presentingViewController
         currentProgress += 1
         if(currentProgress > totalProgress - 1) {
             performSegue(withIdentifier: "toCongratulations", sender: nil)
@@ -98,37 +85,80 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
             setupTokenLabel(progress: currentProgress)
             progressBarView.reloadData()
         }
-        
     }
     
-    
-    
     //MARK: Functions
+    
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    func finishRecording(success: Bool) {
-        audioRecorder.stop()
-        audioRecorder = nil
-
-        if success {
-            print("tap to re-record")
+    
+    func loadRecordingUI() {
+        print("Tap to record")
+        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
+    }
+    
+    @objc func recordTapped() {
+        if audioRecorder == nil {
+            startRecording()
+            playAudioButton.isEnabled = false
         } else {
-            print("tap to record")
-            // recording failed :(
+            finishRecording(success: true)
+            playAudioButton.isEnabled = true
         }
     }
+    
+    func startRecording() {
+        audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
+        recordButton.setImage(#imageLiteral(resourceName: "play audio"), for: .normal)
+        let settings = [
+            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            AVSampleRateKey: 12000,
+            AVNumberOfChannelsKey: 1,
+            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+        ]
+        
+        
+        do {
+            audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
+            audioRecorder.delegate = self
+            audioRecorder.record()
+            do {
+                try audioEngine.start()
+            } catch ( _) {
+                print("error in starting audio engine")
+            }
+            print("Tap to stop")
+        } catch {
+            finishRecording(success: false)
+        }
+    }
+    
+    
+    func finishRecording(success: Bool) {
+        recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
+        audioEngine.stop()
+        audioRecorder.stop()
+        audioRecorder = nil
+        
+        if success {
+            print("tap to re-record")
+            print(audioFileName.absoluteString)
+        } else {
+            print("tap to record")
+        }
+    }
+    
     func recordPermission(){
         recordingSession = AVAudioSession.sharedInstance()
-
         do {
             try recordingSession.setCategory(.playAndRecord, mode: .default)
-            try recordingSession.setActive(true)
+            try recordingSession.setActive(true, options: [])
             recordingSession.requestRecordPermission() { [unowned self] allowed in
                 DispatchQueue.main.async {
                     if allowed {
-                        self.recordVoice(self)
+                        self.loadRecordingUI()
                     } else {
                         // failed to record!
                     }
@@ -158,7 +188,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
         }
         tokenLabel.text = finalString
     }
-
 }
 
 extension SpeechShadowingViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
