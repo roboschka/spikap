@@ -39,9 +39,9 @@ extension UIViewController {
             navBarAppearance.titleTextAttributes = [.foregroundColor: largeTitleColor, .font: font]
             navBarAppearance.backgroundColor = backgroundColor
             
-            navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
             navigationController?.navigationBar.isTranslucent = true
             navigationController?.navigationBar.tintColor = tintColor
+            navigationController?.navigationBar.barStyle = .black
             
             navigationItem.title = title
         } else {
@@ -52,8 +52,22 @@ extension UIViewController {
             navigationItem.title = title
         }
     }
-
     
+    func changeToSystemFont(label: UILabel, fontSize: CGFloat) {
+        let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
+        let font : UIFont
+        if let descriptor = systemFont.fontDescriptor.withDesign(.rounded) {
+            font = UIFont(descriptor: descriptor, size: fontSize)
+        } else {
+            font = systemFont
+        }
+        
+        return label.font = font
+    }
+
+}
+
+extension UITableViewCell {
     func changeToSystemFont(label: UILabel, fontSize: CGFloat) {
         let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
         let font : UIFont
@@ -80,4 +94,38 @@ extension UIView {
         
         layer.insertSublayer(gradientLayer, at: 0)
     }
+}
+
+
+extension UIApplication {
+var statusBarUIView: UIView? {
+
+    if #available(iOS 13.0, *) {
+        let tag = 3848245
+
+        let keyWindow = UIApplication.shared.connectedScenes
+            .map({$0 as? UIWindowScene})
+            .compactMap({$0})
+            .first?.windows.first
+
+        if let statusBar = keyWindow?.viewWithTag(tag) {
+            return statusBar
+        } else {
+            let height = keyWindow?.windowScene?.statusBarManager?.statusBarFrame ?? .zero
+            let statusBarView = UIView(frame: height)
+            statusBarView.tag = tag
+            statusBarView.layer.zPosition = 999999
+
+            keyWindow?.addSubview(statusBarView)
+            return statusBarView
+        }
+
+    } else {
+
+        if responds(to: Selector(("statusBar"))) {
+            return value(forKey: "statusBar") as? UIView
+        }
+    }
+    return nil
+  }
 }
