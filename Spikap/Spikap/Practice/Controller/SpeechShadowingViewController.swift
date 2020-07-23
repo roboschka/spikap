@@ -111,7 +111,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     
     func startRecording() {
         audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-        recordButton.setImage(#imageLiteral(resourceName: "play audio"), for: .normal)
+        recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
