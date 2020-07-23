@@ -64,4 +64,18 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch practiceTypeId {
+        case 0:
+            print("segue to challenge");
+        case 1:
+            print("segue to self-talk");
+        case 2:
+            performSegue(withIdentifier: "segueToSpeechShadowing", sender: nil)
+        default:
+            return
+        }
+    }
 }

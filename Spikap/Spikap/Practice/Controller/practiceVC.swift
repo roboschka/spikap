@@ -22,7 +22,11 @@ class practiceVC: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
+        
+        UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
     }
+    
+    
     
 
     /*
@@ -54,7 +58,7 @@ extension practiceVC: UITableViewDataSource, UITableViewDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "practiceTypeCell") as! PracticeTypeTableViewCell
         cell.selectionStyle = .none
-        cell.layer.cornerRadius = 20
+        cell.layer.cornerRadius = 15
         cell.practiceImage.image = practiceImage[indexPath.row]
         return cell
     }
