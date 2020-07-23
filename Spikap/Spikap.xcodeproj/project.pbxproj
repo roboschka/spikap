@@ -19,6 +19,7 @@
 		47C90F8A24C8054200A72044 /* SpeechShadowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */; };
 		47C90F8C24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */; };
 		47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */; };
+
 		6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CD24C6B48300C72C70 /* LoginViewController.swift */; };
 		6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */; };
 		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
@@ -56,6 +57,7 @@
 		47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechShadowingViewController.swift; sourceTree = "<group>"; };
 		47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
+
 		6C4720CD24C6B48300C72C70 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };

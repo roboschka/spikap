@@ -32,6 +32,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     @IBOutlet weak var contentInfoLabel: UILabel!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var progressBarView: UICollectionView!
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,18 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     }
     
     //MARK: IB Actions
+        questionLabel.text = contents
+        for index in 0 ..< contentsToken.count {
+            let value = contentsToken[index]
+            if index == contentsToken.count - 1 {
+                tokenLabel.text = tokenLabel.text ?? "" + value
+            } else {
+                tokenLabel.text = tokenLabel.text ?? "" + value + " - "
+            }
+            
+        }
+    }
+    
     @IBAction func goBack(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to go back?", message: "You will loose your progress by going back", preferredStyle: .alert)
         
