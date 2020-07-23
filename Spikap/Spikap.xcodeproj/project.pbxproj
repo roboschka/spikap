@@ -34,6 +34,8 @@
 		6CD173E724B579390052D58D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD173E524B579390052D58D /* LaunchScreen.storyboard */; };
 		940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F7EFE24C54E060092251A /* PracticeTypeTableViewCell.swift */; };
 		940F7F0124C54E060092251A /* PracticeTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940F7EFF24C54E060092251A /* PracticeTypeTableViewCell.xib */; };
+		94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */; };
+		94437E7C24C91EE700FE5987 /* ActivitiesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94437E7A24C91EE700FE5987 /* ActivitiesTableViewCell.xib */; };
 		9445CE4E24C6967100D4D4E1 /* practiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */; };
 		9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */; };
 		9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */; };
@@ -70,6 +72,8 @@
 		6CD173E824B579390052D58D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		940F7EFE24C54E060092251A /* PracticeTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypeTableViewCell.swift; sourceTree = "<group>"; };
 		940F7EFF24C54E060092251A /* PracticeTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeTypeTableViewCell.xib; sourceTree = "<group>"; };
+		94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
+		94437E7A24C91EE700FE5987 /* ActivitiesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivitiesTableViewCell.xib; sourceTree = "<group>"; };
 		9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practiceDetailVC.swift; sourceTree = "<group>"; };
 		9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -156,6 +160,8 @@
 				6CC1C60124B81B28003EEC87 /* homeVC.swift */,
 				479C917124C14913009E7DF1 /* DayStreakCollectionViewCell.swift */,
 				47A33E6F24C6D3B20090894B /* ProfileViewController.swift */,
+				94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */,
+				94437E7A24C91EE700FE5987 /* ActivitiesTableViewCell.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -210,9 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				6C4720CD24C6B48300C72C70 /* LoginViewController.swift */,
-
 				6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */,
-
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -326,6 +330,7 @@
 				6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */,
 				9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */,
 				6CD173E724B579390052D58D /* LaunchScreen.storyboard in Resources */,
+				94437E7C24C91EE700FE5987 /* ActivitiesTableViewCell.xib in Resources */,
 				6CD173E424B579390052D58D /* Assets.xcassets in Resources */,
 				6CD173E224B579370052D58D /* Main.storyboard in Resources */,
 				6CC1C60B24B81BF2003EEC87 /* Onboarding.storyboard in Resources */,
@@ -348,11 +353,8 @@
 				940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
 				6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */,
-
 				6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */,
-
 				47A33E7024C6D3B20090894B /* ProfileViewController.swift in Sources */,
-
 				4704C29C24BEE5C900447D20 /* userExtention.swift in Sources */,
 				6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */,
 				478BC13724C6BE12005994AB /* DateHelper.swift in Sources */,
@@ -363,6 +365,7 @@
 				9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */,
 				6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */,
 				478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */,
+				94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */,
 				479C917224C14913009E7DF1 /* DayStreakCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

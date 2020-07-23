@@ -20,6 +20,7 @@ class homeVC: UIViewController {
     @IBOutlet weak var progressBarBackgroundView: UIView!
     @IBOutlet weak var progressBarView: UIView!
     @IBOutlet weak var dayStreakCollection: UICollectionView!
+    @IBOutlet weak var activitesTableView: UITableView!
     @IBOutlet weak var daysOnStreakLabel: UILabel!
     @IBOutlet weak var profileImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -36,6 +37,12 @@ class homeVC: UIViewController {
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true, fontSize: 40)
+        
+        activitesTableView.register(UINib(nibName: "ActivitiesTableViewCell", bundle: nil), forCellReuseIdentifier: "activitiesCell")
+        
+        activitesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
+        activitesTableView.delegate = self
+        activitesTableView.dataSource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -174,5 +181,22 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.dayName.text = days[indexPath.row]
         
         return cell
+    }
+}
+
+extension homeVC: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 3
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesCell") as! ActivitiesTableViewCell
+        cell.selectionStyle = .none
+//        cell.activitiesImageView.image =
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 275
     }
 }
