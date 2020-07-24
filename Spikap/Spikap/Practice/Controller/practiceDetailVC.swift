@@ -17,6 +17,7 @@ class practiceDetailVC: UIViewController {
     var practiceDetail:[String] = []
     var practiceTopic:[String] = []
     var practiceImage:[UIImage] = [#imageLiteral(resourceName: "challenge a"),#imageLiteral(resourceName: "challenge b"),#imageLiteral(resourceName: "challenge c")]
+    var practiceId:Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,6 +46,12 @@ class practiceDetailVC: UIViewController {
             break
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let challengeVC = segue.destination as? ChallengeOverviewViewController {
+            challengeVC.practiceId = sender as? Int
+        }
+    }
 }
 
 extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
@@ -69,7 +76,7 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch practiceTypeId {
         case 0:
-            print("segue to challenge");
+            performSegue(withIdentifier: "segueToChallengeOverview", sender: indexPath.row)
         case 1:
             print("segue to self-talk");
         case 2:
