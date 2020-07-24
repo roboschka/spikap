@@ -295,6 +295,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKX-kp-ci4">
+                                <rect key="frame" x="151" y="473" width="113" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="go to edit profile"/>
+                                <connections>
+                                    <segue destination="5RD-nb-AZE" kind="showDetail" id="DR5-6L-hbf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="ode-fL-gGJ"/>
@@ -303,6 +311,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jy5-nk-HHo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="128" y="741"/>
+        </scene>
+        <!--editProfile-->
+        <scene sceneID="DxV-LX-AW6">
+            <objects>
+                <viewControllerPlaceholder storyboardName="editProfile" id="5RD-nb-AZE" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z2d-PW-W2c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="735" y="741"/>
         </scene>
     </scenes>
     <resources>
