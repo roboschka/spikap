@@ -43,6 +43,8 @@ class homeVC: UIViewController {
         activitesTableView.separatorStyle = UITableViewCell.SeparatorStyle.none
         activitesTableView.delegate = self
         activitesTableView.dataSource = self
+        
+        UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
     }
     
     override func viewWillAppear(_ animated: Bool) {
