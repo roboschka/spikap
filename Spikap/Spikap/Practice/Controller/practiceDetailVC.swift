@@ -29,6 +29,10 @@ class practiceDetailVC: UIViewController {
         practiceDetailTableView.delegate = self
         practiceDetailTableView.dataSource = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
     
     //load data sementara
     func loadData(){

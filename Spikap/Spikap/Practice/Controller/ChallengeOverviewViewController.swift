@@ -29,6 +29,10 @@ class ChallengeOverviewViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
     }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.tabBarController?.tabBar.isHidden = true
+    }
     
     func loadData(){
         switch practiceId {
