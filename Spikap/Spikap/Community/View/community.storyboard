@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--CommunityVC-->
         <scene sceneID="kpO-AW-QW7">
             <objects>
-                <viewController id="E8X-qI-YWb" sceneMemberID="viewController">
+                <viewController id="E8X-qI-YWb" customClass="communityVC" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7SJ-Sn-lJt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -23,16 +23,25 @@
             </objects>
             <point key="canvasLocation" x="1115.9420289855072" y="741.96428571428567"/>
         </scene>
-        <!--Item-->
+        <!--Community-->
         <scene sceneID="Xwp-Ul-F10">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fTL-8F-7JM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="nym-DS-UIn"/>
+                    <tabBarItem key="tabBarItem" title="Community" image="person.3" catalog="system" id="nym-DS-UIn"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gVr-yE-sHt">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="gVr-yE-sHt">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.12156862745098039" green="0.63529411764705879" blue="0.89803921568627454" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.1215686275" green="0.63529411759999999" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -44,4 +53,7 @@
             <point key="canvasLocation" x="205.79710144927537" y="741.96428571428567"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="person.3" catalog="system" width="128" height="62"/>
+    </resources>
 </document>
