@@ -16,9 +16,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var totalProgress = 8
     var currentProgress = 0
     
-    var contents = ["Travel", "Backpack", "Map", "Roadtrip", "Wanderlust", "Van", "Recreation", "Compass"]
-    var contentsToken = [["Tra", "vel"], ["Back", "pack"], ["Map"], ["Road", "trip"], ["Wan", "der", "lust"], ["Van"], ["Re", "crea", "tion"], ["Com", "pass"]]
-    var info = ["This is the definition of the word. Please do write some long sentences just to test out auto layout"]
+    var contents = ["Airfare", "Baggage", "Cruise", "Departure", "Explore", "Foreign", "Itinerary", "Journey"]
+    var contentsToken = [["ehr", "fehr"], ["ba", "guhj"], ["krooz"], ["duh", "paar", "chr"], ["uhk", "splor"], ["faw", "ruhn"], ["ai", "ti", "nr", "eh", "ree"], ["jur", "nee"]]
+    var info = ["(Noun) The price of a passenger ticket for travel by aircraft.", "(Noun) Personal belongings packed in suitcases for traveling; luggage.", "(Verb) Sail about in an area without a precise destination, especially for pleasure", "(Noun) The action of leaving, especially to start a journey.", "(Verb) Travel in or through (an unfamiliar country or area) in order to learn about or familiarize oneself with it.", "(Adjective) Of, from, in, or characteristic of a country or language other than one's own.", "(Noun) A planned route or journey.", "(Noun) An act of traveling from one place to another."]
     var result: String = ""
     
     let audioEngine = AVAudioEngine()
@@ -109,6 +109,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             performSegue(withIdentifier: "toCongratulations", sender: nil)
         } else {
             questionLabel.text = contents[currentProgress]
+            contentInfoLabel.text = info[currentProgress]
             setupTokenLabel(progress: currentProgress)
             progressBarView.reloadData()
             nextButton.isEnabled = false
@@ -136,6 +137,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         } else {
             try! startRecording()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
+            playAudioButton.isEnabled = false
         }
     }
     
@@ -154,9 +156,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     func checkPronounciationResult(_ result: String, _ masterText: String) {
-        let word = result.components(separatedBy: " ").first
-        if (word == masterText) {
-            questionLabel.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+//        let word = result.components(separatedBy: " ").first
+        if (result.uppercased().contains(masterText.uppercased())) {
+            questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
             nextButton.isEnabled = true
         } else {
             questionLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
@@ -263,7 +265,7 @@ extension SpeechShadowingViewController {
             var isFinal = false
             
             if let transcript = result {
-                print(transcript.bestTranscription.formattedString)
+                print(transcript.transcriptions)
                 isFinal = transcript.isFinal
                 self.result = transcript.bestTranscription.formattedString
                 
