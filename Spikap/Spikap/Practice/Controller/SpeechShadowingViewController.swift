@@ -117,8 +117,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
-    
-    
     //MARK: Functions
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
