@@ -129,6 +129,9 @@
                                 <state key="normal" image="chevron.right" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                 </state>
+                                <connections>
+                                    <segue destination="bCS-pr-pkJ" kind="show" id="saL-Mb-kfY"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4oe-qg-8xv" userLabel="separator2">
                                 <rect key="frame" x="0.0" y="533.5" width="414" height="1"/>
@@ -198,6 +201,16 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MNt-hz-rUj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-168.11594202898553" y="139.95535714285714"/>
+        </scene>
+        <!--interestList-->
+        <scene sceneID="EHO-W5-e5g">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="interestList" storyboardName="interestList" id="bCS-pr-pkJ" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="lho-eo-BIL"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UM8-xU-jvb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="409" y="168"/>
         </scene>
     </scenes>
     <resources>
