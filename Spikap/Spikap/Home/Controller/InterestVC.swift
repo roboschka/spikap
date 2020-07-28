@@ -10,11 +10,15 @@ import UIKit
 
 class InterestVC: UIViewController, UITableViewDataSource, UITableViewDelegate, UINavigationControllerDelegate {
     
+    var selectedInterestIndex : [Int] = []
+    var selectedInterestIndex : [Int] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
+    
     
     //change model by Interest DB here
     struct InterestModel
@@ -25,7 +29,7 @@ class InterestVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     //dummy Interest
-    let interestList = [
+    var interestList = [
         InterestModel(interestID: 1, interestName: "Animal", selected: false),
         InterestModel(interestID: 2, interestName: "Art & Design", selected: false),
         InterestModel(interestID: 3, interestName: "Cartoon", selected: false),
@@ -55,9 +59,10 @@ class InterestVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
             tableView.deselectRow(at: indexPath, animated: true)
             
-            
+            //to unselect the previous selected tag
             interestList[indexPath.row].selected = !interestList[indexPath.row].selected
             
+        
             if interestList[indexPath.row].selected {
                 if !repeatDayIndex.contains(indexPath.row){
                     repeatDayIndex.append(indexPath.row)
