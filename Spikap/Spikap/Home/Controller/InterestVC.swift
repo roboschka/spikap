@@ -57,33 +57,36 @@ class InterestVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-            tableView.deselectRow(at: indexPath, animated: true)
-            
-            //to unselect the previous selected tag
-            interestList[indexPath.row].selected = !interestList[indexPath.row].selected
-            
+        tableView.deselectRow(at: indexPath, animated: true)
         
-            if interestList[indexPath.row].selected {
-                if !repeatDayIndex.contains(indexPath.row){
-                    repeatDayIndex.append(indexPath.row)
-                }
-                else {
-                    repeatDayIndex = repeatDayIndex.filter{$0 != indexPath.row}
-                }
-                
-            } else {
-                if repeatDayIndex.count != 0 {
-    //                repeatDay.remove(at: indexPath.row)
-                    repeatDayIndex = repeatDayIndex.filter{$0 != indexPath.row}
-                }
-                
+        //to unselect the previous selected tag
+        interestList[indexPath.row].selected = !interestList[indexPath.row].selected
+        
+    
+        if interestList[indexPath.row].selected {
+            if !selectedInterestIndex.contains(indexPath.row){
+                // add selected index to selectedInterestIndex
+                selectedInterestIndex.append(indexPath.row)
+            }
+            else {
+                // remove selected index from selectedInterestIndex
+                selectedInterestIndex = selectedInterestIndex.filter{$0 != indexPath.row}
             }
             
-            print("repeat day \(repeatDayIndex)")
-            
-            tableView.reloadData()
+        } else {
+            if selectedInterestIndex.count != 0 {
+//                repeatDay.remove(at: indexPath.row)
+                // remove selected index from selectedInterestIndex
+                selectedInterestIndex = selectedInterestIndex.filter{$0 != indexPath.row}
+            }
             
         }
+        
+        print("selected interests array : \(selectedInterestIndex)")
+        
+        tableView.reloadData()
+        
+    }
     
 
     
