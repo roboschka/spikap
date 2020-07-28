@@ -127,6 +127,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             progressBarView.reloadData()
             nextButton.isEnabled = false
             questionLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            feedbackLabel.text = "Say the word!"
         }
     }
     
@@ -200,7 +201,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                     wrongSound()
                 } else {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
-                    feedbackLabel.text = "Well, here's what we can hear from you: \(temp.joined(separator: ", "))"
+                    feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\""
                     nextButton.isEnabled = false
                     wrongSound()
                 }
@@ -419,6 +420,7 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
@@ -430,6 +432,7 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
