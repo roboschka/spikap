@@ -11,6 +11,7 @@ import AVFoundation
 import Speech
 import AVKit
 import SoundAnalysis
+import CloudKit
 
 class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, SFSpeechRecognizerDelegate {
     
@@ -25,7 +26,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var result: String = ""
     
     private let audioEngine = AVAudioEngine()
-    private var soundClassifier = English()        //MLmodel
+    private var soundClassifier = English()      //MLmodel
     
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -38,10 +39,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var streamAnalyzer: SNAudioStreamAnalyzer!
     let queue = DispatchQueue(label: "aries.Spikap")
     var results = [(label: String, confidence: Float)]()
-
     var testResult = [(label: String, confidence: Float)]()
     
-    var audioFileName: URL!
+    
     
     var isRecording: Bool = false
     var isCorrect: Bool = false
@@ -128,10 +128,10 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             progressBarView.reloadData()
             nextButton.isEnabled = false
             questionLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            feedbackLabel.text = "Say the word!"
         }
     }
     
-
     @IBAction func recordTapped(_ sender: Any) {
         if audioEngine.isRunning {
             audioEngine.stop()
@@ -145,7 +145,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
-
     //MARK: Functions
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -159,9 +158,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             showAudioError()
         }
     }
-    
-    
-
     
     private func checkResult() {
         var temp: [String] = []
@@ -206,7 +202,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                     wrongSound()
                 } else {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
-                    feedbackLabel.text = "Well, here's what we can hear from you: \(temp.joined(separator: ", "))"
+                    feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\""
                     nextButton.isEnabled = false
                     wrongSound()
                 }
@@ -214,7 +210,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
-
     private func prepareForRecording() {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -238,23 +233,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
-    
-    func finishRecording(success: Bool) {
-        recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
-        audioEngine.stop()
-        audioRecorder.stop()
-        audioRecorder = nil
-        
-        if success {
-            print("tap to re-record")
-            print(audioFileName.absoluteString)
-        } else {
-            print("tap to record")
-        }
-    }
-    
     func checkPronounciationResult(_ result: String, _ masterText: String) {
-
         if (result.uppercased().contains(masterText.uppercased())) {
             questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
             nextButton.isEnabled = true
@@ -427,6 +406,7 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
@@ -438,10 +418,23 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
         }
     }
+    
+    func playSpeech(resourceURL: CKAsset) {
+        //resourceURL -> arrayOfActivityContents[currentProgress].contentAudio
+        let audioURL = resourceURL.fileURL
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioURL!)
+            audioPlayer?.volume = 1.0
+            audioPlayer?.play()
+        } catch {
+            print("AVAudioPlayer init failed")
+        }
+        
+    }
 }
-

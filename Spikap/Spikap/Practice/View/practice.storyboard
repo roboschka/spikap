@@ -111,7 +111,7 @@
         <scene sceneID="aOM-q6-aoU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="SYi-8J-5Hz" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Practice" id="KJ9-Sf-Wdk"/>
+                    <tabBarItem key="tabBarItem" title="Practice" image="tortoise" catalog="system" id="KJ9-Sf-Wdk"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Y4m-oU-6L0">
@@ -711,6 +711,7 @@
         <image name="share twitter" width="242" height="33"/>
         <image name="speech card" width="358" height="360"/>
         <image name="start button" width="336" height="50"/>
+        <image name="tortoise" catalog="system" width="128" height="68"/>
         <image name="trophy" width="146" height="147"/>
     </resources>
 </document>
