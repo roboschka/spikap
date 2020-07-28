@@ -24,10 +24,16 @@ class SelfTalkViewController: UIViewController {
     @IBOutlet weak var secondCardLabel: UILabel!
     @IBOutlet weak var chatBotImage: UIImageView!
     @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var speechView: UIView!
+    @IBOutlet weak var chatBotView: UIView!
+    @IBOutlet weak var chatBotLabel: UILabel!
+    @IBOutlet weak var userView: UIView!
+    @IBOutlet weak var userReplyLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setUpCard()
+        setUpView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -36,13 +42,14 @@ class SelfTalkViewController: UIViewController {
         topicLabel.text = topic
     }
     
-    func setUpCard(){
+    func setUpView(){
         firstReplyView.layer.borderColor = UIColor.gray.cgColor
         firstReplyView.layer.borderWidth = 1
         firstReplyView.layer.cornerRadius = 15
         secondReplyView.layer.borderColor = UIColor.gray.cgColor
         secondReplyView.layer.borderWidth = 1
         secondReplyView.layer.cornerRadius = 15
+        chatBotView.layer.cornerRadius = 15
     }
     @IBAction func goBack(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to go back?", message: "You will loose your progress by going back", preferredStyle: .alert)

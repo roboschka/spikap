@@ -772,7 +772,7 @@
                                 <rect key="frame" x="0.0" y="398" width="414" height="464"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blue background" translatesAutoresizingMaskIntoConstraints="NO" id="lgs-S3-coD">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="528"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="464"/>
                                     </imageView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech card" translatesAutoresizingMaskIntoConstraints="NO" id="956-3e-tGb">
                                         <rect key="frame" x="10" y="0.0" width="394" height="463"/>
@@ -858,12 +858,12 @@
                                     <constraint firstAttribute="bottom" secondItem="VSe-P3-geJ" secondAttribute="bottom" constant="8" id="PvS-ih-UOB"/>
                                     <constraint firstAttribute="trailing" secondItem="VSe-P3-geJ" secondAttribute="trailing" constant="158" id="Y0B-bx-H0g"/>
                                     <constraint firstAttribute="trailing" secondItem="lgs-S3-coD" secondAttribute="trailing" id="aI0-Yj-b8k"/>
+                                    <constraint firstAttribute="bottom" secondItem="lgs-S3-coD" secondAttribute="bottom" id="cF9-cB-xBW"/>
                                     <constraint firstItem="O6t-oE-3tv" firstAttribute="leading" secondItem="0xx-aH-Edp" secondAttribute="leading" constant="122" id="fKL-H9-Men"/>
                                     <constraint firstItem="O6t-oE-3tv" firstAttribute="top" secondItem="0xx-aH-Edp" secondAttribute="top" constant="73" id="foz-0Y-A7u"/>
                                     <constraint firstAttribute="trailing" secondItem="956-3e-tGb" secondAttribute="trailing" constant="10" id="fy9-5K-d3e"/>
                                     <constraint firstItem="956-3e-tGb" firstAttribute="centerY" secondItem="0xx-aH-Edp" secondAttribute="centerY" constant="-0.5" id="gVa-XK-bJk"/>
                                     <constraint firstItem="956-3e-tGb" firstAttribute="centerX" secondItem="0xx-aH-Edp" secondAttribute="centerX" id="gyU-Dz-P1i"/>
-                                    <constraint firstAttribute="bottom" secondItem="lgs-S3-coD" secondAttribute="bottom" constant="-64" id="h7J-u0-Ikw"/>
                                     <constraint firstAttribute="trailing" secondItem="O6t-oE-3tv" secondAttribute="trailing" constant="122" id="mQM-Ye-Zzb"/>
                                     <constraint firstItem="956-3e-tGb" firstAttribute="top" secondItem="0xx-aH-Edp" secondAttribute="top" id="qxb-5M-MHI"/>
                                     <constraint firstItem="lgs-S3-coD" firstAttribute="centerX" secondItem="0xx-aH-Edp" secondAttribute="centerX" id="udU-Np-EFo"/>
@@ -873,6 +873,58 @@
                                 <rect key="frame" x="20" y="186" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qVH-Ql-ItW">
+                                <rect key="frame" x="78" y="186" width="316" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b4W-0O-pJV">
+                                        <rect key="frame" x="8" y="0.0" width="273" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Hey, I heard you went to Bali last summer. How was it?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ubm-Qh-acs">
+                                                <rect key="frame" x="8" y="8" width="257" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.91760569810000003" green="0.90588873619999999" blue="0.90588200090000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bIB-Xw-qGn">
+                                        <rect key="frame" x="217" y="44" width="41" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="play audio"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CiL-Ki-EWK">
+                                <rect key="frame" x="118" y="279" width="296" height="85"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FzX-ZA-BfX">
+                                        <rect key="frame" x="8" y="0.0" width="273" height="65"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rI2-Kv-23e">
+                                                <rect key="frame" x="8" y="8" width="257" height="49"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.90233200790000001" green="0.9560309052" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v2F-h7-cRi">
+                                        <rect key="frame" x="217" y="44" width="41" height="41"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="play audio"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -892,13 +944,18 @@
                     <navigationItem key="navigationItem" id="yrw-0K-WK4"/>
                     <connections>
                         <outlet property="chatBotImage" destination="trU-SQ-748" id="d8k-s7-AYW"/>
+                        <outlet property="chatBotLabel" destination="ubm-Qh-acs" id="9Sb-xb-Uc5"/>
+                        <outlet property="chatBotView" destination="b4W-0O-pJV" id="YyB-7h-zJx"/>
                         <outlet property="firstCardLabel" destination="4Bi-KW-mhC" id="Xst-jP-j7s"/>
                         <outlet property="firstReplyView" destination="wj4-59-uKq" id="Dja-d4-q9z"/>
                         <outlet property="progressBarView" destination="qn2-H5-IKA" id="26y-wc-iQc"/>
                         <outlet property="recordButton" destination="VSe-P3-geJ" id="bAZ-nb-eL6"/>
                         <outlet property="secondCardLabel" destination="k1G-wt-2X9" id="e29-t8-FEx"/>
                         <outlet property="secondReplyView" destination="5E3-Be-GXz" id="tPA-f5-88M"/>
+                        <outlet property="speechView" destination="0xx-aH-Edp" id="imf-BZ-ccf"/>
                         <outlet property="topicLabel" destination="eWj-dZ-fOc" id="XSp-gy-XNl"/>
+                        <outlet property="userReplyLabel" destination="rI2-Kv-23e" id="Fe8-No-acV"/>
+                        <outlet property="userView" destination="FzX-ZA-BfX" id="ysw-uu-jNZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdn-12-MYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
