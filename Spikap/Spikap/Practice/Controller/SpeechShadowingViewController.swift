@@ -9,6 +9,8 @@
 import UIKit
 import AVFoundation
 import Speech
+import AVKit
+import SoundAnalysis
 
 class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, SFSpeechRecognizerDelegate {
     //MARK: Variables
@@ -17,11 +19,13 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var currentProgress = 0
     
     var contents = ["Airfare", "Baggage", "Cruise", "Departure", "Explore", "Foreign", "Itinerary", "Journey"]
-    var contentsToken = [["ehr", "fehr"], ["ba", "guhj"], ["krooz"], ["duh", "paar", "chr"], ["uhk", "splor"], ["faw", "ruhn"], ["ai", "ti", "nr", "eh", "ree"], ["jur", "nee"]]
+    var contentsToken = [["air", "fare"], ["ba", "ggage"], ["cruise"], ["de", "par", "ture"], ["ex", "plor"], ["fo", "reign"], ["i", "ti", "ne", "ra", "ry"], ["jour", "ney"]]
     var info = ["(Noun) The price of a passenger ticket for travel by aircraft.", "(Noun) Personal belongings packed in suitcases for traveling; luggage.", "(Verb) Sail about in an area without a precise destination, especially for pleasure", "(Noun) The action of leaving, especially to start a journey.", "(Verb) Travel in or through (an unfamiliar country or area) in order to learn about or familiarize oneself with it.", "(Adjective) Of, from, in, or characteristic of a country or language other than one's own.", "(Noun) A planned route or journey.", "(Noun) An act of traveling from one place to another."]
     var result: String = ""
     
-    let audioEngine = AVAudioEngine()
+    private let audioEngine = AVAudioEngine()
+    private var soundClassifier = EnglishPronounce()        //MLmodel
+    
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask: SFSpeechRecognitionTask?
@@ -29,9 +33,16 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var inputFormat: AVAudioFormat!
+    var streamAnalyzer: SNAudioStreamAnalyzer!
+    let queue = DispatchQueue(label: "aries.Spikap")
+    var results = [(label: String, confidence: Float)]()
+    
+    var testResult = [(label: String, confidence: Float)]()
+    
     var audioFileName: URL!
     
     var isRecording: Bool = false
+    var isCorrect: Bool = false
     
     //MARK: IB Outlet
     @IBOutlet weak var topicLabel: UILabel!
@@ -42,6 +53,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet weak var progressBarView: UICollectionView!
     @IBOutlet weak var playAudioButton: UIButton!
+    @IBOutlet weak var feedbackLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -127,17 +139,94 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         if audioEngine.isRunning {
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
-            recognitionRequest?.endAudio()
-            playAudioButton.isEnabled = true
             recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
-            checkPronounciationResult(result, contents[currentProgress])
-            
+            checkResult()
         } else {
-            try! startRecording()
+            prepareForRecording()
+            createClassificationRequest()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
-            playAudioButton.isEnabled = false
         }
     }
+    
+    private func startAudioEngine() {
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            showAudioError()
+        }
+    }
+    
+    private func checkResult() {
+        var temp: [String] = []
+        isCorrect = false
+        for (index, result) in testResult.enumerated() {
+            if (index < contentsToken[currentProgress].count) {
+                if result.label.uppercased().contains(contents[currentProgress].uppercased()) {
+                    if result.confidence < 50 {
+                        isCorrect = false
+                    } else {
+                        isCorrect = true
+                        break
+                    }
+                } else  {
+                    for token in contentsToken[currentProgress] {
+                        if result.label.uppercased().contains(token.uppercased()) {
+                            if (Int(result.confidence) >= 30) {
+                                temp.append(token)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        if (isCorrect) {
+            questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+            feedbackLabel.text = "Good job!"
+            nextButton.isEnabled = true
+        } else {
+            if (temp.joined().uppercased() == contents[currentProgress].uppercased()) {
+                questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+                feedbackLabel.text = "Good job!"
+                nextButton.isEnabled = true
+            } else  {
+                if (temp.count == 0) {
+                    questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                    feedbackLabel.text = "Oops, we didn't catch that. Try again"
+                    nextButton.isEnabled = false
+                } else {
+                    questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                    feedbackLabel.text = "Well, here's what we can hear from you: \(temp.joined(separator: ", "))"
+                    nextButton.isEnabled = false
+                }
+            }
+        }
+    }
+    
+    private func prepareForRecording() {
+        let inputNode = audioEngine.inputNode
+        let recordingFormat = inputNode.outputFormat(forBus: 0)
+        streamAnalyzer = SNAudioStreamAnalyzer(format: recordingFormat)
+        inputNode.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) {
+            [unowned self] (buffer, when) in
+            self.queue.async {
+                self.streamAnalyzer.analyze(buffer,
+                                            atAudioFramePosition: when.sampleTime)
+            }
+        }
+        startAudioEngine()
+    }
+    
+    private func createClassificationRequest() {
+        do {
+            let request = try SNClassifySoundRequest(mlModel: soundClassifier.model)
+            try streamAnalyzer.add(request, withObserver: self)
+        } catch {
+            fatalError("error adding the classification request")
+        }
+    }
+    
     
     func finishRecording(success: Bool) {
         recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
@@ -280,5 +369,41 @@ extension SpeechShadowingViewController {
         }
         
         
+    }
+}
+
+extension SpeechShadowingViewController: SNResultsObserving {
+    func request(_ request: SNRequest, didProduce result: SNResult) {
+        guard let result = result as? SNClassificationResult else { return }
+        var temp = [(label: String, confidence: Float)]()
+        let sorted = result.classifications.sorted { (first, second) -> Bool in
+            return first.confidence > second.confidence
+        }
+        for classification in sorted {
+            let confidence = classification.confidence * 100
+            if confidence > 5 {
+                temp.append((label: classification.identifier, confidence: Float(confidence)))
+            }
+        }
+        print("temp result: \(temp)")
+        testResult = temp
+    }
+}
+
+
+extension SpeechShadowingViewController {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAudioError() {
+        let errorTitle = "Audio Error"
+        let errorMessage = "Recording is not possible at the moment."
+        self.showAlert(title: errorTitle, message: errorMessage)
     }
 }
