@@ -226,6 +226,7 @@
 				47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */,
 				94437E8324CD6E3200FE5987 /* SelfTalkViewController.swift */,
 				47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */,
+				47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */,
 				47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */,
 			);
 			path = Controller;

@@ -8,8 +8,9 @@
 
 import UIKit
 import AVFoundation
+import Speech
 
-class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
+class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, SFSpeechRecognizerDelegate {
     //MARK: Variables
     var topic = "Travelling"
     var totalProgress = 8
@@ -18,15 +19,17 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
     var contents = ["Travel", "Backpack", "Map", "Roadtrip", "Wanderlust", "Van", "Recreation", "Compass"]
     var contentsToken = [["Tra", "vel"], ["Back", "pack"], ["Map"], ["Road", "trip"], ["Wan", "der", "lust"], ["Van"], ["Re", "crea", "tion"], ["Com", "pass"]]
     var info = ["This is the definition of the word. Please do write some long sentences just to test out auto layout"]
-    var result = true
+    var result: String = ""
     
     let audioEngine = AVAudioEngine()
+    let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
+    var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
+    var recognitionTask: SFSpeechRecognitionTask?
+    
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var inputFormat: AVAudioFormat!
     var audioFileName: URL!
-    
-    let player = AVQueuePlayer()
     
     var isRecording: Bool = false
     
@@ -46,8 +49,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         setupNextButton()
         setupTokenLabel(progress: currentProgress)
-        recordPermission()
         playAudioButton.isEnabled = true
+        nextButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,6 +61,30 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
         
         contentInfoLabel.text = info[0]
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        SFSpeechRecognizer.requestAuthorization { authStatus in
+            OperationQueue.main.addOperation {
+                switch authStatus {
+                    case .authorized:
+                        self.recordButton.isEnabled = true
+ 
+                    case .denied:
+                        self.recordButton.isEnabled = false
+                        self.recordButton.setTitle("User denied access to speech recognition", for: .disabled)
+ 
+                    case .restricted:
+                        self.recordButton.isEnabled = false
+                        self.recordButton.setTitle("Speech recognition restricted on this device", for: .disabled)
+ 
+                    case .notDetermined:
+                        self.recordButton.isEnabled = false
+                        self.recordButton.setTitle("Speech recognition not yet authorized", for: .disabled)
+                }
+            }
+        }
+    }
+    
     
     //MARK: IB Actions
     @IBAction func goBack(_ sender: Any) {
@@ -84,57 +111,33 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
             questionLabel.text = contents[currentProgress]
             setupTokenLabel(progress: currentProgress)
             progressBarView.reloadData()
+            nextButton.isEnabled = false
+            questionLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
         }
     }
     
-    //MARK: Functions
     
+    
+    //MARK: Functions
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
     
-    func loadRecordingUI() {
-        print("Tap to record")
-        recordButton.addTarget(self, action: #selector(recordTapped), for: .touchUpInside)
-    }
-    
-    @objc func recordTapped() {
-        if audioRecorder == nil {
-            startRecording()
-            playAudioButton.isEnabled = false
-        } else {
-            finishRecording(success: true)
+    @IBAction func recordTapped(_ sender: Any) {
+        if audioEngine.isRunning {
+            audioEngine.stop()
+            audioEngine.inputNode.removeTap(onBus: 0)
+            recognitionRequest?.endAudio()
             playAudioButton.isEnabled = true
+            recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
+            checkPronounciationResult(result, contents[currentProgress])
+            
+        } else {
+            try! startRecording()
+            recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
         }
     }
-    
-    func startRecording() {
-        audioFileName = getDocumentsDirectory().appendingPathComponent("recording.m4a")
-        recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        
-        
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFileName, settings: settings)
-            audioRecorder.delegate = self
-            audioRecorder.record()
-            do {
-                try audioEngine.start()
-            } catch ( _) {
-                print("error in starting audio engine")
-            }
-            print("Tap to stop")
-        } catch {
-            finishRecording(success: false)
-        }
-    }
-    
     
     func finishRecording(success: Bool) {
         recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
@@ -150,22 +153,14 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate {
         }
     }
     
-    func recordPermission(){
-        recordingSession = AVAudioSession.sharedInstance()
-        do {
-            try recordingSession.setCategory(.playAndRecord, mode: .default)
-            try recordingSession.setActive(true, options: [])
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
-                DispatchQueue.main.async {
-                    if allowed {
-                        self.loadRecordingUI()
-                    } else {
-                        // failed to record!
-                    }
-                }
-            }
-        } catch {
-            // failed to record!
+    func checkPronounciationResult(_ result: String, _ masterText: String) {
+        let word = result.components(separatedBy: " ").first
+        if (word == masterText) {
+            questionLabel.textColor = #colorLiteral(red: 0.3411764801, green: 0.6235294342, blue: 0.1686274558, alpha: 1)
+            nextButton.isEnabled = true
+        } else {
+            questionLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            nextButton.isEnabled = false
         }
     }
     
@@ -230,4 +225,60 @@ extension SpeechShadowingViewController: UICollectionViewDataSource, UICollectio
         return cell;
     }
     
+}
+
+extension SpeechShadowingViewController {
+    private func startRecording() throws {
+        if let recognitionTask = recognitionTask {
+            recognitionTask.cancel()
+            self.recognitionTask = nil
+        }
+        
+        let audioSession = AVAudioSession.sharedInstance()
+        try audioSession.setCategory(.record)
+        try audioSession.setMode(.measurement)
+        
+        try audioSession.setActive(true, options: .init())
+        
+        recognitionRequest = SFSpeechAudioBufferRecognitionRequest()
+        
+        let node = audioEngine.inputNode
+        guard let recognitionRequest = recognitionRequest else {
+            fatalError("Unable to created a SFSpeechAudioBufferRecognitionRequest object")
+        }
+        
+        recognitionRequest.shouldReportPartialResults = true
+        
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, when) in
+            self.recognitionRequest?.append(buffer)
+        }
+        
+        audioEngine.prepare()
+        try! audioEngine.start()
+        
+        recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) {
+            result, error in
+            
+            var isFinal = false
+            
+            if let transcript = result {
+                print(transcript.bestTranscription.formattedString)
+                isFinal = transcript.isFinal
+                self.result = transcript.bestTranscription.formattedString
+                
+            } else if error != nil || isFinal {
+                //Nyala lebih dari 1 menit aka Timeout
+                self.audioEngine.stop()
+                node.removeTap(onBus: 0)
+                self.recognitionRequest = nil
+                self.recognitionTask = nil
+                
+                self.recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
+                print("Finished recording")
+            }
+        }
+        
+        
+    }
 }
