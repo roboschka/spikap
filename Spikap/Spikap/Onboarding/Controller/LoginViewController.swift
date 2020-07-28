@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         setupProviderLoginView()
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "", preferredLargeTitle: true, fontSize: 40)
-        GuestLogin.setGradientColor(colorOne: #colorLiteral(red: 1, green: 0.6156862745, blue: 0.3137254902, alpha: 1), colorTwo: #colorLiteral(red: 1, green: 0.6980392157, blue: 0.2980392157, alpha: 1))
+//        GuestLogin.setGradientColor(colorOne: #colorLiteral(red: 1, green: 0.6156862745, blue: 0.3137254902, alpha: 1), colorTwo: #colorLiteral(red: 1, green: 0.6980392157, blue: 0.2980392157, alpha: 1))
         GuestLogin.layer.cornerRadius = 10
         GuestLogin.layer.masksToBounds = true
         
@@ -103,12 +103,21 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             
             // Create an account in your system.
             let userIdentifier = appleIDCredential.user
-            let fullName = appleIDCredential.fullName
-            let email = appleIDCredential.email
             
             // For the purpose of this demo app, store the `userIdentifier` in the keychain.
             self.saveUserInKeychain(userIdentifier)
+            var memberCounter = 0
+            guard let firstName = appleIDCredential.fullName?.givenName else { return }
+            guard let lastName = appleIDCredential.fullName?.familyName else { return }
+            let fullName = firstName + " " + lastName
+            guard let email = appleIDCredential.email else { return }
             
+            //            let id = userList.count + 1
+            let id = memberCounter + 1
+            print("\n\nid = \(id)\n\nmemberCounter = \(memberCounter)")
+
+            
+            Userextention.createUser(userID: id, fullName: fullName, userEmail: email)
             //            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
             //            self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
             
