@@ -28,6 +28,7 @@ class LandingTabBarVC: UITabBarController {
         super.viewDidAppear(animated)
         
         
+
 //        let appleIDProvider = ASAuthorizationAppleIDProvider()
 //        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier ?? "") { (credentialState, error) in
 //            switch credentialState {
@@ -61,6 +62,7 @@ class LandingTabBarVC: UITabBarController {
                     showOnboarding =  true
                     UserDefaults.standard.set(showOnboarding, forKey: "showOnboarding")
                 }
+
     }
     
     //MARK: Push to relevant ViewController
