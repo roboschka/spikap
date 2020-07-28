@@ -10,10 +10,22 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var editProfileBtn: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var userLevelLabel: UILabel!
+    @IBOutlet weak var userPostCountLabel: UILabel!
+    @IBOutlet weak var userPointCountLabel: UILabel!
+    @IBOutlet weak var userBadgeCountLabel: UILabel!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setupLayout()
         // Do any additional setup after loading the view.
+        
+        
     }
     
     @IBAction func goBack(_ sender: Any) {
@@ -23,6 +35,20 @@ class ProfileViewController: UIViewController {
             self.dismiss(animated: true, completion: nil)
         }
     }
+    
+    func setupLayout()
+    {
+        //hide edit profile button
+        editProfileBtn.isHidden = true
+        
+        nameLabel.font = FontHelper.getCompactRoundedFont(fontSize: 20, fontWeight: .bold)
+        userLevelLabel.font = FontHelper.getCompactRoundedFont(fontSize: 18, fontWeight: .regular)
+        userPostCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
+        userPointCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
+        userBadgeCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
+        
+    }
+    
     
     /*
     // MARK: - Navigation
