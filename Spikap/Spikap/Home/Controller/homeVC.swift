@@ -35,7 +35,7 @@ class homeVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userNameLabel.text = model.fullname
+//        userNameLabel.text = model.fullname
         UserDefaults.standard.set(guestStruct.guestPoints, forKey: "guestPoints")
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
         // Do any additional setup after loading the view.
