@@ -51,8 +51,8 @@
 		9445CE4E24C6967100D4D4E1 /* practiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */; };
 		9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */; };
 		9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */; };
-		BF1EF90524C69CAE009212CB /* community2VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF1EF90324C69CAE009212CB /* community2VC.swift */; };
-		BF1EF90624C69CAE009212CB /* community2.xib in Resources */ = {isa = PBXBuildFile; fileRef = BF1EF90424C69CAE009212CB /* community2.xib */; };
+		BF4F0A8224CE8A4600FC2B67 /* interestList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BF4F0A8124CE8A4600FC2B67 /* interestList.storyboard */; };
+		BF4F0A8424CE8A9E00FC2B67 /* InterestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF4F0A8324CE8A9E00FC2B67 /* InterestVC.swift */; };
 		BFD9E5F024C9505900A9FD3D /* editProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BFD9E5EF24C9505900A9FD3D /* editProfile.storyboard */; };
 		BFD9E5F224C9525B00A9FD3D /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9E5F124C9525B00A9FD3D /* EditProfileVC.swift */; };
 		BFD9E5F424C9AC4700A9FD3D /* layoutHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFD9E5F324C9AC4700A9FD3D /* layoutHelper.swift */; };
@@ -106,8 +106,8 @@
 		9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practiceDetailVC.swift; sourceTree = "<group>"; };
 		9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeDetailTableViewCell.xib; sourceTree = "<group>"; };
-		BF1EF90324C69CAE009212CB /* community2VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = community2VC.swift; sourceTree = "<group>"; };
-		BF1EF90424C69CAE009212CB /* community2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = community2.xib; sourceTree = "<group>"; };
+		BF4F0A8124CE8A4600FC2B67 /* interestList.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = interestList.storyboard; sourceTree = "<group>"; };
+		BF4F0A8324CE8A9E00FC2B67 /* InterestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestVC.swift; sourceTree = "<group>"; };
 		BFD9E5EF24C9505900A9FD3D /* editProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = editProfile.storyboard; sourceTree = "<group>"; };
 		BFD9E5F124C9525B00A9FD3D /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		BFD9E5F324C9AC4700A9FD3D /* layoutHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = layoutHelper.swift; sourceTree = "<group>"; };
@@ -198,6 +198,7 @@
 			children = (
 				6CC1C60C24B81E44003EEC87 /* home.storyboard */,
 				BFD9E5EF24C9505900A9FD3D /* editProfile.storyboard */,
+				BF4F0A8124CE8A4600FC2B67 /* interestList.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -211,6 +212,7 @@
 				94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */,
 				94437E7A24C91EE700FE5987 /* ActivitiesTableViewCell.xib */,
 				BFD9E5F124C9525B00A9FD3D /* EditProfileVC.swift */,
+				BF4F0A8324CE8A9E00FC2B67 /* InterestVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -219,7 +221,6 @@
 			isa = PBXGroup;
 			children = (
 				6CC1C60524B81B73003EEC87 /* communityVC.swift */,
-				BF1EF90324C69CAE009212CB /* community2VC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -228,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				6CC1C61024B81E7B003EEC87 /* community.storyboard */,
-				BF1EF90424C69CAE009212CB /* community2.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -391,13 +391,13 @@
 				9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */,
 				6CD173E724B579390052D58D /* LaunchScreen.storyboard in Resources */,
 				94437E8224CA179300FE5987 /* ChallengeCollectionViewCell.xib in Resources */,
+				BF4F0A8224CE8A4600FC2B67 /* interestList.storyboard in Resources */,
 				94437E7C24C91EE700FE5987 /* ActivitiesTableViewCell.xib in Resources */,
 				BFD9E5F024C9505900A9FD3D /* editProfile.storyboard in Resources */,
 				6CD173E424B579390052D58D /* Assets.xcassets in Resources */,
 				475CD63824CFF94100CA8423 /* Wrong.wav in Resources */,
 				6CD173E224B579370052D58D /* Main.storyboard in Resources */,
 				6CC1C60B24B81BF2003EEC87 /* Onboarding.storyboard in Resources */,
-				BF1EF90624C69CAE009212CB /* community2.xib in Resources */,
 				940F7F0124C54E060092251A /* PracticeTypeTableViewCell.xib in Resources */,
 				6CC1C60F24B81E62003EEC87 /* practice.storyboard in Resources */,
 				475CD63624CFF91F00CA8423 /* Correct.wav in Resources */,
@@ -411,7 +411,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF1EF90524C69CAE009212CB /* community2VC.swift in Sources */,
 				475CD63124CFDA4D00CA8423 /* EnglishPronounce.mlmodel in Sources */,
 				47C90F8A24C8054200A72044 /* SpeechShadowingViewController.swift in Sources */,
 				6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */,
@@ -420,6 +419,7 @@
 				BFD9E5F424C9AC4700A9FD3D /* layoutHelper.swift in Sources */,
 				6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */,
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
+				BF4F0A8424CE8A9E00FC2B67 /* InterestVC.swift in Sources */,
 				6C3DD3E724CF5C1E000B4D4D /* User.swift in Sources */,
 				940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */,
 				47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */,
@@ -588,7 +588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = 7JCMY2N255;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -608,7 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = 7JCMY2N255;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

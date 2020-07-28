@@ -38,6 +38,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var streamAnalyzer: SNAudioStreamAnalyzer!
     let queue = DispatchQueue(label: "aries.Spikap")
     var results = [(label: String, confidence: Float)]()
+
     var testResult = [(label: String, confidence: Float)]()
     
     var audioFileName: URL!
@@ -130,6 +131,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
+
     @IBAction func recordTapped(_ sender: Any) {
         if audioEngine.isRunning {
             audioEngine.stop()
@@ -143,6 +145,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
+
     //MARK: Functions
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
@@ -156,6 +159,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             showAudioError()
         }
     }
+    
+    
+
     
     private func checkResult() {
         var temp: [String] = []
@@ -208,6 +214,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
+
     private func prepareForRecording() {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -247,6 +254,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     func checkPronounciationResult(_ result: String, _ masterText: String) {
+
         if (result.uppercased().contains(masterText.uppercased())) {
             questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
             nextButton.isEnabled = true
@@ -436,3 +444,4 @@ extension SpeechShadowingViewController {
         }
     }
 }
+

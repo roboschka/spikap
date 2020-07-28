@@ -11,9 +11,12 @@ import UIKit
 class EditProfileVC: UIViewController {
 
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var cameraBtn: UIButton!
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var emailTextField: UITextField!
+    
     @IBOutlet weak var profileInfoLabel: UILabel!
     @IBOutlet weak var interestBtn: UIButton!
-    @IBOutlet weak var passwordBtn: UIButton!
     @IBOutlet weak var logoutBtn: UIButton!
     
     override func viewDidLoad() {
@@ -61,6 +64,7 @@ class EditProfileVC: UIViewController {
         
         profileInfoLabel.font = customFont
     }
+    
     
     
     /*
