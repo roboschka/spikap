@@ -49,7 +49,7 @@ class InterestVC: UIViewController, UITableViewDataSource, UITableViewDelegate, 
     func getUserInterest() ->[Int]
     {
         //dummy data, replace from DB
-        userInterestList = [2, 5, 6]
+        userInterestList = [1, 2, 3, 4]
         return userInterestList
     }
     
