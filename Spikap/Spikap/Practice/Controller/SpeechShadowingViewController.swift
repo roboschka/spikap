@@ -13,6 +13,7 @@ import AVKit
 import SoundAnalysis
 
 class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, SFSpeechRecognizerDelegate {
+    
     //MARK: Variables
     var topic = "Travelling"
     var totalProgress = 8
@@ -32,11 +33,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer?
     var inputFormat: AVAudioFormat!
     var streamAnalyzer: SNAudioStreamAnalyzer!
     let queue = DispatchQueue(label: "aries.Spikap")
     var results = [(label: String, confidence: Float)]()
-    
+
     var testResult = [(label: String, confidence: Float)]()
     
     var audioFileName: URL!
@@ -44,7 +46,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var isRecording: Bool = false
     var isCorrect: Bool = false
     
-    //MARK: IB Outlet
+    //MARK: IB Outlets
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var questionLabel: UILabel!
@@ -129,12 +131,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
-    //MARK: Functions
-    func getDocumentsDirectory() -> URL {
-        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        return paths[0]
-    }
-    
+
     @IBAction func recordTapped(_ sender: Any) {
         if audioEngine.isRunning {
             audioEngine.stop()
@@ -147,6 +144,22 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
         }
     }
+    
+
+    //MARK: Functions
+    func getDocumentsDirectory() -> URL {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+    private func startAudioEngine() {
+        audioEngine.prepare()
+        do {
+            try audioEngine.start()
+        } catch {
+            showAudioError()
+        }
+    }
+    
     
     private func startAudioEngine() {
         audioEngine.prepare()
@@ -185,25 +198,30 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
             feedbackLabel.text = "Good job!"
             nextButton.isEnabled = true
+            correctSound()
         } else {
             if (temp.joined().uppercased() == contents[currentProgress].uppercased()) {
                 questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
                 feedbackLabel.text = "Good job!"
                 nextButton.isEnabled = true
+                correctSound()
             } else  {
                 if (temp.count == 0) {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
                     feedbackLabel.text = "Oops, we didn't catch that. Try again"
                     nextButton.isEnabled = false
+                    wrongSound()
                 } else {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
                     feedbackLabel.text = "Well, here's what we can hear from you: \(temp.joined(separator: ", "))"
                     nextButton.isEnabled = false
+                    wrongSound()
                 }
             }
         }
     }
     
+
     private func prepareForRecording() {
         let inputNode = audioEngine.inputNode
         let recordingFormat = inputNode.outputFormat(forBus: 0)
@@ -243,7 +261,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     func checkPronounciationResult(_ result: String, _ masterText: String) {
-//        let word = result.components(separatedBy: " ").first
+
         if (result.uppercased().contains(masterText.uppercased())) {
             questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
             nextButton.isEnabled = true
@@ -274,6 +292,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
 }
 
+//MARK: CollectionView
 extension SpeechShadowingViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
@@ -316,6 +335,7 @@ extension SpeechShadowingViewController: UICollectionViewDataSource, UICollectio
     
 }
 
+//MARK: Speech Recognition
 extension SpeechShadowingViewController {
     private func startRecording() throws {
         if let recognitionTask = recognitionTask {
@@ -367,8 +387,68 @@ extension SpeechShadowingViewController {
                 print("Finished recording")
             }
         }
-        
-        
+    }
+}
+
+//MARK: MLModel Result Request
+extension SpeechShadowingViewController: SNResultsObserving {
+    func request(_ request: SNRequest, didProduce result: SNResult) {
+        guard let result = result as? SNClassificationResult else { return }
+        var temp = [(label: String, confidence: Float)]()
+        let sorted = result.classifications.sorted { (first, second) -> Bool in
+            return first.confidence > second.confidence
+        }
+        for classification in sorted {
+            let confidence = classification.confidence * 100
+            if confidence > 5 {
+                temp.append((label: classification.identifier, confidence: Float(confidence)))
+            }
+        }
+        print("temp result: \(temp)")
+        testResult = temp
+    }
+}
+
+//MARK: Alert
+extension SpeechShadowingViewController {
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showAudioError() {
+        let errorTitle = "Audio Error"
+        let errorMessage = "Recording is not possible at the moment."
+        self.showAlert(title: errorTitle, message: errorMessage)
+    }
+}
+
+//MARK: Music Assets
+extension SpeechShadowingViewController {
+    func correctSound() {
+        let pathToSound = Bundle.main.path(forResource: "Correct", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("There's a problem playing the SFX")
+        }
+    }
+    
+    func wrongSound() {
+        let pathToSound = Bundle.main.path(forResource: "Wrong", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.play()
+        } catch {
+            print("There's a problem playing the SFX")
+        }
     }
 }
 

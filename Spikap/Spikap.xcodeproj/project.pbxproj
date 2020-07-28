@@ -12,6 +12,8 @@
 		4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */; };
 		475CD63124CFDA4D00CA8423 /* EnglishPronounce.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */; };
 		475CD63324CFF00400CA8423 /* English.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63224CFF00400CA8423 /* English.mlmodel */; };
+		475CD63624CFF91F00CA8423 /* Correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 475CD63524CFF91F00CA8423 /* Correct.wav */; };
+		475CD63824CFF94100CA8423 /* Wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 475CD63724CFF94100CA8423 /* Wrong.wav */; };
 		478BC12E24C6835D005994AB /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12D24C6835D005994AB /* Guest.swift */; };
 		478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12F24C683A4005994AB /* Model.xcdatamodeld */; };
 		478BC13724C6BE12005994AB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC13624C6BE12005994AB /* DateHelper.swift */; };
@@ -62,6 +64,8 @@
 		4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EnglishPronounce.mlmodel; sourceTree = "<group>"; };
 		475CD63224CFF00400CA8423 /* English.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = English.mlmodel; sourceTree = "<group>"; };
+		475CD63524CFF91F00CA8423 /* Correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Correct.wav; sourceTree = "<group>"; };
+		475CD63724CFF94100CA8423 /* Wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Wrong.wav; sourceTree = "<group>"; };
 		478BC12D24C6835D005994AB /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		478BC13024C683A4005994AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		478BC13624C6BE12005994AB /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -122,6 +126,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		475CD63424CFF90B00CA8423 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
+				475CD63524CFF91F00CA8423 /* Correct.wav */,
+				475CD63724CFF94100CA8423 /* Wrong.wav */,
+			);
+			path = SFX;
+			sourceTree = "<group>";
+		};
 		4793FAE324BC1D0800207604 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -293,6 +306,7 @@
 		6CD173D924B579370052D58D /* Spikap */ = {
 			isa = PBXGroup;
 			children = (
+				475CD63424CFF90B00CA8423 /* SFX */,
 				4793FAE224BC1CA500207604 /* Spikap.entitlements */,
 				6CC1C60724B81B8D003EEC87 /* Onboarding */,
 				6CC1C5F824B81A39003EEC87 /* Helper */,
@@ -381,10 +395,12 @@
 				94437E7C24C91EE700FE5987 /* ActivitiesTableViewCell.xib in Resources */,
 				BFD9E5F024C9505900A9FD3D /* editProfile.storyboard in Resources */,
 				6CD173E424B579390052D58D /* Assets.xcassets in Resources */,
+				475CD63824CFF94100CA8423 /* Wrong.wav in Resources */,
 				6CD173E224B579370052D58D /* Main.storyboard in Resources */,
 				6CC1C60B24B81BF2003EEC87 /* Onboarding.storyboard in Resources */,
 				940F7F0124C54E060092251A /* PracticeTypeTableViewCell.xib in Resources */,
 				6CC1C60F24B81E62003EEC87 /* practice.storyboard in Resources */,
+				475CD63624CFF91F00CA8423 /* Correct.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -572,7 +588,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = 7JCMY2N255;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -592,7 +608,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Spikap/Spikap.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 64D4KPKN55;
+				DEVELOPMENT_TEAM = 7JCMY2N255;
 				INFOPLIST_FILE = Spikap/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
