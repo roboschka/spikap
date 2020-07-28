@@ -129,8 +129,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "369"
-            endingLineNumber = "369"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -145,8 +145,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "348"
-            endingLineNumber = "348"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
             landmarkName = "startRecording()"
             landmarkType = "7">
             <Locations>
@@ -193,8 +193,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "373"
-            endingLineNumber = "373"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -209,8 +209,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -225,8 +225,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
             landmarkName = "checkPronounciationResult(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -241,8 +241,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "255"
-            endingLineNumber = "255"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "checkPronounciationResult(_:_:)"
             landmarkType = "7">
          </BreakpointContent>

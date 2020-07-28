@@ -11,9 +11,10 @@
 		4704C29D24BEE5C900447D20 /* postExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29B24BEE5C900447D20 /* postExtension.swift */; };
 		4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */; };
 		475CD63124CFDA4D00CA8423 /* EnglishPronounce.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */; };
-		475CD63324CFF00400CA8423 /* English.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63224CFF00400CA8423 /* English.mlmodel */; };
 		475CD63624CFF91F00CA8423 /* Correct.wav in Resources */ = {isa = PBXBuildFile; fileRef = 475CD63524CFF91F00CA8423 /* Correct.wav */; };
 		475CD63824CFF94100CA8423 /* Wrong.wav in Resources */ = {isa = PBXBuildFile; fileRef = 475CD63724CFF94100CA8423 /* Wrong.wav */; };
+		477C01BA24D07145006E1481 /* English.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 477C01B924D07145006E1481 /* English.mlmodel */; };
+		477C01BE24D07FDB006E1481 /* airfare.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 477C01BD24D07FDB006E1481 /* airfare.mp3 */; };
 		478BC12E24C6835D005994AB /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12D24C6835D005994AB /* Guest.swift */; };
 		478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12F24C683A4005994AB /* Model.xcdatamodeld */; };
 		478BC13724C6BE12005994AB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC13624C6BE12005994AB /* DateHelper.swift */; };
@@ -63,9 +64,10 @@
 		4704C29B24BEE5C900447D20 /* postExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postExtension.swift; sourceTree = "<group>"; };
 		4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EnglishPronounce.mlmodel; sourceTree = "<group>"; };
-		475CD63224CFF00400CA8423 /* English.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = English.mlmodel; sourceTree = "<group>"; };
 		475CD63524CFF91F00CA8423 /* Correct.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Correct.wav; sourceTree = "<group>"; };
 		475CD63724CFF94100CA8423 /* Wrong.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Wrong.wav; sourceTree = "<group>"; };
+		477C01B924D07145006E1481 /* English.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = English.mlmodel; sourceTree = "<group>"; };
+		477C01BD24D07FDB006E1481 /* airfare.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airfare.mp3; sourceTree = "<group>"; };
 		478BC12D24C6835D005994AB /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		478BC13024C683A4005994AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		478BC13624C6BE12005994AB /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -126,13 +128,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		475CD63424CFF90B00CA8423 /* SFX */ = {
+		475CD63424CFF90B00CA8423 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
-				475CD63524CFF91F00CA8423 /* Correct.wav */,
+				477C01BC24D07FC5006E1481 /* Speech Audio */,
+				477C01BB24D07FB4006E1481 /* SFX */,
+			);
+			path = Audio;
+			sourceTree = "<group>";
+		};
+		477C01BB24D07FB4006E1481 /* SFX */ = {
+			isa = PBXGroup;
+			children = (
 				475CD63724CFF94100CA8423 /* Wrong.wav */,
+				475CD63524CFF91F00CA8423 /* Correct.wav */,
 			);
 			path = SFX;
+			sourceTree = "<group>";
+		};
+		477C01BC24D07FC5006E1481 /* Speech Audio */ = {
+			isa = PBXGroup;
+			children = (
+				477C01BD24D07FDB006E1481 /* airfare.mp3 */,
+			);
+			path = "Speech Audio";
 			sourceTree = "<group>";
 		};
 		4793FAE324BC1D0800207604 /* Frameworks */ = {
@@ -306,7 +325,7 @@
 		6CD173D924B579370052D58D /* Spikap */ = {
 			isa = PBXGroup;
 			children = (
-				475CD63424CFF90B00CA8423 /* SFX */,
+				475CD63424CFF90B00CA8423 /* Audio */,
 				4793FAE224BC1CA500207604 /* Spikap.entitlements */,
 				6CC1C60724B81B8D003EEC87 /* Onboarding */,
 				6CC1C5F824B81A39003EEC87 /* Helper */,
@@ -322,8 +341,8 @@
 				6CD173E324B579390052D58D /* Assets.xcassets */,
 				6CD173E524B579390052D58D /* LaunchScreen.storyboard */,
 				475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */,
-				475CD63224CFF00400CA8423 /* English.mlmodel */,
 				6CD173E824B579390052D58D /* Info.plist */,
+				477C01B924D07145006E1481 /* English.mlmodel */,
 			);
 			path = Spikap;
 			sourceTree = "<group>";
@@ -389,6 +408,7 @@
 				6CC1C60D24B81E44003EEC87 /* home.storyboard in Resources */,
 				6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */,
 				9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */,
+				477C01BE24D07FDB006E1481 /* airfare.mp3 in Resources */,
 				6CD173E724B579390052D58D /* LaunchScreen.storyboard in Resources */,
 				94437E8224CA179300FE5987 /* ChallengeCollectionViewCell.xib in Resources */,
 				94437E7C24C91EE700FE5987 /* ActivitiesTableViewCell.xib in Resources */,
@@ -428,6 +448,7 @@
 				6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */,
 				47A33E7024C6D3B20090894B /* ProfileViewController.swift in Sources */,
 				BFD9E5F224C9525B00A9FD3D /* EditProfileVC.swift in Sources */,
+				477C01BA24D07145006E1481 /* English.mlmodel in Sources */,
 				4704C29C24BEE5C900447D20 /* userExtention.swift in Sources */,
 				6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */,
 				478BC13724C6BE12005994AB /* DateHelper.swift in Sources */,
@@ -438,7 +459,6 @@
 				4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */,
 				9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */,
 				6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */,
-				475CD63324CFF00400CA8423 /* English.mlmodel in Sources */,
 				94437E8124CA179300FE5987 /* ChallengeCollectionViewCell.swift in Sources */,
 				478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */,
 				94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */,

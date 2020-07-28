@@ -11,6 +11,7 @@ import AVFoundation
 import Speech
 import AVKit
 import SoundAnalysis
+import CloudKit
 
 class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, SFSpeechRecognizerDelegate {
     
@@ -25,7 +26,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var result: String = ""
     
     private let audioEngine = AVAudioEngine()
-    private var soundClassifier = English()        //MLmodel
+    private var soundClassifier = English()      //MLmodel
     
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
@@ -40,7 +41,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var results = [(label: String, confidence: Float)]()
     var testResult = [(label: String, confidence: Float)]()
     
-    var audioFileName: URL!
+    
     
     var isRecording: Bool = false
     var isCorrect: Bool = false
@@ -229,21 +230,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             try streamAnalyzer.add(request, withObserver: self)
         } catch {
             fatalError("error adding the classification request")
-        }
-    }
-    
-    
-    func finishRecording(success: Bool) {
-        recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
-        audioEngine.stop()
-        audioRecorder.stop()
-        audioRecorder = nil
-        
-        if success {
-            print("tap to re-record")
-            print(audioFileName.absoluteString)
-        } else {
-            print("tap to record")
         }
     }
     
@@ -437,5 +423,18 @@ extension SpeechShadowingViewController {
         } catch {
             print("There's a problem playing the SFX")
         }
+    }
+    
+    func playSpeech(resourceURL: CKAsset) {
+        //resourceURL -> arrayOfActivityContents[currentProgress].contentAudio
+        let audioURL = resourceURL.fileURL
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audioURL!)
+            audioPlayer?.volume = 1.0
+            audioPlayer?.play()
+        } catch {
+            print("AVAudioPlayer init failed")
+        }
+        
     }
 }
