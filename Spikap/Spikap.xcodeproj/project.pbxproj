@@ -11,6 +11,7 @@
 		4704C29D24BEE5C900447D20 /* postExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29B24BEE5C900447D20 /* postExtension.swift */; };
 		4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */; };
 		475CD63124CFDA4D00CA8423 /* EnglishPronounce.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */; };
+		475CD63324CFF00400CA8423 /* English.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = 475CD63224CFF00400CA8423 /* English.mlmodel */; };
 		478BC12E24C6835D005994AB /* Guest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12D24C6835D005994AB /* Guest.swift */; };
 		478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 478BC12F24C683A4005994AB /* Model.xcdatamodeld */; };
 		478BC13724C6BE12005994AB /* DateHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478BC13624C6BE12005994AB /* DateHelper.swift */; };
@@ -58,6 +59,7 @@
 		4704C29B24BEE5C900447D20 /* postExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = postExtension.swift; sourceTree = "<group>"; };
 		4704C29E24BEE5EE00447D20 /* UIKitExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitExtension.swift; sourceTree = "<group>"; };
 		475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = EnglishPronounce.mlmodel; sourceTree = "<group>"; };
+		475CD63224CFF00400CA8423 /* English.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = English.mlmodel; sourceTree = "<group>"; };
 		478BC12D24C6835D005994AB /* Guest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Guest.swift; sourceTree = "<group>"; };
 		478BC13024C683A4005994AB /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		478BC13624C6BE12005994AB /* DateHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateHelper.swift; sourceTree = "<group>"; };
@@ -299,6 +301,7 @@
 				6CD173E324B579390052D58D /* Assets.xcassets */,
 				6CD173E524B579390052D58D /* LaunchScreen.storyboard */,
 				475CD63024CFDA4D00CA8423 /* EnglishPronounce.mlmodel */,
+				475CD63224CFF00400CA8423 /* English.mlmodel */,
 				6CD173E824B579390052D58D /* Info.plist */,
 			);
 			path = Spikap;
@@ -411,6 +414,7 @@
 				4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */,
 				9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */,
 				6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */,
+				475CD63324CFF00400CA8423 /* English.mlmodel in Sources */,
 				94437E8124CA179300FE5987 /* ChallengeCollectionViewCell.swift in Sources */,
 				478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */,
 				94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */,

@@ -24,7 +24,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var result: String = ""
     
     private let audioEngine = AVAudioEngine()
-    private var soundClassifier = EnglishPronounce()        //MLmodel
+    private var soundClassifier = English()        //MLmodel
     
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
