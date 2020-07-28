@@ -19,6 +19,8 @@
 		47C90F8A24C8054200A72044 /* SpeechShadowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */; };
 		47C90F8C24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */; };
 		47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */; };
+		6C3DD3E724CF5C1E000B4D4D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3DD3E624CF5C1E000B4D4D /* User.swift */; };
+		6C3DD3E924CFC86F000B4D4D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3DD3E824CFC86F000B4D4D /* AuthenticationServices.framework */; };
 		6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CD24C6B48300C72C70 /* LoginViewController.swift */; };
 		6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */; };
 		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
@@ -66,6 +68,8 @@
 		47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechShadowingViewController.swift; sourceTree = "<group>"; };
 		47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeProgressCollectionViewCell.swift; sourceTree = "<group>"; };
 		47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CongratulationsViewController.swift; sourceTree = "<group>"; };
+		6C3DD3E624CF5C1E000B4D4D /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		6C3DD3E824CFC86F000B4D4D /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		6C4720CD24C6B48300C72C70 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
 		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C3DD3E924CFC86F000B4D4D /* AuthenticationServices.framework in Frameworks */,
 				4793FAE524BC1D0800207604 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -116,6 +121,7 @@
 		4793FAE324BC1D0800207604 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				6C3DD3E824CFC86F000B4D4D /* AuthenticationServices.framework */,
 				4793FAE424BC1D0800207604 /* CloudKit.framework */,
 			);
 			name = Frameworks;
@@ -152,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				478BC12D24C6835D005994AB /* Guest.swift */,
+				6C3DD3E624CF5C1E000B4D4D /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -390,6 +397,7 @@
 				BFD9E5F424C9AC4700A9FD3D /* layoutHelper.swift in Sources */,
 				6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */,
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
+				6C3DD3E724CF5C1E000B4D4D /* User.swift in Sources */,
 				940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */,
 				47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
