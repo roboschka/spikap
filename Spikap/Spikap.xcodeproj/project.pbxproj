@@ -42,6 +42,7 @@
 		94437E7E24C93F5300FE5987 /* ChallengeOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94437E7D24C93F5300FE5987 /* ChallengeOverviewViewController.swift */; };
 		94437E8124CA179300FE5987 /* ChallengeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94437E7F24CA179300FE5987 /* ChallengeCollectionViewCell.swift */; };
 		94437E8224CA179300FE5987 /* ChallengeCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 94437E8024CA179300FE5987 /* ChallengeCollectionViewCell.xib */; };
+		94437E8424CD6E3200FE5987 /* SelfTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94437E8324CD6E3200FE5987 /* SelfTalkViewController.swift */; };
 		9445CE4E24C6967100D4D4E1 /* practiceDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */; };
 		9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */; };
 		9445CE5224C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */; };
@@ -91,6 +92,7 @@
 		94437E7D24C93F5300FE5987 /* ChallengeOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeOverviewViewController.swift; sourceTree = "<group>"; };
 		94437E7F24CA179300FE5987 /* ChallengeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeCollectionViewCell.swift; sourceTree = "<group>"; };
 		94437E8024CA179300FE5987 /* ChallengeCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChallengeCollectionViewCell.xib; sourceTree = "<group>"; };
+		94437E8324CD6E3200FE5987 /* SelfTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfTalkViewController.swift; sourceTree = "<group>"; };
 		9445CE4D24C6967100D4D4E1 /* practiceDetailVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = practiceDetailVC.swift; sourceTree = "<group>"; };
 		9445CE4F24C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeDetailTableViewCell.swift; sourceTree = "<group>"; };
 		9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeDetailTableViewCell.xib; sourceTree = "<group>"; };
@@ -222,6 +224,7 @@
 				94437E7F24CA179300FE5987 /* ChallengeCollectionViewCell.swift */,
 				94437E8024CA179300FE5987 /* ChallengeCollectionViewCell.xib */,
 				47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */,
+				94437E8324CD6E3200FE5987 /* SelfTalkViewController.swift */,
 				47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */,
 				47C90F8D24C9536300A72044 /* CongratulationsViewController.swift */,
 			);
@@ -410,6 +413,7 @@
 				94437E8124CA179300FE5987 /* ChallengeCollectionViewCell.swift in Sources */,
 				478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */,
 				94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */,
+				94437E8424CD6E3200FE5987 /* SelfTalkViewController.swift in Sources */,
 				479C917224C14913009E7DF1 /* DayStreakCollectionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
