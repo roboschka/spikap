@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hfh-54-qrJ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--InterestVC-->
+        <scene sceneID="zgb-n8-6lO">
+            <objects>
+                <viewController id="hfh-54-qrJ" customClass="InterestVC" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JsM-Zw-5wj">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rez-gA-VeP" userLabel="interestTableView">
+                                <rect key="frame" x="0.0" y="62" width="414" height="782"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="interestCell" id="zR6-ns-i10" userLabel="interestCell">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="zR6-ns-i10" id="swt-Di-qxS">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="rez-gA-VeP" firstAttribute="leading" secondItem="NRR-4f-mOQ" secondAttribute="leading" id="80K-i1-bUb"/>
+                            <constraint firstItem="NRR-4f-mOQ" firstAttribute="trailing" secondItem="rez-gA-VeP" secondAttribute="trailing" id="Xb3-te-Q30"/>
+                            <constraint firstItem="NRR-4f-mOQ" firstAttribute="bottom" secondItem="rez-gA-VeP" secondAttribute="bottom" constant="18" id="lEC-jy-jUJ"/>
+                            <constraint firstItem="rez-gA-VeP" firstAttribute="top" secondItem="NRR-4f-mOQ" secondAttribute="top" constant="18" id="xYR-AJ-8zN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NRR-4f-mOQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="interestTableView" destination="rez-gA-VeP" id="MsE-hU-Pg4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bWO-VQ-6og" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="112" y="60"/>
+        </scene>
+    </scenes>
+</document>
