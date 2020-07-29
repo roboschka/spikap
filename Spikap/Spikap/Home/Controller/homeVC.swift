@@ -58,7 +58,7 @@ class homeVC: UIViewController {
         
         refresh()
     }
-    
+
     
     @objc private func refresh() {
         Model.currentModel.refresh{ error in
@@ -92,6 +92,7 @@ class homeVC: UIViewController {
         
     }
     
+
     override func viewWillAppear(_ animated: Bool) {
         manageLevelUp(points: guestStruct.guestPoints)
         profileImageButtonSetup()
