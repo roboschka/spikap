@@ -784,6 +784,16 @@
                                     <outlet property="delegate" destination="rTQ-jX-0BX" id="b6Y-vO-Ae7"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5oS-SJ-hEK">
+                                <rect key="frame" x="20" y="804" width="374" height="50"/>
+                                <state key="normal" image="next button">
+                                    <color key="titleColor" red="0.1215686275" green="0.63529411759999999" blue="0.8980392157" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="b8o-yK-dxS"/>
+                                    <action selector="nextProgressButton:" destination="ybH-N8-rXQ" eventType="touchUpInside" id="8HD-20-6hM"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0xx-aH-Edp" userLabel="SpeechView">
                                 <rect key="frame" x="0.0" y="398" width="414" height="464"/>
                                 <subviews>
@@ -953,8 +963,11 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="FnE-20-lLT" firstAttribute="bottom" secondItem="5oS-SJ-hEK" secondAttribute="bottom" constant="8" id="43E-6e-lZa"/>
                             <constraint firstItem="0xx-aH-Edp" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" id="BJH-7U-B3u"/>
+                            <constraint firstItem="FnE-20-lLT" firstAttribute="trailing" secondItem="5oS-SJ-hEK" secondAttribute="trailing" constant="20" id="Fkj-rV-ouL"/>
                             <constraint firstItem="qn2-H5-IKA" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" constant="20" id="IeT-uT-RBy"/>
+                            <constraint firstItem="5oS-SJ-hEK" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" constant="20" id="PBb-ah-XQG"/>
                             <constraint firstItem="ZYV-7Z-XfV" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" id="UQS-4g-zI5"/>
                             <constraint firstItem="0xx-aH-Edp" firstAttribute="trailing" secondItem="FnE-20-lLT" secondAttribute="trailing" id="XR2-Re-JKE"/>
                             <constraint firstItem="ZYV-7Z-XfV" firstAttribute="trailing" secondItem="FnE-20-lLT" secondAttribute="trailing" id="Xh9-IG-Cze"/>
