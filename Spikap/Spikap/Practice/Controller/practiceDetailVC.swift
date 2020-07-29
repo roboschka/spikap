@@ -82,7 +82,7 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             performSegue(withIdentifier: "segueToChallengeOverview", sender: indexPath.row)
         case 1:
-            print("segue to self-talk");
+            performSegue(withIdentifier: "segueToSelfTalk", sender: nil)
         case 2:
             performSegue(withIdentifier: "segueToSpeechShadowing", sender: nil)
         default:
