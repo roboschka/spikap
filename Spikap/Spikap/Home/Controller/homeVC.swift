@@ -11,6 +11,9 @@ import UIKit
 class homeVC: UIViewController {
     //MARK: Variables
     var model = userModel()
+    var activities : [Activity] = []
+    var activityContent : [ActivityContent] = []
+
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     let dayYear = Calendar.current.ordinality(of: .day, in: .year, for: Date())
@@ -50,6 +53,43 @@ class homeVC: UIViewController {
         activitesTableView.dataSource = self
         
         UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
+        
+        
+        
+        refresh()
+    }
+    
+    
+    @objc private func refresh() {
+        Model.currentModel.refresh{ error in
+          if let error = error {
+            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+          }
+        }
+        Activity.fetchActivities{ result in
+            switch result {
+            case .failure(let error):
+              let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+              self.present(alert, animated: true, completion: nil)
+            case .success(let activities):
+              self.activities = activities
+            }
+        }
+        ActivityContent.fetchActivitiesContent{ result in
+            switch result {
+            case .failure(let error):
+              let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+              alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+              self.present(alert, animated: true, completion: nil)
+            case .success(let activityContent):
+              self.activityContent = activityContent
+            }
+        }
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
