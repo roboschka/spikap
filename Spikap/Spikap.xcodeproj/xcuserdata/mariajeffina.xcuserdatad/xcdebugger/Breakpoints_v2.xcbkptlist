@@ -129,41 +129,12 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
+            startingLineNumber = "368"
+            endingLineNumber = "368"
+
             landmarkName = "startRecording()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "469BE5FE-4DD7-480C-A885-080461E23A6F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "137"
-            endingLineNumber = "137"
-            landmarkName = "recordTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "599F1A86-0594-48CD-A5EA-0551AF07D2F7"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "recordTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -177,8 +148,11 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "253"
-            endingLineNumber = "253"
+            startingLineNumber = "334"
+            endingLineNumber = "334"
+
+            startingLineNumber = "347"
+            endingLineNumber = "347"
             landmarkName = "startRecording()"
             landmarkType = "7">
             <Locations>
@@ -225,8 +199,10 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "278"
-            endingLineNumber = "278"
+            startingLineNumber = "359"
+            endingLineNumber = "359"
+            startingLineNumber = "372"
+            endingLineNumber = "372"
             landmarkName = "startRecording()"
             landmarkType = "7">
          </BreakpointContent>
@@ -241,41 +217,11 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "339"
+            endingLineNumber = "339"
+            startingLineNumber = "352"
+            endingLineNumber = "352"
             landmarkName = "startRecording()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "BD621FC8-6ED5-4351-A337-54EED45E54EA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "recordTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "C88EEC8F-680C-48C3-A642-4D907493337F"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "131"
-            endingLineNumber = "131"
-            landmarkName = "recordTapped(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -289,8 +235,10 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
             landmarkName = "checkPronounciationResult(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -305,24 +253,10 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "checkPronounciationResult(_:_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "841EEA9A-63F1-4390-A401-292E8591CB16"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
             landmarkName = "checkPronounciationResult(_:_:)"
             landmarkType = "7">
          </BreakpointContent>
