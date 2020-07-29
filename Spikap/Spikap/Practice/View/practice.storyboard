@@ -411,6 +411,9 @@
                                             <constraint firstAttribute="width" constant="41" id="JQP-69-1ms"/>
                                         </constraints>
                                         <state key="normal" image="play audio"/>
+                                        <connections>
+                                            <action selector="playAudioSpeech:" destination="ybH-N8-rXQ" eventType="touchUpInside" id="jiF-Eb-DIE"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Say the word!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-Il-Nmm">
                                         <rect key="frame" x="120" y="90" width="174" height="26"/>

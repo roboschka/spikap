@@ -31,6 +31,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     let speechRecognizer = SFSpeechRecognizer(locale: Locale(identifier: "en-US"))!
     var recognitionRequest: SFSpeechAudioBufferRecognitionRequest?
     var recognitionTask: SFSpeechRecognitionTask?
+    let synthesizer = AVSpeechSynthesizer()
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
@@ -72,8 +73,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         
         topicLabel.text = topic
         questionLabel.text = contents[0]
-        
         contentInfoLabel.text = info[0]
+        
+        
+        //Text to speech
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -143,6 +148,15 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             createClassificationRequest()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
         }
+    }
+    @IBAction func playAudioSpeech(_ sender: Any) {
+        var utterance = AVSpeechUtterance(string: questionLabel.text ?? "")
+        utterance = AVSpeechUtterance(string: contents[0])
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.2
+        utterance.volume = 1.0
+        
+        synthesizer.speak(utterance)
     }
     
     //MARK: Functions
@@ -435,6 +449,5 @@ extension SpeechShadowingViewController {
         } catch {
             print("AVAudioPlayer init failed")
         }
-        
     }
 }
