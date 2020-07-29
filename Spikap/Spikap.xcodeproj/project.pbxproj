@@ -223,7 +223,6 @@
 				9445CE5024C75CE400D4D4E1 /* PracticeDetailTableViewCell.xib */,
 				94437E7F24CA179300FE5987 /* ChallengeCollectionViewCell.swift */,
 				94437E8024CA179300FE5987 /* ChallengeCollectionViewCell.xib */,
-				47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */,
 				94437E8324CD6E3200FE5987 /* SelfTalkViewController.swift */,
 				47C90F8B24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift */,
 				47C90F8924C8054200A72044 /* SpeechShadowingViewController.swift */,

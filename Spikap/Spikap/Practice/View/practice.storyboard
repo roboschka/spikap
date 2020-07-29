@@ -160,19 +160,19 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Challenge A" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nBZ-cw-ZnJ">
-                                        <rect key="frame" x="18" y="175" width="135" height="29"/>
+                                        <rect key="frame" x="18" y="175" width="136" height="29"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="8/100 XP" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A8L-0G-32f">
-                                        <rect key="frame" x="292" y="208" width="104" height="29"/>
+                                        <rect key="frame" x="289" y="208" width="107" height="29"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="YoR-fq-UmO" secondAttribute="bottom" id="HKU-OL-pBJ"/>
                                     <constraint firstAttribute="trailing" secondItem="YoR-fq-UmO" secondAttribute="trailing" id="Ion-bR-6PV"/>
@@ -201,7 +201,7 @@
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2CC-2H-m3S">
                                         <rect key="frame" x="14" y="43" width="353" height="154"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="g7k-k7-vnV">
                                             <size key="itemSize" width="36" height="36"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -242,17 +242,17 @@
                                         </state>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="YQE-hg-T2w"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="euS-uo-gTD" firstAttribute="trailing" secondItem="YQE-hg-T2w" secondAttribute="trailing" id="MJm-pZ-sKU"/>
                             <constraint firstItem="euS-uo-gTD" firstAttribute="top" secondItem="YQE-hg-T2w" secondAttribute="top" id="Qz0-iK-vKw"/>
                             <constraint firstItem="euS-uo-gTD" firstAttribute="leading" secondItem="YQE-hg-T2w" secondAttribute="leading" id="fXD-gj-a4b"/>
                             <constraint firstItem="euS-uo-gTD" firstAttribute="top" secondItem="YQE-hg-T2w" secondAttribute="top" id="gL5-pi-ZLj"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="YQE-hg-T2w"/>
                     </view>
                     <navigationItem key="navigationItem" id="ZA1-WN-gNd"/>
                     <connections>
@@ -786,6 +786,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VSe-P3-geJ">
                                         <rect key="frame" x="158" y="358" width="98" height="98"/>
                                         <state key="normal" image="mic button"/>
+                                        <connections>
+                                            <action selector="recordTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="hAr-Z1-F2t"/>
+                                        </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you say?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6t-oE-3tv">
                                         <rect key="frame" x="122" y="73" width="170" height="24"/>
@@ -816,7 +819,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="play audio"/>
                                                 <connections>
-                                                    <action selector="secondVoiceTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="gMJ-Na-LHS"/>
+                                                    <action selector="voiceButtonTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="Jrk-U7-lwb"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -845,7 +848,7 @@
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <state key="normal" image="play audio"/>
                                                 <connections>
-                                                    <action selector="firstVoiceTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="mSj-Q2-oQq"/>
+                                                    <action selector="voiceButtonTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="ORQ-Tt-Hlq"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -900,6 +903,9 @@
                                         <rect key="frame" x="217" y="44" width="41" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="play audio"/>
+                                        <connections>
+                                            <action selector="voiceButtonTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="p51-jn-Ika"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -912,7 +918,7 @@
                                         <rect key="frame" x="8" y="0.0" width="273" height="65"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rI2-Kv-23e">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="                         ..." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rI2-Kv-23e">
                                                 <rect key="frame" x="8" y="8" width="257" height="49"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -926,6 +932,9 @@
                                         <rect key="frame" x="217" y="44" width="41" height="41"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" image="play audio"/>
+                                        <connections>
+                                            <action selector="voiceButtonTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="hE1-ii-5c2"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -951,15 +960,19 @@
                         <outlet property="chatBotImage" destination="trU-SQ-748" id="d8k-s7-AYW"/>
                         <outlet property="chatBotLabel" destination="ubm-Qh-acs" id="9Sb-xb-Uc5"/>
                         <outlet property="chatBotView" destination="b4W-0O-pJV" id="YyB-7h-zJx"/>
+                        <outlet property="chatBotVoice" destination="bIB-Xw-qGn" id="d0s-za-6yP"/>
                         <outlet property="firstCardLabel" destination="4Bi-KW-mhC" id="Xst-jP-j7s"/>
                         <outlet property="firstReplyView" destination="wj4-59-uKq" id="Dja-d4-q9z"/>
+                        <outlet property="firstVoiceButton" destination="zWZ-xm-X0a" id="SWA-29-LyE"/>
                         <outlet property="progressBarView" destination="qn2-H5-IKA" id="26y-wc-iQc"/>
                         <outlet property="recordButton" destination="VSe-P3-geJ" id="bAZ-nb-eL6"/>
                         <outlet property="secondCardLabel" destination="k1G-wt-2X9" id="e29-t8-FEx"/>
                         <outlet property="secondReplyView" destination="5E3-Be-GXz" id="tPA-f5-88M"/>
+                        <outlet property="secondVoiceButton" destination="8w7-04-L8E" id="6ev-cX-eFc"/>
                         <outlet property="speechView" destination="0xx-aH-Edp" id="imf-BZ-ccf"/>
                         <outlet property="topicLabel" destination="eWj-dZ-fOc" id="XSp-gy-XNl"/>
                         <outlet property="userReplyLabel" destination="rI2-Kv-23e" id="Fe8-No-acV"/>
+                        <outlet property="userReplyVoice" destination="v2F-h7-cRi" id="fWX-UD-Ood"/>
                         <outlet property="userView" destination="FzX-ZA-BfX" id="ysw-uu-jNZ"/>
                     </connections>
                 </viewController>
