@@ -62,6 +62,9 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         changeToSystemFont(label: topicLabel, fontSize: 20)
         
         topicLabel.text = topic
+        firstCardLabel.text = firstAnswer[0]
+        secondCardLabel.text = secondAnswer[0]
+        chatBotLabel.text = question[0]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -123,11 +126,39 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
             
         } else {
             try! startRecording()
+            userReplyLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
+            userReplyLabel.textAlignment = .left
+            
         }
     }
     func checkPronounciationResult(_ result: String,_ firstReply: String,_ secondReply: String){
-        
+        if (result.uppercased().words == firstReply.uppercased().words) {
+            userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+            speechView.isHidden = true
+        } else if(result.uppercased().words == secondReply.uppercased().words){
+            userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+            speechView.isHidden = true
+        } else {
+            userReplyLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+            print(firstReply.uppercased().words)
+            print(secondReply.uppercased().words)
+            print(result.uppercased().words)
+        }
+    }
+    @IBAction func nextButtonTapped(_ sender: Any) {
+        currentProgress += 1
+        if(currentProgress > totalProgress - 1) {
+            performSegue(withIdentifier: "toCongratulations", sender: nil)
+        } else {
+            firstCardLabel.text = firstAnswer[currentProgress]
+            secondCardLabel.text = secondAnswer[currentProgress]
+            chatBotLabel.text = question[currentProgress]
+            progressBarView.reloadData()
+            speechView.isHidden = false
+            userReplyLabel.text = "..."
+            userReplyLabel.textAlignment = .center
+        }
     }
     
     @IBAction func voiceButtonTapped(_ sender: UIButton) {
@@ -248,3 +279,8 @@ extension SelfTalkViewController {
     }
 }
 
+extension StringProtocol {
+    var words: [SubSequence] {
+        return split{ !$0.isLetter }
+    }
+}
