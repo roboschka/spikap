@@ -142,16 +142,17 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
             recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
+            playAudioButton.isEnabled = false
             checkResult()
         } else {
             prepareForRecording()
             createClassificationRequest()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
+            playAudioButton.isEnabled = true
         }
     }
     @IBAction func playAudioSpeech(_ sender: Any) {
         var utterance = AVSpeechUtterance(string: questionLabel.text ?? "")
-        utterance = AVSpeechUtterance(string: contents[0])
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = 0.2
         utterance.volume = 1.0
@@ -175,6 +176,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     
     private func checkResult() {
         var temp: [String] = []
+        var tempWrong: [String] = []
         isCorrect = false
         for (index, result) in testResult.enumerated() {
             if (index < contentsToken[currentProgress].count) {
@@ -189,7 +191,11 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                     for token in contentsToken[currentProgress] {
                         if result.label.uppercased().contains(token.uppercased()) {
                             if (Int(result.confidence) >= 30) {
+                                //pronounce udh bener tapi masih belum complete
                                 temp.append(token)
+                            } else {
+                                //pronounce masih belum bener, jadi % nya kecil
+                                tempWrong.append(token)
                             }
                         }
                     }
@@ -215,10 +221,18 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                     nextButton.isEnabled = false
                     wrongSound()
                 } else {
-                    questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
-                    feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\""
-                    nextButton.isEnabled = false
-                    wrongSound()
+                    if (tempWrong.count != 0) {
+                        questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                        feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\". You're still struggling with: \"\(tempWrong.joined(separator: ", "))\""
+                        nextButton.isEnabled = false
+                        wrongSound()
+                    }
+                    else {
+                        questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                        feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\""
+                        nextButton.isEnabled = false
+                        wrongSound()
+                    }
                 }
             }
         }
