@@ -33,6 +33,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     var audioFileName: URL!
     
     var isRecording: Bool = false
+    var confidenceCheck : [Float] = []
     
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var progressBarView: UICollectionView!
@@ -127,24 +128,116 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         } else {
             try! startRecording()
             userReplyLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            userReplyLabel.text = "..."
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
-            userReplyLabel.textAlignment = .left
+            userReplyLabel.textAlignment = .center
             
         }
     }
+    
+    func colorString(_ main: String,_ string: String, _ color: UIColor,_ label: UILabel){
+        let range = (main as NSString).range(of: string)
+        let attribute = NSMutableAttributedString.init(string: main)
+        attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
+        label.attributedText = attribute
+    }
+    
     func checkPronounciationResult(_ result: String,_ firstReply: String,_ secondReply: String){
-        if (result.uppercased().words == firstReply.uppercased().words) {
-            userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
-            speechView.isHidden = true
-        } else if(result.uppercased().words == secondReply.uppercased().words){
-            userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
-            speechView.isHidden = true
-        } else {
-            userReplyLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
-            print(firstReply.uppercased().words)
-            print(secondReply.uppercased().words)
-            print(result.uppercased().words)
-        }
+        userReplyLabel.textAlignment = .left
+        
+            if (confidenceCheck.count == result.words.count) {
+                //Hasil SpeechToText sesuai sama result, gak ada yang satu segment dua kata gitu
+                if result.words.count == firstReply.words.count {
+                    //Jumlah kata dalam jawaban user = jumlah kata dalam jawaban pertama
+                    let attribute = NSMutableAttributedString.init(string: result)
+                    
+                    for (index, substring) in result.words.enumerated() {
+                        print(confidenceCheck[index])
+                        print(result.words[index])
+                        if substring.uppercased() == firstReply.uppercased().words[index] {
+                            //Kata di result = kata index x di jawaban pertama
+                            //Check confidence
+                            if confidenceCheck[index] == 0 {
+                                print("Good: \(substring)")
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                            } else if confidenceCheck[index] >= 0.7 {
+                                print("OK: \(substring)")
+                                colorString(result, String(substring), UIColor.green, userReplyLabel)
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                            } else {
+                                print("Poor: \(substring)")
+                                colorString(result, String(substring), UIColor.yellow, userReplyLabel)
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.orange, range: range)
+                            }
+                        } else {
+                            //"WANT" === "WENT"
+                            //Kata tidak sesuai/sama dengan yang ada di jawaban 1 / 2
+                            print("You got this wrong: \(substring)")
+                            let range = (result as NSString).range(of: String(substring))
+                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+                        }
+                    }
+                    userReplyLabel.attributedText = attribute
+                } else if (result.words.count == secondReply.words.count) {
+                    //Jumlah kata dalam jawaban user = jumlah kata dalam jawaban kedua
+                    let attribute = NSMutableAttributedString.init(string: result)
+                    for (index, substring) in result.words.enumerated() {
+                        print(confidenceCheck[index])
+                        print(result.words[index])
+                        
+                        if substring.uppercased() == secondReply.uppercased().words[index] {
+                            //Kata di result = kata index x di jawaban pertama
+                            //Check confidence
+                            if confidenceCheck[index] == 0 {
+                                print("Good: \(substring)")
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                            } else if confidenceCheck[index] >= 0.7 {
+                                print("OK: \(substring)")
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                            } else {
+                                print("Poor: \(substring)")
+                                let range = (result as NSString).range(of: String(substring))
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.orange, range: range)
+                            }
+                        } else {
+                            //"WANT" === "WENT"
+                            //Kata tidak sesuai/sama dengan yang ada di jawaban 1 / 2
+                            print("You got this wrong: \(substring)")
+                            let range = (result as NSString).range(of: String(substring))
+                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+                        }
+                    }
+                    userReplyLabel.attributedText = attribute
+                } else {
+                    //Jumlah kata dalam jawaban user != jumlah kata dalam jawaban pertama/kedua
+                    userReplyLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                    print(firstReply.uppercased().words)
+                    print(secondReply.uppercased().words)
+                    print(result.uppercased().words)
+                }
+                
+            } else {
+                //Kata di speechRecognition ada yang ke concat (1 segment lebih dari 1 kata)
+                if (result.uppercased().words == firstReply.uppercased().words) {
+                    userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+                    speechView.isHidden = true
+                } else if(result.uppercased().words == secondReply.uppercased().words){
+                    userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+                    speechView.isHidden = true
+                } else {
+                    userReplyLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+                    print(firstReply.uppercased().words)
+                    print(secondReply.uppercased().words)
+                    print(result.uppercased().words)
+                }
+            }
+        
+        
     }
     @IBAction func nextButtonTapped(_ sender: Any) {
         currentProgress += 1
@@ -252,19 +345,23 @@ extension SelfTalkViewController {
         
         audioEngine.prepare()
         try! audioEngine.start()
-        
+        confidenceCheck = []
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) {
             result, error in
+            guard let result = result else { return }
             
-            var isFinal = false
             
-            if let transcript = result {
-                print(transcript.bestTranscription.formattedString)
-                isFinal = transcript.isFinal
-                self.result = transcript.bestTranscription.formattedString
-                self.userReplyLabel.text = self.result
-            } else if error != nil || isFinal {
-                //Nyala lebih dari 1 menit aka Timeout
+            if result.isFinal {
+                print(result.bestTranscription.formattedString)
+                
+                
+                for segment in result.bestTranscription.segments {
+                    print("Segment confidence: \(segment.confidence) -> \(segment.substring)")
+                    self.confidenceCheck.append(segment.confidence)
+                }
+                
+                self.checkPronounciationResult(self.result, self.firstAnswer[self.currentProgress], self.secondAnswer[self.currentProgress])
+                
                 self.audioEngine.stop()
                 node.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -272,10 +369,11 @@ extension SelfTalkViewController {
                 
                 self.recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
                 print("Finished recording")
+            } else {
+                self.result = result.bestTranscription.formattedString
+                self.userReplyLabel.text = self.result
             }
         }
-        
-        
     }
 }
 
