@@ -142,13 +142,13 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
             recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
-            playAudioButton.isEnabled = false
+            playAudioButton.isEnabled = true
             checkResult()
         } else {
             prepareForRecording()
             createClassificationRequest()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
-            playAudioButton.isEnabled = true
+            playAudioButton.isEnabled = false
         }
     }
     @IBAction func playAudioSpeech(_ sender: Any) {
@@ -181,7 +181,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         for (index, result) in testResult.enumerated() {
             if (index < contentsToken[currentProgress].count) {
                 if result.label.uppercased().contains(contents[currentProgress].uppercased()) {
-                    if result.confidence < 50 {
+                    if result.confidence < 30 {
                         isCorrect = false
                     } else {
                         isCorrect = true
