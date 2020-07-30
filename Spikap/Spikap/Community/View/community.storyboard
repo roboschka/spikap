@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fTL-8F-7JM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="fTL-8F-7JM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -14,10 +14,37 @@
                     <view key="view" contentMode="scaleToFill" id="7SJ-Sn-lJt">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coming Soon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQM-6w-xHX" userLabel="guestTitleLabel">
+                                <rect key="frame" x="30" y="355" width="354" height="39"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="28"/>
+                                <color key="textColor" red="0.93725490199999995" green="0.59999999999999998" blue="0.1176470588" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for your enthusiasm! We are sorry that this feature is currently under development and we will update it soon!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vrQ-Ya-E9j" userLabel="guestMsgLabel">
+                                <rect key="frame" x="40" y="444" width="334" height="98.5"/>
+                                <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="vrQ-Ya-E9j" firstAttribute="centerX" secondItem="WcD-L7-EGS" secondAttribute="centerX" id="4Pp-lX-7Md"/>
+                            <constraint firstItem="PQM-6w-xHX" firstAttribute="top" secondItem="WcD-L7-EGS" secondAttribute="top" constant="215" id="7T7-ZX-KwF"/>
+                            <constraint firstItem="WcD-L7-EGS" firstAttribute="trailing" secondItem="vrQ-Ya-E9j" secondAttribute="trailing" constant="40" id="CBd-35-8V7"/>
+                            <constraint firstItem="PQM-6w-xHX" firstAttribute="leading" secondItem="WcD-L7-EGS" secondAttribute="leading" constant="30" id="IpB-J9-2e4"/>
+                            <constraint firstItem="WcD-L7-EGS" firstAttribute="trailing" secondItem="PQM-6w-xHX" secondAttribute="trailing" constant="30" id="OHk-Dy-lbv"/>
+                            <constraint firstItem="vrQ-Ya-E9j" firstAttribute="top" secondItem="PQM-6w-xHX" secondAttribute="bottom" constant="50" id="SHA-eb-zHj"/>
+                            <constraint firstItem="vrQ-Ya-E9j" firstAttribute="leading" secondItem="WcD-L7-EGS" secondAttribute="leading" constant="40" id="t3J-2a-dT8"/>
+                            <constraint firstItem="PQM-6w-xHX" firstAttribute="centerX" secondItem="WcD-L7-EGS" secondAttribute="centerX" id="xJc-A0-HU4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="WcD-L7-EGS"/>
                     </view>
                     <navigationItem key="navigationItem" id="J3p-Ng-NL7"/>
+                    <connections>
+                        <outlet property="guestTitleLabel" destination="PQM-6w-xHX" id="ozg-YC-Ule"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KXn-gZ-9QI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
