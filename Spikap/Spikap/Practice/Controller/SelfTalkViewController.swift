@@ -29,6 +29,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVAudioPlayer!
     var inputFormat: AVAudioFormat!
     var audioFileName: URL!
     
@@ -159,24 +160,30 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                             if confidenceCheck[index] == 0 {
                                 print("Good: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)), range: range)
+                                speechView.isHidden = true
+                                correctSound()
                             } else if confidenceCheck[index] >= 0.7 {
                                 print("OK: \(substring)")
                                 colorString(result, String(substring), UIColor.green, userReplyLabel)
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)), range: range)
+                                speechView.isHidden = true
+                                correctSound()
                             } else {
                                 print("Poor: \(substring)")
                                 colorString(result, String(substring), UIColor.yellow, userReplyLabel)
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.orange, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 1, green: 0.5675869372, blue: 0.2278224571, alpha: 1)), range: range)
+                                wrongSound()
                             }
                         } else {
                             //"WANT" === "WENT"
                             //Kata tidak sesuai/sama dengan yang ada di jawaban 1 / 2
                             print("You got this wrong: \(substring)")
                             let range = (result as NSString).range(of: String(substring))
-                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)), range: range)
+                            wrongSound()
                         }
                     }
                     userReplyLabel.attributedText = attribute
@@ -193,22 +200,28 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                             if confidenceCheck[index] == 0 {
                                 print("Good: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)), range: range)
+                                speechView.isHidden = true
+                                correctSound()
                             } else if confidenceCheck[index] >= 0.7 {
                                 print("OK: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.green, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)), range: range)
+                                speechView.isHidden = true
+                                correctSound()
                             } else {
                                 print("Poor: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
-                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.orange, range: range)
+                                attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 1, green: 0.5675869372, blue: 0.2278224571, alpha: 1)), range: range)
+                                wrongSound()
                             }
                         } else {
                             //"WANT" === "WENT"
                             //Kata tidak sesuai/sama dengan yang ada di jawaban 1 / 2
                             print("You got this wrong: \(substring)")
                             let range = (result as NSString).range(of: String(substring))
-                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.red, range: range)
+                            attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)), range: range)
+                            wrongSound()
                         }
                     }
                     userReplyLabel.attributedText = attribute
@@ -218,6 +231,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                     print(firstReply.uppercased().words)
                     print(secondReply.uppercased().words)
                     print(result.uppercased().words)
+                    wrongSound()
                 }
                 
             } else {
@@ -225,14 +239,17 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                 if (result.uppercased().words == firstReply.uppercased().words) {
                     userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
                     speechView.isHidden = true
+                    correctSound()
                 } else if(result.uppercased().words == secondReply.uppercased().words){
                     userReplyLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
                     speechView.isHidden = true
+                    correctSound()
                 } else {
                     userReplyLabel.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
                     print(firstReply.uppercased().words)
                     print(secondReply.uppercased().words)
                     print(result.uppercased().words)
+                    wrongSound()
                 }
             }
     }
@@ -377,5 +394,31 @@ extension SelfTalkViewController {
 extension StringProtocol {
     var words: [SubSequence] {
         return split{ !$0.isLetter }
+    }
+}
+
+extension SelfTalkViewController {
+    func correctSound() {
+        let pathToSound = Bundle.main.path(forResource: "Correct", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
+            audioPlayer?.play()
+        } catch {
+            print("There's a problem playing the SFX")
+        }
+    }
+    
+    func wrongSound() {
+        let pathToSound = Bundle.main.path(forResource: "Wrong", ofType: "wav")!
+        let url = URL(fileURLWithPath: pathToSound)
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            audioPlayer?.volume = 1.0
+            audioPlayer?.play()
+        } catch {
+            print("There's a problem playing the SFX")
+        }
     }
 }
