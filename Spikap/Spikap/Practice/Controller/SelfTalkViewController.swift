@@ -11,7 +11,7 @@ import AVFoundation
 import Speech
 
 class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDelegate{
-
+    //MARK: Variables
     var topic = "Travelling"
     var totalProgress = 8
     var currentProgress = 0
@@ -36,6 +36,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     var isRecording: Bool = false
     var confidenceCheck : [Float] = []
     
+    //MARK: IB Outlets
     @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var progressBarView: UICollectionView!
     @IBOutlet weak var firstReplyView: UIView!
@@ -99,6 +100,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         secondReplyView.layer.borderColor = UIColor.gray.cgColor
         secondReplyView.layer.borderWidth = 1
         secondReplyView.layer.cornerRadius = 15
+        userReplyVoice.isHidden = true
         chatBotView.layer.cornerRadius = 15
         chatBotImage.image = UIImage(named: "mascot")
     }
@@ -142,6 +144,8 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     }
     
     func checkPronounciationResult(_ result: String,_ firstReply: String,_ secondReply: String){
+        var badWords : [String] = []
+        
         userReplyLabel.textAlignment = .left
         let attribute = NSMutableAttributedString.init(string: result)
             if (confidenceCheck.count == result.words.count) {
@@ -166,6 +170,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                                 print("Poor: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
                                 attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 1, green: 0.5675869372, blue: 0.2278224571, alpha: 1)), range: range)
+                                badWords.append(String(substring))
                             }
                         } else {
                             //"WANT" === "WENT"
@@ -197,6 +202,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
                                 print("Poor: \(substring)")
                                 let range = (result as NSString).range(of: String(substring))
                                 attribute.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor(cgColor: #colorLiteral(red: 1, green: 0.5675869372, blue: 0.2278224571, alpha: 1)), range: range)
+                                badWords.append(String(substring))
                             }
                         } else {
                             //"WANT" === "WENT"
@@ -251,6 +257,16 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
             wrongSound2()
         }
         
+        //Text to Speech kata yang oren (bisa multiple)
+        if badWords.count != 0 {
+            //Ada kata yang oren
+            userReplyVoice.isHidden = false
+            let utterance = AVSpeechUtterance(string: "Here's how to pronounce it: \(badWords.joined(separator: ". "))")
+            utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+            utterance.rate = 0.4
+            synthesizer.speak(utterance)
+        }
+        
     }
     @IBAction func nextButtonTapped(_ sender: Any) {
         currentProgress += 1
@@ -264,6 +280,7 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
             speechView.isHidden = false
             userReplyLabel.text = "..."
             userReplyLabel.textAlignment = .center
+            userReplyVoice.isHidden = true
         }
     }
     
