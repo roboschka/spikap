@@ -225,6 +225,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                         questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
                         feedbackLabel.text = "Well, here's what we can hear from you: \"\(temp.joined(separator: ", "))\". You're still struggling with: \"\(tempWrong.joined(separator: ", "))\""
 //                        nextButton.isEnabled = false
+
                         wrongSound()
                     }
                     else {
