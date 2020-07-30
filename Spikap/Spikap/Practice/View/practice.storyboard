@@ -416,7 +416,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Say the word!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jV1-Il-Nmm">
-                                        <rect key="frame" x="120" y="90" width="174" height="26"/>
+                                        <rect key="frame" x="100" y="60" width="214" height="26"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -432,15 +432,15 @@
                                     <constraint firstItem="rSa-13-HC5" firstAttribute="centerX" secondItem="NA9-cT-eKU" secondAttribute="centerX" id="Bq7-EF-oVl"/>
                                     <constraint firstItem="toq-Sj-ZoZ" firstAttribute="centerX" secondItem="NA9-cT-eKU" secondAttribute="centerX" id="Bys-oU-8NC"/>
                                     <constraint firstItem="jV1-Il-Nmm" firstAttribute="centerX" secondItem="NA9-cT-eKU" secondAttribute="centerX" id="JTt-MH-KFQ"/>
-                                    <constraint firstAttribute="trailing" secondItem="jV1-Il-Nmm" secondAttribute="trailing" constant="120" id="Mu7-jT-X5L"/>
+                                    <constraint firstAttribute="trailing" secondItem="jV1-Il-Nmm" secondAttribute="trailing" constant="100" id="Mu7-jT-X5L"/>
                                     <constraint firstItem="rSa-13-HC5" firstAttribute="leading" secondItem="NA9-cT-eKU" secondAttribute="leading" id="NHO-TX-Iw3"/>
                                     <constraint firstItem="AIk-CC-qQh" firstAttribute="leading" secondItem="NA9-cT-eKU" secondAttribute="leading" constant="10" id="OAe-p5-ONP"/>
                                     <constraint firstAttribute="trailing" secondItem="rSa-13-HC5" secondAttribute="trailing" id="TGP-V2-tH7"/>
                                     <constraint firstItem="AIk-CC-qQh" firstAttribute="centerY" secondItem="NA9-cT-eKU" secondAttribute="centerY" constant="-0.5" id="UNp-O3-4k4"/>
-                                    <constraint firstItem="jV1-Il-Nmm" firstAttribute="leading" secondItem="NA9-cT-eKU" secondAttribute="leading" constant="120" id="VKn-ol-5JQ"/>
+                                    <constraint firstItem="jV1-Il-Nmm" firstAttribute="leading" secondItem="NA9-cT-eKU" secondAttribute="leading" constant="100" id="VKn-ol-5JQ"/>
                                     <constraint firstItem="cN7-BQ-gS5" firstAttribute="top" secondItem="toq-Sj-ZoZ" secondAttribute="bottom" constant="20" id="Xab-nS-l90"/>
                                     <constraint firstAttribute="trailing" secondItem="toq-Sj-ZoZ" secondAttribute="trailing" constant="70" id="XeZ-S9-6PB"/>
-                                    <constraint firstItem="jV1-Il-Nmm" firstAttribute="top" secondItem="NA9-cT-eKU" secondAttribute="top" constant="90" id="YQe-yL-yOf"/>
+                                    <constraint firstItem="jV1-Il-Nmm" firstAttribute="top" secondItem="NA9-cT-eKU" secondAttribute="top" constant="60" id="YQe-yL-yOf"/>
                                     <constraint firstAttribute="bottom" secondItem="mJb-SO-wPJ" secondAttribute="bottom" constant="100" id="a22-EZ-cXk"/>
                                     <constraint firstAttribute="trailing" secondItem="cN7-BQ-gS5" secondAttribute="trailing" constant="100" id="dJ7-Om-874"/>
                                     <constraint firstItem="toq-Sj-ZoZ" firstAttribute="centerY" secondItem="NA9-cT-eKU" secondAttribute="centerY" id="eig-So-K4J"/>
@@ -1001,6 +1001,7 @@
                         <outlet property="userReplyLabel" destination="rI2-Kv-23e" id="Fe8-No-acV"/>
                         <outlet property="userReplyVoice" destination="v2F-h7-cRi" id="fWX-UD-Ood"/>
                         <outlet property="userView" destination="FzX-ZA-BfX" id="ysw-uu-jNZ"/>
+                        <segue destination="Xxo-kK-UTe" kind="presentation" modalPresentationStyle="fullScreen" id="SIK-Ny-cUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdn-12-MYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1008,6 +1009,9 @@
             <point key="canvasLocation" x="2137.68115942029" y="1048.6607142857142"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="SIK-Ny-cUk"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="back to practice button" width="336" height="50"/>
         <image name="blue background" width="375" height="186"/>

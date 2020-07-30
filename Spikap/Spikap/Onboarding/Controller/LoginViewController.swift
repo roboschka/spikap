@@ -106,7 +106,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
             
             // For the purpose of this demo app, store the `userIdentifier` in the keychain.
             self.saveUserInKeychain(userIdentifier)
-            var memberCounter = 0
+            let memberCounter = 0
             guard let firstName = appleIDCredential.fullName?.givenName else { return }
             guard let lastName = appleIDCredential.fullName?.familyName else { return }
             let fullName = firstName + " " + lastName
