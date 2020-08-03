@@ -10,6 +10,7 @@ import UIKit
 
 class ChallengeOverviewViewController: UIViewController {
 
+    
     @IBOutlet weak var challengeOverviewImage: UIImageView!
     @IBOutlet weak var challengeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -29,6 +30,7 @@ class ChallengeOverviewViewController: UIViewController {
         collectionView.register(UINib(nibName: "ChallengeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "challengeCollectionViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
