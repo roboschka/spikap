@@ -10,7 +10,7 @@ import UIKit
 
 class CongratulationsViewController: UIViewController {
     //MARK: Variables
-    var totalPoints: Int = 15
+    var totalPoints: Int = 100
     
     
     //MARK: IB Outlet
@@ -20,7 +20,8 @@ class CongratulationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        UserDefaults.standard.set(totalPoints, forKey: "guestPoints")
+        guestStruct.guestPoints = guestStruct.guestPoints + UserDefaults.standard.integer(forKey: "guestPoints")
         // Do any additional setup after loading the view.
     }
     
@@ -28,6 +29,7 @@ class CongratulationsViewController: UIViewController {
         changeToSystemFont(label: congratsLabel, fontSize: 32)
         goodWorkLabel.text = "Keep up the good work! Remember, good habits are keys to success."
         XPLabel.text = "\(totalPoints) XP Point(s)"
+        
     }
     
     @IBAction func backToPractice(_ sender: AnyObject) {
