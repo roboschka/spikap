@@ -10,6 +10,8 @@ import UIKit
 
 class homeVC: UIViewController {
     //MARK: Variables
+    
+    var activitytipe: ActivityType?
     var model = userModel()
     var activities : [Activity] = []
     var activityContent : [ActivityContent] = []
@@ -51,6 +53,7 @@ class homeVC: UIViewController {
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         refresh()
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -67,6 +70,8 @@ class homeVC: UIViewController {
             return
           }
         }
+        
+      
         Activity.fetchActivities{ result in
             switch result {
             case .failure(let error):
