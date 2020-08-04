@@ -112,7 +112,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     func loadContents() {
         activityContents = []
         let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
-        
+
         let pred = NSPredicate(format: "activity = %@", idToFetch)
         let query = CKQuery(recordType: "ActivityContent", predicate: pred)
         let operation = CKQueryOperation(query: query)
