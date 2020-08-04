@@ -22,6 +22,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var activity: activityData!
     var activityContents = [activityContentData]()
     
+    var content = ""
     var contents = ["Airfare", "Baggage", "Cruise", "Departure", "Explore", "Foreign", "Itinerary", "Journey"]
     var contentsToken = [["air", "fare"], ["ba", "ggage"], ["cruise"], ["de", "par", "ture"], ["ex", "plore"], ["fo", "reign"], ["i", "ti", "ne", "ra", "ry"], ["jour", "ney"]]
     var info = ["(Noun) The price of a passenger ticket for travel by aircraft.", "(Noun) Personal belongings packed in suitcases for traveling; luggage.", "(Verb) Sail about in an area without a precise destination, especially for pleasure", "(Noun) The action of leaving, especially to start a journey.", "(Verb) Travel in or through (an unfamiliar country or area) in order to learn about or familiarize oneself with it.", "(Adjective) Of, from, in, or characteristic of a country or language other than one's own.", "(Noun) A planned route or journey.", "(Noun) An act of traveling from one place to another."]
@@ -65,7 +66,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         // Do any additional setup after loading the view.
         inputFormat = audioEngine.inputNode.inputFormat(forBus: 0)
         setupNextButton()
-        setupTokenLabel(progress: currentProgress)
+        
         playAudioButton.isEnabled = true
 //        nextButton.isEnabled = false
     }
@@ -73,9 +74,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     override func viewWillAppear(_ animated: Bool) {
         changeToSystemFont(label: topicLabel, fontSize: 20)
         
-        topicLabel.text = topic
-        questionLabel.text = contents[0]
-        contentInfoLabel.text = info[0]
+        topicLabel.text = activity.topic
+        
         
         
         //Text to speech
@@ -86,6 +86,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         loadContents()
+        
+        
         
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
@@ -135,6 +137,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityContents = fetchContent
+                    questionLabel.text = activityContents[0].contents
+                    contentInfoLabel.text = activityContents[0].info[0]
+                    setupTokenLabel(progress: currentProgress)
                 } else {
                     print("Error fetching data")
                 }
@@ -165,8 +170,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         if(currentProgress > totalProgress - 1) {
             performSegue(withIdentifier: "toCongratulations", sender: nil)
         } else {
-            questionLabel.text = contents[currentProgress]
-            contentInfoLabel.text = info[currentProgress]
+            questionLabel.text = activityContents[currentProgress].contents
+            contentInfoLabel.text = activityContents[currentProgress].info[0]
             setupTokenLabel(progress: currentProgress)
             progressBarView.reloadData()
 //            nextButton.isEnabled = false
@@ -216,19 +221,20 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     private func checkSpeechToText() {
+        let tokens = activityContents[currentProgress].contentToken
         var finalString: [String] = []
         var goodToken: [String] = []
         var badToken: [String] = []
         var isCorrect = false
         print(speechToTextResult.words)
         for word in speechToTextResult.words {
-            if word.uppercased() == contents[currentProgress].uppercased() {
+            if word.uppercased() == activityContents[currentProgress].contents.uppercased() {
                 print("The whole word is correct!")
                 isCorrect = true
                 break
             } else {
                 var temp: [String] = []
-                for token in contentsToken[currentProgress] {
+                for token in tokens! {
                     if token.uppercased() == word.uppercased() {
                         temp.append(token)
                         goodToken.append(String(token))
@@ -239,7 +245,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
         
         for wordToken in goodToken {
-            for token in contentsToken[currentProgress] {
+            for token in tokens! {
                 if wordToken.uppercased() != token.uppercased() {
                     //token yang gaada di nilainya dia.
                     badToken.append(token)
@@ -253,7 +259,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             nextButton.isEnabled = true
             correctSound()
         } else {
-            if finalString.joined().uppercased() == contents[currentProgress].uppercased() {
+            if finalString.joined().uppercased() == activityContents[currentProgress].contents.uppercased() {
                 questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
                 feedbackLabel.text = "Good job!"
                 nextButton.isEnabled = true
@@ -276,12 +282,13 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     private func checkResult() {
+        let tokens = activityContents[currentProgress].contentToken
         var temp: [String] = []
         var tempWrong: [String] = []
         isCorrect = false
         for (index, result) in testResult.enumerated() {
-            if (index < contentsToken[currentProgress].count) {
-                if result.label.uppercased().contains(contents[currentProgress].uppercased()) {
+            if (index < tokens!.count) {
+                if result.label.uppercased().contains(activityContents[currentProgress].contents.uppercased()) {
                     if result.confidence < 30 {
                         isCorrect = false
                     } else {
@@ -289,7 +296,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                         break
                     }
                 } else  {
-                    for token in contentsToken[currentProgress] {
+                    for token in tokens! {
                         if result.label.uppercased().contains(token.uppercased()) {
                             if (Int(result.confidence) >= 30) {
                                 //pronounce udh bener tapi masih belum complete
@@ -311,7 +318,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             nextButton.isEnabled = true
             correctSound()
         } else {
-            if (temp.joined().uppercased() == contents[currentProgress].uppercased()) {
+            if (temp.joined().uppercased() == activityContents[currentProgress].contents.uppercased()) {
                 questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
                 feedbackLabel.text = "Good job!"
                 nextButton.isEnabled = true
@@ -381,11 +388,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     func setupTokenLabel(progress: Int){
+        let tokens = activityContents[progress].contentToken
         var finalString: String = ""
-        for index in 0 ..< contentsToken[progress].count {
-            let value = contentsToken[progress][index]
+        for index in 0 ..< tokens!.count {
+            let value = tokens![index]
            
-            if index == contentsToken[progress].count - 1 {
+            if index == tokens!.count - 1 {
                 finalString = finalString + value
             } else {
                 finalString = finalString + value + " - "
