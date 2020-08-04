@@ -23,9 +23,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var activityContents = [activityContentData]()
     
     var contents = ["Airfare", "Baggage", "Cruise", "Departure", "Explore", "Foreign", "Itinerary", "Journey"]
-    var contentsToken = [["air", "fare"], ["ba", "ggage"], ["cruise"], ["de", "par", "ture"], ["ex", "plor"], ["fo", "reign"], ["i", "ti", "ne", "ra", "ry"], ["jour", "ney"]]
+    var contentsToken = [["air", "fare"], ["ba", "ggage"], ["cruise"], ["de", "par", "ture"], ["ex", "plore"], ["fo", "reign"], ["i", "ti", "ne", "ra", "ry"], ["jour", "ney"]]
     var info = ["(Noun) The price of a passenger ticket for travel by aircraft.", "(Noun) Personal belongings packed in suitcases for traveling; luggage.", "(Verb) Sail about in an area without a precise destination, especially for pleasure", "(Noun) The action of leaving, especially to start a journey.", "(Verb) Travel in or through (an unfamiliar country or area) in order to learn about or familiarize oneself with it.", "(Adjective) Of, from, in, or characteristic of a country or language other than one's own.", "(Noun) A planned route or journey.", "(Noun) An act of traveling from one place to another."]
-    var result: String = ""
+    var speechToTextResult: String = ""
     
     private let audioEngine = AVAudioEngine()
     private var soundClassifier = English()      //MLmodel
@@ -179,12 +179,15 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         if audioEngine.isRunning {
             audioEngine.stop()
             audioEngine.inputNode.removeTap(onBus: 0)
+            recognitionRequest?.endAudio()
             recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
             playAudioButton.isEnabled = true
-            checkResult()
+//            checkResult()
+            
         } else {
-            prepareForRecording()
-            createClassificationRequest()
+            try! startRecording()
+//            prepareForRecording()
+//            createClassificationRequest()
             recordButton.setImage(#imageLiteral(resourceName: "record button"), for: .normal)
             playAudioButton.isEnabled = false
         }
@@ -210,6 +213,66 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         } catch {
             showAudioError()
         }
+    }
+    
+    private func checkSpeechToText() {
+        var finalString: [String] = []
+        var goodToken: [String] = []
+        var badToken: [String] = []
+        var isCorrect = false
+        print(speechToTextResult.words)
+        for word in speechToTextResult.words {
+            if word.uppercased() == contents[currentProgress].uppercased() {
+                print("The whole word is correct!")
+                isCorrect = true
+                break
+            } else {
+                var temp: [String] = []
+                for token in contentsToken[currentProgress] {
+                    if token.uppercased() == word.uppercased() {
+                        temp.append(token)
+                        goodToken.append(String(token))
+                    }
+                }
+                finalString.append(String(word))
+            }
+        }
+        
+        for wordToken in goodToken {
+            for token in contentsToken[currentProgress] {
+                if wordToken.uppercased() != token.uppercased() {
+                    //token yang gaada di nilainya dia.
+                    badToken.append(token)
+                }
+            }
+        }
+        
+        if isCorrect {
+            questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+            feedbackLabel.text = "Good job!"
+            nextButton.isEnabled = true
+            correctSound()
+        } else {
+            if finalString.joined().uppercased() == contents[currentProgress].uppercased() {
+                questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
+                feedbackLabel.text = "Good job!"
+                nextButton.isEnabled = true
+                correctSound()
+            } else {
+                if badToken.count == 0 {
+                    questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                    feedbackLabel.text = "Oops, we didn't catch that. Try again"
+//                    nextButton.isEnabled = false
+                    wrongSound()
+                } else {
+                    questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
+                    feedbackLabel.text = "You're still struggling with: \(badToken.joined(separator: ", "))"
+//                    nextButton.isEnabled = false
+                    wrongSound()
+                }
+            }
+        }
+        
     }
     
     private func checkResult() {
@@ -240,6 +303,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                 }
             }
         }
+        
         
         if (isCorrect) {
             questionLabel.textColor = #colorLiteral(red: 0.1803921569, green: 0.6274509804, blue: 0.1019607843, alpha: 1)
@@ -331,6 +395,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
 }
 
+
 //MARK: CollectionView
 extension SpeechShadowingViewController: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
@@ -408,15 +473,21 @@ extension SpeechShadowingViewController {
         recognitionTask = speechRecognizer.recognitionTask(with: recognitionRequest) {
             result, error in
             
-            var isFinal = false
+            guard let result = result else { return }
             
-            if let transcript = result {
-                print(transcript.transcriptions)
-                isFinal = transcript.isFinal
-                self.result = transcript.bestTranscription.formattedString
+            
+            if result.isFinal {
+                print(result.bestTranscription.formattedString)
                 
-            } else if error != nil || isFinal {
-                //Nyala lebih dari 1 menit aka Timeout
+                
+                for segment in result.bestTranscription.segments {
+                    print("Segment confidence: \(segment.confidence) -> \(segment.substring)")
+                }
+                
+                self.speechToTextResult = result.bestTranscription.formattedString
+                self.checkSpeechToText()
+                
+                
                 self.audioEngine.stop()
                 node.removeTap(onBus: 0)
                 self.recognitionRequest = nil
@@ -424,6 +495,8 @@ extension SpeechShadowingViewController {
                 
                 self.recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
                 print("Finished recording")
+            } else {
+                self.speechToTextResult = result.bestTranscription.formattedString
             }
         }
     }
