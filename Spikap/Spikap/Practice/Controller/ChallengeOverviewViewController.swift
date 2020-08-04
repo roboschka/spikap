@@ -21,6 +21,7 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var practiceLevelLabel: UILabel!
     
     var practiceId:Int?
+    var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and comment if some of the post","Go to community and post any topic you like"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +54,7 @@ class ChallengeOverviewViewController: UIViewController {
         default:
             break
         }
-        dayDescriptionLabel.text = "Practice your pronunciation using speech shadowing method. By the end of this day you’ll be able to pronounce basic English words."
+        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
     }
 }
 
@@ -72,9 +73,7 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dayLabel.text = "Day \(indexPath.row + 1)"
-//        change to desc day x
-//        dayDescriptionLabel.text =
-    
+        dayDescriptionLabel.text = challengeDesc[indexPath.row]
     }
     
 }

@@ -36,13 +36,8 @@ class homeVC: UIViewController {
     @IBOutlet weak var currentActivitiesLabel: UILabel!
     @IBOutlet weak var progressBarWitdth: NSLayoutConstraint!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-//        userNameLabel.text = model.fullname
-
         UserDefaults.standard.set(guestStruct.guestPoints, forKey: "guestPoints")
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
         // Do any additional setup after loading the view.
@@ -55,13 +50,16 @@ class homeVC: UIViewController {
         activitesTableView.dataSource = self
         
         UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
-        
-        
+        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         refresh()
         
     }
-
+    
+    override func viewDidAppear(_ animated: Bool) {
+        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
+    }
+    
     
     @objc private func refresh() {
         Model.currentModel.refresh{ error in
@@ -101,7 +99,6 @@ class homeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         manageLevelUp(points: guestStruct.guestPoints)
         profileImageButtonSetup()
-        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         userLevelLabel.text = guestStruct.guestLevel
         userPointLabel.text = String(guestStruct.guestPoints)
@@ -119,7 +116,7 @@ class homeVC: UIViewController {
         progressBarBackgroundView.layer.borderWidth = 2.5
         progressBarBackgroundView.layer.borderColor = #colorLiteral(red: 0.8549019608, green: 0.8549019608, blue: 0.8549019608, alpha: 1)
         
-        let viewWidth = currentUserXP / levelXP * progressBarWitdth.constant
+        let viewWidth = currentUserXP / levelXP * progressBarBackgroundView.frame.width
         
         progressBarWitdth.constant = viewWidth
         progressBarView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
