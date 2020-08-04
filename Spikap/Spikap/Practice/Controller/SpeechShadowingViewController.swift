@@ -41,7 +41,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var audioPlayer: AVAudioPlayer?
     var inputFormat: AVAudioFormat!
     var streamAnalyzer: SNAudioStreamAnalyzer!
-    let queue = DispatchQueue(label: "aries.Spikap")
+    let queue = DispatchQueue(label: "iCloud.com.aries.Spikap")
     var results = [(label: String, confidence: Float)]()
     var testResult = [(label: String, confidence: Float)]()
     
@@ -114,6 +114,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     func loadContents() {
         activityContents = []
         let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+
         let pred = NSPredicate(format: "activity = %@", idToFetch)
         let query = CKQuery(recordType: "ActivityContent", predicate: pred)
         let operation = CKQueryOperation(query: query)
