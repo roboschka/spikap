@@ -19,6 +19,8 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var topic = "Travelling"
     var totalProgress = 8
     var currentProgress = 0
+    var activity: activityData!
+    var activityContents = [activityContentData]()
     
     var contents = ["Airfare", "Baggage", "Cruise", "Departure", "Explore", "Foreign", "Itinerary", "Journey"]
     var contentsToken = [["air", "fare"], ["ba", "ggage"], ["cruise"], ["de", "par", "ture"], ["ex", "plor"], ["fo", "reign"], ["i", "ti", "ne", "ra", "ry"], ["jour", "ney"]]
@@ -82,9 +84,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadContents()
+        
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
-                switch authStatus {
+                                switch authStatus {
                     case .authorized:
                         self.recordButton.isEnabled = true
  
@@ -104,6 +109,39 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         }
     }
     
+    func loadContents() {
+        activityContents = []
+        let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+        let pred = NSPredicate(format: "activity = %@", idToFetch)
+        let query = CKQuery(recordType: "ActivityContent", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+        var fetchContent = [activityContentData]()
+        
+        operation.recordFetchedBlock = {
+            record in
+            let content = activityContentData()
+            content.recordID = record.recordID
+            content.contents = record["contents"]
+            content.contentToken = record["contentToken"]
+            content.info = record["info"]
+            
+            fetchContent.append(content)
+        }
+        
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    self.activityContents = fetchContent
+                } else {
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
     
     //MARK: IB Actions
     @IBAction func goBack(_ sender: Any) {

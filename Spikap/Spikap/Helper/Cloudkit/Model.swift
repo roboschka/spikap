@@ -22,7 +22,7 @@ class Model {
     }
     
     // MARK: - Properties
-    private(set) var activitytype: [ActivityType] = []
+    private(set) var activitytypes: [ActivityType] = []
     static var currentModel = Model()
 
     @objc func refresh(_ completion: @escaping (Error?) -> Void) {
@@ -43,7 +43,7 @@ class Model {
            return
          }
          guard let results = results else { return }
-         self.activitytype = results.compactMap {
+         self.activitytypes = results.compactMap {
            ActivityType(record: $0, database: self.publicDB)
          }
          DispatchQueue.main.async {
