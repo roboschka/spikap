@@ -38,8 +38,12 @@ class homeVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //Points
         UserDefaults.standard.set(guestStruct.guestPoints, forKey: "guestPoints")
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
+        
+        
+        
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true, fontSize: 40)
         
@@ -58,6 +62,7 @@ class homeVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
+        dayStreakCollection.reloadData()
     }
     
     
