@@ -201,7 +201,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         let utterance = AVSpeechUtterance(string: questionLabel.text ?? "")
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         utterance.rate = 0.2
-        utterance.volume = 1.0
+        utterance.volume = 10.0
         
         synthesizer.speak(utterance)
     }
@@ -456,7 +456,7 @@ extension SpeechShadowingViewController {
         }
         
         let audioSession = AVAudioSession.sharedInstance()
-        try audioSession.setCategory(.record)
+        try audioSession.setCategory(.playAndRecord, options: .defaultToSpeaker)
         try audioSession.setMode(.measurement)
         
         try audioSession.setActive(true, options: .init())
@@ -554,7 +554,7 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.volume = 1.0
+            audioPlayer?.volume = 10.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
@@ -566,7 +566,7 @@ extension SpeechShadowingViewController {
         let url = URL(fileURLWithPath: pathToSound)
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: url)
-            audioPlayer?.volume = 1.0
+            audioPlayer?.volume = 10.0
             audioPlayer?.play()
         } catch {
             print("There's a problem playing the SFX")
