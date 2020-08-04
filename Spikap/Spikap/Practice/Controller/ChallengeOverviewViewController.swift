@@ -21,7 +21,8 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var practiceLevelLabel: UILabel!
     
     var practiceId:Int?
-    var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and comment if some of the post","Go to community and post any topic you like"]
+    var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and post any topic you like","Go to community and post any topic you like"]
+    var forDay:Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,19 @@ class ChallengeOverviewViewController: UIViewController {
             break
         }
         dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    @IBAction func startTapped(_ sender: Any) {
+        switch forDay {
+        case 0...8:
+            performSegue(withIdentifier: "segueChallengeToSelfTalk", sender: nil)
+        case 9...17:
+            performSegue(withIdentifier: "segueChallengeToSpeech", sender: nil)
+        default:
+            break
+        }
     }
 }
 
