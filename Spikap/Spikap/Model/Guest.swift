@@ -17,6 +17,8 @@ struct GuestModel {
     var guestLevel: String = "Beginner"
     var activitiesId: [String] = []
     var badgesId: [String] = []
+    
+//    var currentActivity: [activityContentData] = []
 }
 
 var guestStruct = GuestModel()
