@@ -240,6 +240,9 @@
                                         <state key="normal" image="start button">
                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="startTapped:" destination="FZh-kv-CED" eventType="touchUpInside" id="G2W-Ka-Pdr"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -264,6 +267,8 @@
                         <outlet property="practiceLevelLabel" destination="kPK-d6-PQI" id="vP8-J6-EAv"/>
                         <outlet property="practiceTypeLabel" destination="nBZ-cw-ZnJ" id="mai-Fr-DZW"/>
                         <outlet property="startButton" destination="FRq-eH-zWc" id="hEe-m5-LKz"/>
+                        <segue destination="ybH-N8-rXQ" kind="presentation" identifier="segueChallengeToSpeech" modalPresentationStyle="fullScreen" id="f0L-c6-9IM"/>
+                        <segue destination="rTQ-jX-0BX" kind="presentation" identifier="segueChallengeToSelfTalk" modalPresentationStyle="fullScreen" id="tAK-du-3us"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jlP-cK-PBr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1061,7 +1066,9 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="PyP-eN-Kfx"/>
+        <segue reference="tAK-du-3us"/>
+        <segue reference="SIK-Ny-cUk"/>
+        <segue reference="f0L-c6-9IM"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back to practice button" width="336" height="50"/>
