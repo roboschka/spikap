@@ -10,7 +10,7 @@ import UIKit
 
 class CongratulationsViewController: UIViewController {
     //MARK: Variables
-    var totalPoints: Int = 15
+    var totalPoints: Int = 20
     
     
     //MARK: IB Outlet
@@ -20,14 +20,30 @@ class CongratulationsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        //totalPoints
+        UserDefaults.standard.set(totalPoints, forKey: "guestPoints")
+        guestStruct.guestPoints = guestStruct.guestPoints + UserDefaults.standard.integer(forKey: "guestPoints")
+        
+        //isTodayDone
+        UserDefaults.standard.set(true, forKey: "isTodayDone")
+        guestStruct.isTodayDone = UserDefaults.standard.bool(forKey: "isTodayDone")
+        
+        //daysOnStreak
+        if (guestStruct.isOnStreak) {
+            UserDefaults.standard.set(guestStruct.daysOnStreak + 1, forKey: "daysOnStreak")
+            guestStruct.daysOnStreak = UserDefaults.standard.integer(forKey: "daysOnStreak")
+        }
+        
+        //isOnStreak
+        UserDefaults.standard.set(true, forKey: "isOnStreak")
+        guestStruct.isOnStreak = UserDefaults.standard.bool(forKey: "isOnStreak")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         changeToSystemFont(label: congratsLabel, fontSize: 32)
         goodWorkLabel.text = "Keep up the good work! Remember, good habits are keys to success."
         XPLabel.text = "\(totalPoints) XP Point(s)"
+        
     }
     
     @IBAction func backToPractice(_ sender: AnyObject) {
