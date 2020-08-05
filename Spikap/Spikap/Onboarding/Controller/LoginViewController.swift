@@ -7,7 +7,6 @@
 //
 
 import UIKit
-
 import AuthenticationServices
 
 class LoginViewController: UIViewController {
@@ -87,6 +86,10 @@ class LoginViewController: UIViewController {
     @IBAction func guestLogin(_ sender: Any) {
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingTabBarVC") as! UITabBarController
         vc.modalPresentationStyle = .fullScreen
+        KeychainItem.currentUserIdentifier = nil
+        KeychainItem.currentUserGivenName = nil
+        KeychainItem.currentUserBirthName = nil
+        KeychainItem.currentUserEmail = nil
         self.present(vc, animated: false, completion: nil)
         
     }
@@ -98,50 +101,102 @@ class LoginViewController: UIViewController {
 extension LoginViewController: ASAuthorizationControllerDelegate {
     /// - Tag: did_complete_authorization
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        switch authorization.credential {
-        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+        
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
             
             // Create an account in your system.
-            let userIdentifier = appleIDCredential.user
+            // For the purpose of this demo app, store the these details in the keychain.
+            KeychainItem.currentUserIdentifier = appleIDCredential.user
+            KeychainItem.currentUserGivenName = appleIDCredential.fullName?.givenName
+            KeychainItem.currentUserBirthName = appleIDCredential.fullName?.familyName
+            KeychainItem.currentUserEmail = appleIDCredential.email
+            //                    users = UserModel(credentials: appleIDCredential)
             
-            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
-            self.saveUserInKeychain(userIdentifier)
-            let memberCounter = 0
             guard let firstName = appleIDCredential.fullName?.givenName else { return }
             guard let lastName = appleIDCredential.fullName?.familyName else { return }
             let fullName = firstName + " " + lastName
             guard let email = appleIDCredential.email else { return }
             
-            //            let id = userList.count + 1
-            let id = memberCounter + 1
-            print("\n\nid = \(id)\n\nmemberCounter = \(memberCounter)")
-
             
-            Userextention.createUser(userID: id, fullName: fullName, userEmail: email)
-            //            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
-            //            self.showResultViewController(userIdentifier: userIdentifier, fullName: fullName, email: email)
+            if let identityTokenData = appleIDCredential.identityToken,
+                let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                print("Identity Token \(identityTokenString)")
+            }
             
-        case let passwordCredential as ASPasswordCredential:
+//            self.performSegue(withIdentifier: "login", sender: email)
+            let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingTabBarVC") as! UITabBarController
+            vc.modalPresentationStyle = .fullScreen
+            self.present(vc, animated: false, completion: nil)
+            //Show Home View Controller
+//            self.dismiss(animated: true, completion: nil)
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
             // Sign in using an existing iCloud Keychain credential.
             let username = passwordCredential.user
             let password = passwordCredential.password
             
             // For the purpose of this demo app, show the password credential as an alert.
             DispatchQueue.main.async {
-                self.showPasswordCredentialAlert(username: username, password: password)
+                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                        message: message,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
             }
-        default:
-            break
         }
+        
+    }
+    
+    
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let homeuserVC = segue.destination as? homeVC {
+//            homeuserVC.userFromLogin  = sender as? userModel
+        }
+    }
+    
+    
+    private func showResultViewController(fullName: String?, email: String?) {
+        
+        guard let viewController = self.presentingViewController as? homeVC
+            else { return }
+        viewController.userNameLabel.text = fullName
+        DispatchQueue.main.async {
+            viewController.userNameLabel.text = fullName
+            self.dismiss(animated: true, completion: nil)
+        }
+    
     }
     
     private func saveUserInKeychain(_ userIdentifier: String) {
         do {
-            try KeychainItem(service: "com.example.apple-samplecode.juice", account: "userIdentifier").saveItem(userIdentifier)
+            try KeychainItem(service: "aries.Spikap", account: "userIdentifier").saveItem(userIdentifier)
         } catch {
             print("Unable to save userIdentifier to keychain.")
         }
     }
+    
+//    private func showResultViewController(userIdentifier: String, fullName: PersonNameComponents?, email: String?) {
+//        guard let viewController = self.presentingViewController as? homeVC
+//            else { return }
+//
+//        DispatchQueue.main.async {
+////            viewController.showOnboarding = true
+//
+//            if let givenName = fullName?.givenName {
+//                viewController.userNameLabel.text = givenName
+//            }
+////            if let familyName = fullName?.familyName {
+////                viewController.familyNameLabel.text = familyName
+////            }
+////            if let email = email {
+////                viewController.emailLabel.text = email
+////            }
+//            self.dismiss(animated: true, completion: nil)
+//        }
+//    }
     
     private func showPasswordCredentialAlert(username: String, password: String) {
         let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
@@ -156,7 +211,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
         // Handle error.
     }
-    
 }
 
 extension LoginViewController: ASAuthorizationControllerPresentationContextProviding {
@@ -165,12 +219,12 @@ extension LoginViewController: ASAuthorizationControllerPresentationContextProvi
         return self.view.window!
     }
 }
+
 extension UIViewController {
-    
     func showLoginViewController() {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let storyboard = UIStoryboard(name: "Onboarding", bundle: nil)
         if let loginViewController = storyboard.instantiateViewController(withIdentifier: "loginViewController") as? LoginViewController {
-            loginViewController.modalPresentationStyle = .formSheet
+            loginViewController.modalPresentationStyle = .overFullScreen
             loginViewController.isModalInPresentation = true
             self.present(loginViewController, animated: true, completion: nil)
         }
