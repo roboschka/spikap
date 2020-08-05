@@ -27,41 +27,16 @@ class LandingTabBarVC: UITabBarController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        
-
-//        let appleIDProvider = ASAuthorizationAppleIDProvider()
-//        appleIDProvider.getCredentialState(forUserID: KeychainItem.currentUserIdentifier ?? "") { (credentialState, error) in
-//            switch credentialState {
-//            case .authorized:
-//                //MARK: - CloudKit
-//                Userextention.getMemberBySpecificEmail(email: "ariesdwiprasetiyo4@gmail.com", successCompletion: { (datamodel) in
-//                    self.datamodel = datamodel
-//                    print("\n\nPoint = \(datamodel.userPoints)\n\nUserEmail = \(datamodel.userEmail)\n\nUserFullName = \(datamodel.fullname)\n\n")
-//                }){
-//                    (message)in
-//                    print(message)
+//                if showOnboarding == true {
+//        
+//        //            pushTo(viewController: .home)
+//        
+//                }else {
+//                    //            pushTo(viewController: .home)
+//                    pushTo(viewController: .welcome)
+//                    showOnboarding =  true
+//                    UserDefaults.standard.set(showOnboarding, forKey: "showOnboarding")
 //                }
-//
-//            break // The Apple ID credential is valid.
-//            case .revoked, .notFound:
-//                // The Apple ID credential is either revoked or was not found, so show the sign-in UI.
-//                DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) {
-//                    self.pushTo(viewController: .welcome)
-//                }
-//            default:
-//                break
-//            }
-//        }
-                if showOnboarding == true {
-        
-        //            pushTo(viewController: .home)
-        
-                }else {
-                    //            pushTo(viewController: .home)
-                    pushTo(viewController: .welcome)
-                    showOnboarding =  true
-                    UserDefaults.standard.set(showOnboarding, forKey: "showOnboarding")
-                }
 
     }
     
