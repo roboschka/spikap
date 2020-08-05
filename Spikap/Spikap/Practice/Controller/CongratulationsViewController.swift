@@ -49,11 +49,13 @@ class CongratulationsViewController: UIViewController {
     @IBAction func backToPractice(_ sender: AnyObject) {
 //        let practicePage = storyboard?.instantiateViewController(identifier: "practiceView") as! practiceVC
 //        self.present(practicePage, animated: true, completion: nil)
-        if let nav = self.navigationController {
-            nav.popViewController(animated: true)
-        } else {
-            self.dismiss(animated: true, completion: nil)
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            if let nav = self.navigationController {
+                nav.popViewController(animated: true)
+            } else {
+                self.dismiss(animated: true, completion: nil)
+                self.presentingViewController?.dismiss(animated: true, completion: nil)
+            }
         }
     }
     
