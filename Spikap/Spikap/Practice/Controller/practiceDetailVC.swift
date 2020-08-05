@@ -43,7 +43,6 @@ class practiceDetailVC: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         loadActivities()
         practiceDetailTableView.reloadData()
     }

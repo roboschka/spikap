@@ -1,10 +1,9 @@
-//
-//  KeychainItem.swift
-//  Spikap
-//
-//  Created by Aries Dwi Prasetiyo on 21/07/20.
-//  Copyright © 2020 Aries Dwi Prasetiyo. All rights reserved.
-//
+/*
+See LICENSE folder for this sample’s licensing information.
+
+Abstract:
+A struct for accessing generic password keychain items.
+*/
 
 import Foundation
 
@@ -126,18 +125,15 @@ struct KeychainItem {
         
         return query
     }
+}
     
     /*
      For the purpose of this demo app, the user identifier will be stored in the device keychain.
      You should store the user identifier in your account management system.
      */
-    
-    
-}
-
 extension KeychainItem {
     static var bundleIdentifier: String {
-        return Bundle.main.bundleIdentifier ?? "caries.Spikap"
+        return Bundle.main.bundleIdentifier ?? "aries.Spikap"
     }
     
     static var currentUserIdentifier: String? {
@@ -214,7 +210,7 @@ extension KeychainItem {
     
     static func deleteUserIdentifierFromKeychain() {
         do {
-            try KeychainItem(service: "MC1-G7.Plano", account: "userIdentifier").deleteItem()
+            try KeychainItem(service: "aries.spikap", account: "userIdentifier").deleteItem()
         } catch {
             print("Unable to delete userIdentifier from keychain")
         }

@@ -7,14 +7,19 @@
 //
 
 import UIKit
+import CloudKit
 
 class homeVC: UIViewController {
     //MARK: Variables
     
     var activitytipe: ActivityType?
-    var model = userModel()
+    var users = [userModel]()
+    var user : userModel!
+
+    var activityType: activityTypeData!
     var activities : [Activity] = []
     var activityContent : [ActivityContent] = []
+    var isUser = false
 
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -55,9 +60,67 @@ class homeVC: UIViewController {
         refresh()
         
     }
-    
+//    var user = userModel()
     override func viewDidAppear(_ animated: Bool) {
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
+        
+        let email = KeychainItem.currentUserEmail ?? ""
+        
+        if email != "" {
+            isUser = true
+        } else {
+            isUser = false
+        }
+        
+        fetch(email: email)
+//        loadHomeVC()
+        print(isUser)
+    }
+    
+    func fetch(email: String){
+       
+        let pred = NSPredicate(format: "userEmail = %@", email)
+        let query = CKQuery(recordType: "Members", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+       
+        var fetchUser = [userModel]()
+        operation.recordFetchedBlock = {
+           record in
+           let user  = userModel()
+            user.daysOnStreak =  record["daysOnStreak"]
+            user.fullname =  record["firstName"]
+            user.isOnStreak =  record["isOnStreak"]
+            user.userPoints =  record["userPoints"]
+            user.userEmail =  record["userEmail"]
+            user.userLevel = record ["levelName"]
+            
+            fetchUser.append(user)
+        }
+        
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                   self.users = fetchUser
+                    self.loadHomeVC()
+                } else {
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
+    
+    func loadHomeVC(){
+        if isUser{
+            userNameLabel.text = KeychainItem.currentUserGivenName
+            userPointLabel.text = String(users[0].userPoints)
+            userLevelLabel.text = users[0].userLevel
+        }
+        
+        
     }
     
     
