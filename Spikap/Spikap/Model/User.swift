@@ -17,6 +17,7 @@ class userModel: NSObject {
     var userEmail : String!
     var daysOnStreak : Int!
     var isOnStreak : Bool!
+    var isTodayDone: Bool!
     var userPoints : Int!
     var userLevel: String!
 }
