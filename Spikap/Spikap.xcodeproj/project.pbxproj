@@ -36,7 +36,6 @@
 		6CC1C61124B81E7B003EEC87 /* community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC1C61024B81E7B003EEC87 /* community.storyboard */; };
 		6CC1C61324B81F0D003EEC87 /* LandingTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */; };
 		6CD173DB24B579370052D58D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DA24B579370052D58D /* AppDelegate.swift */; };
-		6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DC24B579370052D58D /* SceneDelegate.swift */; };
 		6CD173DF24B579370052D58D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD173DE24B579370052D58D /* ViewController.swift */; };
 		6CD173E224B579370052D58D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CD173E024B579370052D58D /* Main.storyboard */; };
 		6CD173E424B579390052D58D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CD173E324B579390052D58D /* Assets.xcassets */; };
@@ -47,6 +46,10 @@
 		6CF7521B24D13456005EA118 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521A24D13456005EA118 /* Activity.swift */; };
 		6CF7521D24D14467005EA118 /* ActivityContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521C24D14467005EA118 /* ActivityContent.swift */; };
 		6CF7521F24D1447D005EA118 /* ActivityOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521E24D1447D005EA118 /* ActivityOverview.swift */; };
+		6CF84BB124D870BF00D304A2 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB024D870BF00D304A2 /* ActivityType.swift */; };
+		6CF84BB324D870DC00D304A2 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB224D870DC00D304A2 /* ActivityData.swift */; };
+		6CF84BB524D8710700D304A2 /* ActivityContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB424D8710700D304A2 /* ActivityContentData.swift */; };
+		6CF84BB724DABCAF00D304A2 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB624DABCAF00D304A2 /* LoginVC.swift */; };
 		940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 940F7EFE24C54E060092251A /* PracticeTypeTableViewCell.swift */; };
 		940F7F0124C54E060092251A /* PracticeTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 940F7EFF24C54E060092251A /* PracticeTypeTableViewCell.xib */; };
 		94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */; };
@@ -97,7 +100,6 @@
 		6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingTabBarVC.swift; sourceTree = "<group>"; };
 		6CD173D724B579370052D58D /* Spikap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Spikap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CD173DA24B579370052D58D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6CD173DC24B579370052D58D /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		6CD173DE24B579370052D58D /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		6CD173E124B579370052D58D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6CD173E324B579390052D58D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -109,6 +111,10 @@
 		6CF7521A24D13456005EA118 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		6CF7521C24D14467005EA118 /* ActivityContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContent.swift; sourceTree = "<group>"; };
 		6CF7521E24D1447D005EA118 /* ActivityOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityOverview.swift; sourceTree = "<group>"; };
+		6CF84BB024D870BF00D304A2 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
+		6CF84BB224D870DC00D304A2 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
+		6CF84BB424D8710700D304A2 /* ActivityContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContentData.swift; sourceTree = "<group>"; };
+		6CF84BB624DABCAF00D304A2 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		940F7EFE24C54E060092251A /* PracticeTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PracticeTypeTableViewCell.swift; sourceTree = "<group>"; };
 		940F7EFF24C54E060092251A /* PracticeTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PracticeTypeTableViewCell.xib; sourceTree = "<group>"; };
 		94437E7924C91EE700FE5987 /* ActivitiesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivitiesTableViewCell.swift; sourceTree = "<group>"; };
@@ -190,6 +196,9 @@
 			children = (
 				478BC12D24C6835D005994AB /* Guest.swift */,
 				6C3DD3E624CF5C1E000B4D4D /* User.swift */,
+				6CF84BB024D870BF00D304A2 /* ActivityType.swift */,
+				6CF84BB224D870DC00D304A2 /* ActivityData.swift */,
+				6CF84BB424D8710700D304A2 /* ActivityContentData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -197,9 +206,7 @@
 		6CC1C5F824B81A39003EEC87 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
-
 				6CF7521324D02DB7005EA118 /* Cloudkit */,
-
 				6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */,
 				4704C29B24BEE5C900447D20 /* postExtension.swift */,
 				4704C29A24BEE5C900447D20 /* userExtention.swift */,
@@ -292,6 +299,7 @@
 			children = (
 				6C4720CD24C6B48300C72C70 /* LoginViewController.swift */,
 				6CC1C61224B81F0D003EEC87 /* LandingTabBarVC.swift */,
+				6CF84BB624DABCAF00D304A2 /* LoginVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -333,7 +341,6 @@
 				6CC1C5F524B81A0B003EEC87 /* Home */,
 				6CC1C5F424B819E2003EEC87 /* Community */,
 				6CD173DA24B579370052D58D /* AppDelegate.swift */,
-				6CD173DC24B579370052D58D /* SceneDelegate.swift */,
 				6CD173DE24B579370052D58D /* ViewController.swift */,
 				478BC12F24C683A4005994AB /* Model.xcdatamodeld */,
 				6CD173E024B579370052D58D /* Main.storyboard */,
@@ -442,10 +449,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BF1EF90524C69CAE009212CB /* community2VC.swift in Sources */,
-
 				475CD63124CFDA4D00CA8423 /* EnglishPronounce.mlmodel in Sources */,
 				47C90F8A24C8054200A72044 /* SpeechShadowingViewController.swift in Sources */,
+				6CF84BB724DABCAF00D304A2 /* LoginVC.swift in Sources */,
 				6CF7521924D132FC005EA118 /* ActiviityType.swift in Sources */,
 				6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */,
 				47C90F8C24C83EBF00A72044 /* PracticeProgressCollectionViewCell.swift in Sources */,
@@ -456,6 +462,7 @@
 				6CD173DF24B579370052D58D /* ViewController.swift in Sources */,
 				BF4F0A8424CE8A9E00FC2B67 /* InterestVC.swift in Sources */,
 				6C3DD3E724CF5C1E000B4D4D /* User.swift in Sources */,
+				6CF84BB524D8710700D304A2 /* ActivityContentData.swift in Sources */,
 				940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */,
 				47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
@@ -474,14 +481,13 @@
 				6CF7521F24D1447D005EA118 /* ActivityOverview.swift in Sources */,
 				4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */,
 				9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */,
-
 				6CF7521724D131EE005EA118 /* Model.swift in Sources */,
-
-				6CD173DD24B579370052D58D /* SceneDelegate.swift in Sources */,
+				6CF84BB324D870DC00D304A2 /* ActivityData.swift in Sources */,
 				475CD63324CFF00400CA8423 /* English.mlmodel in Sources */,
 				94437E8124CA179300FE5987 /* ChallengeCollectionViewCell.swift in Sources */,
 				478BC13124C683A4005994AB /* Model.xcdatamodeld in Sources */,
 				94437E7B24C91EE700FE5987 /* ActivitiesTableViewCell.swift in Sources */,
+				6CF84BB124D870BF00D304A2 /* ActivityType.swift in Sources */,
 				94437E8424CD6E3200FE5987 /* SelfTalkViewController.swift in Sources */,
 				479C917224C14913009E7DF1 /* DayStreakCollectionViewCell.swift in Sources */,
 				6CF7521D24D14467005EA118 /* ActivityContent.swift in Sources */,

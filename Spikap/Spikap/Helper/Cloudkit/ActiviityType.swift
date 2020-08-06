@@ -18,6 +18,7 @@ class ActivityType {
     private let id: CKRecord.ID
     let typename: String
     let database: CKDatabase
+    let coverImage: CKAsset?
     
     private(set) var activities: [Activity]? = nil
     
@@ -27,6 +28,7 @@ class ActivityType {
         id = record.recordID
         self.typename = typename
         self.database = database
+        coverImage = record["coverImage"] as? CKAsset
         
         if let activityRecords = record["activities"] as? [CKRecord.Reference]{
           Activity.fetchActivities(for: activityRecords) {
@@ -34,6 +36,31 @@ class ActivityType {
           }
         }
     }
+    
+    func loadCoverPhoto(completion: @escaping (_ photo: UIImage?) -> ()) {
+        DispatchQueue.global(qos: .utility).async {
+          
+          var image: UIImage?
+          defer {
+            DispatchQueue.main.async {
+              completion(image)
+            }
+          }
+          
+          guard let coverPhoto = self.coverImage, let fileURL = coverPhoto.fileURL else { return }
+          
+          let imageData: Data
+          do {
+            imageData = try Data(contentsOf: fileURL)
+          } catch {
+            return
+          }
+          
+          image = UIImage(data: imageData)
+        
+        }
+    }
+    
 }
 
 extension ActivityType: Hashable {

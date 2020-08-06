@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import CloudKit
 
 class homeVC: UIViewController {
     //MARK: Variables
-    var model = userModel()
+    
+    var activitytipe: ActivityType?
+    var users = [userModel]()
+    var user : userModel!
+
+    var activityType: activityTypeData!
     var activities : [Activity] = []
     var activityContent : [ActivityContent] = []
+    var isUser = false
 
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
@@ -34,15 +41,14 @@ class homeVC: UIViewController {
     @IBOutlet weak var currentActivitiesLabel: UILabel!
     @IBOutlet weak var progressBarWitdth: NSLayoutConstraint!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-//        userNameLabel.text = model.fullname
-
+        //Points
         UserDefaults.standard.set(guestStruct.guestPoints, forKey: "guestPoints")
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
+        
+        
+        
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true, fontSize: 40)
         
@@ -53,12 +59,81 @@ class homeVC: UIViewController {
         activitesTableView.dataSource = self
         
         UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
-        
-        
+        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         refresh()
+        
     }
+//    var user = userModel()
+    override func viewDidAppear(_ animated: Bool) {
+        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
 
+        
+        let email = KeychainItem.currentUserEmail ?? ""
+        
+        if email != "" {
+            isUser = true
+        } else {
+            isUser = false
+        }
+        
+        fetch(email: email)
+//        loadHomeVC()
+        print(isUser)
+    }
+    
+    func fetch(email: String){
+       
+        let pred = NSPredicate(format: "userEmail = %@", email)
+        let query = CKQuery(recordType: "Members", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+       
+        var fetchUser = [userModel]()
+        operation.recordFetchedBlock = {
+           record in
+           let user  = userModel()
+            user.daysOnStreak =  record["daysOnStreak"]
+            user.fullname =  record["firstName"]
+            user.isOnStreak =  record["isOnStreak"]
+            user.userPoints =  record["userPoints"]
+            user.userEmail =  record["userEmail"]
+            user.userLevel = record ["levelName"]
+            user.isTodayDone = record["isTodayDone"]
+
+            
+            fetchUser.append(user)
+        }
+        
+        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                   self.users = fetchUser
+                    self.loadHomeVC()
+                } else {
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
+    
+    func loadHomeVC(){
+        if isUser{
+            userNameLabel.text = users[0].fullname
+            userPointLabel.text = String(users[0].userPoints)
+            userLevelLabel.text = users[0].userLevel
+            manageLevelUp(points: users[0].userPoints)
+            manageLevelPoint(levelName: users[0].userLevel)
+            progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
+        }
+
+        dayStreakCollection.reloadData()
+
+    }
+    
     
     @objc private func refresh() {
         Model.currentModel.refresh{ error in
@@ -69,6 +144,8 @@ class homeVC: UIViewController {
             return
           }
         }
+        
+      
         Activity.fetchActivities{ result in
             switch result {
             case .failure(let error):
@@ -96,7 +173,6 @@ class homeVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         manageLevelUp(points: guestStruct.guestPoints)
         profileImageButtonSetup()
-        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         userLevelLabel.text = guestStruct.guestLevel
         userPointLabel.text = String(guestStruct.guestPoints)
@@ -114,7 +190,7 @@ class homeVC: UIViewController {
         progressBarBackgroundView.layer.borderWidth = 2.5
         progressBarBackgroundView.layer.borderColor = #colorLiteral(red: 0.8549019608, green: 0.8549019608, blue: 0.8549019608, alpha: 1)
         
-        let viewWidth = currentUserXP / levelXP * progressBarWitdth.constant
+        let viewWidth = currentUserXP / levelXP * progressBarBackgroundView.frame.width
         
         progressBarWitdth.constant = viewWidth
         progressBarView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
@@ -192,6 +268,17 @@ class homeVC: UIViewController {
             guestStruct.guestLevel = "Undefined"
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let profileDetailVC = segue.destination as? ProfileViewController {
+           profileDetailVC.users = sender as? userModel
+        }
+    }
+    
+    @IBAction func ProfileDetail(_ sender: Any) {
+        self.performSegue(withIdentifier: "ProfileDetail", sender: users[0])
+    }
+    
+    
 }
 
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -205,27 +292,52 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.streakIndicator.layer.borderWidth = 1.5
         cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
         
-        if (guestStruct.isOnStreak) {
-            if currentDay <= guestStruct.daysOnStreak {
-                if (indexPath.row < (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        if isUser {
+            if (users[0].isOnStreak) {
+                if currentDay <= users[0].daysOnStreak {
+                    if (indexPath.row < (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else if currentDay > users[0].daysOnStreak {
+                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
                 }
-            } else if currentDay > guestStruct.daysOnStreak {
-                if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                
+                if (users[0].isTodayDone) {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    }
                 }
             }
-            
-            if (guestStruct.isTodayDone) {
-                if(indexPath.row == (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        } else {
+            if (guestStruct.isOnStreak) {
+                if currentDay <= guestStruct.daysOnStreak {
+                    if (indexPath.row < (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else if currentDay > guestStruct.daysOnStreak {
+                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
                 }
-            } else {
-                if(indexPath.row == (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                
+                if (guestStruct.isTodayDone) {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    }
                 }
             }
         }
+        
         cell.dayName.text = days[indexPath.row]
         
         return cell

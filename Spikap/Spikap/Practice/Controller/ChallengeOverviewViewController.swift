@@ -10,6 +10,7 @@ import UIKit
 
 class ChallengeOverviewViewController: UIViewController {
 
+    
     @IBOutlet weak var challengeOverviewImage: UIImageView!
     @IBOutlet weak var challengeLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -20,6 +21,8 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var practiceLevelLabel: UILabel!
     
     var practiceId:Int?
+    var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and post any topic you like","Go to community and post any topic you like"]
+    var forDay:Int = 5
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +31,17 @@ class ChallengeOverviewViewController: UIViewController {
         collectionView.register(UINib(nibName: "ChallengeCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "challengeCollectionViewCell")
         collectionView.delegate = self
         collectionView.dataSource = self
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.collectionView.selectItem(at: IndexPath.init(item: forDay, section: 0), animated: true, scrollPosition: [])
+        dayLabel.text = "Day \(forDay + 1)"
+        dayDescriptionLabel.text = challengeDesc[forDay]
     }
     
     func loadData(){
@@ -51,7 +61,20 @@ class ChallengeOverviewViewController: UIViewController {
         default:
             break
         }
-        dayDescriptionLabel.text = "Practice your pronunciation using speech shadowing method. By the end of this day you’ll be able to pronounce basic English words."
+        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+    }
+    @IBAction func startTapped(_ sender: Any) {
+        switch forDay {
+        case 0...8:
+            performSegue(withIdentifier: "segueChallengeToSpeech", sender: nil)
+        case 9...17:
+            performSegue(withIdentifier: "segueChallengeToSelfTalk", sender: nil)
+        default:
+            break
+        }
     }
 }
 
@@ -63,17 +86,24 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "challengeCollectionViewCell", for: indexPath) as! ChallengeCollectionViewCell        
         
-        cell.daysLabel.text = "\(indexPath.row + 1)"
+        if forDay > indexPath.row {
+            cell.daysView.backgroundColor = UIColor(red: 255/255, green: 157/255, blue: 80/255, alpha: 1)
+            cell.daysLabel.textColor = UIColor.white
+        }else {
+            cell.daysView.backgroundColor = UIColor(red: 231/255, green: 231/255, blue: 231/255, alpha: 1)
+            cell.daysLabel.textColor = UIColor(red: 138/255, green: 138/255, blue: 138/255, alpha: 1)
+        }
         
+        
+        cell.daysLabel.text = "\(indexPath.row + 1)"
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dayLabel.text = "Day \(indexPath.row + 1)"
-//        change to desc day x
-//        dayDescriptionLabel.text =
-    
+        dayDescriptionLabel.text = challengeDesc[indexPath.row]
     }
+    
     
 }
 

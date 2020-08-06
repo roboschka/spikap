@@ -20,8 +20,8 @@ class ChallengeCollectionViewCell: UICollectionViewCell {
     }
     override var isSelected: Bool {
         didSet {
-            self.daysView.backgroundColor = isSelected ? UIColor(red: 255/255, green: 157/255, blue: 80/255, alpha: 1) : UIColor(red: 231/255, green: 231/255, blue: 231/255, alpha: 1)
-            self.daysLabel.textColor = isSelected ? UIColor.white : UIColor(red: 138/255, green: 138/255, blue: 138/255, alpha: 1)
+            self.daysView.layer.borderColor = UIColor.black.cgColor
+            self.daysView.layer.borderWidth = isSelected ? 2 : 0
         }
         
     }
