@@ -101,6 +101,7 @@ class homeVC: UIViewController {
             user.userPoints =  record["userPoints"]
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
+            user.isTodayDone = record["isTodayDone"]
             
             fetchUser.append(user)
         }
@@ -120,12 +121,13 @@ class homeVC: UIViewController {
     
     func loadHomeVC(){
         if isUser{
-            userNameLabel.text = KeychainItem.currentUserGivenName
+            userNameLabel.text = users[0].fullname
             userPointLabel.text = String(users[0].userPoints)
             userLevelLabel.text = users[0].userLevel
+            manageLevelUp(points: users[0].userPoints)
+            manageLevelPoint(levelName: users[0].userLevel)
+            progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
         }
-        
-        
         dayStreakCollection.reloadData()
 
     }
@@ -264,6 +266,17 @@ class homeVC: UIViewController {
             guestStruct.guestLevel = "Undefined"
         }
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let profileDetailVC = segue.destination as? ProfileViewController {
+           profileDetailVC.users = sender as? userModel
+        }
+    }
+    
+    @IBAction func ProfileDetail(_ sender: Any) {
+        self.performSegue(withIdentifier: "ProfileDetail", sender: users[0])
+    }
+    
+    
 }
 
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -277,27 +290,52 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
         cell.streakIndicator.layer.borderWidth = 1.5
         cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
         
-        if (guestStruct.isOnStreak) {
-            if currentDay <= guestStruct.daysOnStreak {
-                if (indexPath.row < (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        if isUser {
+            if (users[0].isOnStreak) {
+                if currentDay <= users[0].daysOnStreak {
+                    if (indexPath.row < (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else if currentDay > users[0].daysOnStreak {
+                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
                 }
-            } else if currentDay > guestStruct.daysOnStreak {
-                if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                
+                if (users[0].isTodayDone) {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    }
                 }
             }
-            
-            if (guestStruct.isTodayDone) {
-                if(indexPath.row == (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        } else {
+            if (guestStruct.isOnStreak) {
+                if currentDay <= guestStruct.daysOnStreak {
+                    if (indexPath.row < (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else if currentDay > guestStruct.daysOnStreak {
+                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
                 }
-            } else {
-                if(indexPath.row == (currentDay-1)) {
-                    cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                
+                if (guestStruct.isTodayDone) {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+                    }
+                } else {
+                    if(indexPath.row == (currentDay-1)) {
+                        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    }
                 }
             }
         }
+        
         cell.dayName.text = days[indexPath.row]
         
         return cell
