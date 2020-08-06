@@ -20,4 +20,5 @@ class userModel: NSObject {
     var isTodayDone: Bool!
     var userPoints : Int!
     var userLevel: String!
+    var imageProfile: CKAsset!
 }
