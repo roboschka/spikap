@@ -52,6 +52,7 @@ class ProfileViewController: UIViewController {
     }
     
     func loadprofile() {
+
         
         if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             //               cell.practiceDetailImage.image = image
@@ -61,13 +62,14 @@ class ProfileViewController: UIViewController {
         userLevelLabel.text = users?.userLevel
         
         
+
         if let point = users?.userPoints {
         userPointCountLabel.text = "\(point)"
         } else {
             print("Doesn’t contain a number")
         }
        
-        
+
     }
     
     
