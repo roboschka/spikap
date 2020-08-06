@@ -440,6 +440,7 @@
                     </view>
                     <connections>
                         <outlet property="editProfileBtn" destination="aKX-kp-ci4" id="oVJ-zr-MKr"/>
+                        <outlet property="imageProfile" destination="w9U-Ey-xZr" id="pEF-W1-r2u"/>
                         <outlet property="nameLabel" destination="hA2-Jo-2ib" id="2Lk-SK-gwQ"/>
                         <outlet property="userBadgeCountLabel" destination="NET-Pi-A0J" id="qII-UX-47z"/>
                         <outlet property="userLevelLabel" destination="i6q-Ye-eaD" id="wcP-ns-e6h"/>
