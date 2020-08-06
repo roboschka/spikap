@@ -13,7 +13,7 @@ import CloudKit
 class practiceVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    let practiceImage:[UIImage] = [#imageLiteral(resourceName: "21 days challenge card"),#imageLiteral(resourceName: "self talk card"),#imageLiteral(resourceName: "pdf speech shadow")]
+    let practiceImage:[UIImage] = [#imageLiteral(resourceName: "challenge card"),#imageLiteral(resourceName: "self talk card"),#imageLiteral(resourceName: "speech shadowing card")]
     var practiceTypeId:Int?
     var activityTypes: ActivityType?
     var type = [activityTypeData]()
