@@ -16,6 +16,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userPostCountLabel: UILabel!
     @IBOutlet weak var userPointCountLabel: UILabel!
     @IBOutlet weak var userBadgeCountLabel: UILabel!
+    @IBOutlet var imageProfile: UIButton!
     
     var users: userModel!
     
@@ -51,8 +52,14 @@ class ProfileViewController: UIViewController {
     }
     
     func loadprofile() {
+        
+        if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
+            //               cell.practiceDetailImage.image = image
+            imageProfile.setImage(image, for: .normal)
+        }
         nameLabel.text = users?.fullname
         userLevelLabel.text = users?.userLevel
+        
         
         if let point = users?.userPoints {
         userPointCountLabel.text = "\(point)"
@@ -60,6 +67,7 @@ class ProfileViewController: UIViewController {
             print("Doesn’t contain a number")
         }
        
+        
     }
     
     

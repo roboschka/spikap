@@ -46,9 +46,7 @@ class homeVC: UIViewController {
         //Points
         UserDefaults.standard.set(guestStruct.guestPoints, forKey: "guestPoints")
         guestStruct.guestPoints = UserDefaults.standard.integer(forKey: "guestPoints")
-        
-        
-        
+                
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Home", preferredLargeTitle: true, fontSize: 40)
         
@@ -62,6 +60,7 @@ class homeVC: UIViewController {
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
         refresh()
+       
         
     }
 //    var user = userModel()
@@ -102,6 +101,7 @@ class homeVC: UIViewController {
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
             user.isTodayDone = record["isTodayDone"]
+            user.imageProfile = record["imageProfile"]
 
             
             fetchUser.append(user)
@@ -122,6 +122,10 @@ class homeVC: UIViewController {
     
     func loadHomeVC(){
         if isUser{
+           if let asset = users[0].imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
+//               cell.practiceDetailImage.image = image
+            profileImageButton.setImage(image, for: .normal)
+           }
             userNameLabel.text = users[0].fullname
             userPointLabel.text = String(users[0].userPoints)
             userLevelLabel.text = users[0].userLevel
