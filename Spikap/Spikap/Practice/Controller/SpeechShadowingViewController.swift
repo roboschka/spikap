@@ -138,9 +138,9 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityContents = fetchContent
-                    questionLabel.text = activityContents[0].contents
-                    contentInfoLabel.text = activityContents[0].info[0]
-                    setupTokenLabel(progress: currentProgress)
+                    self.questionLabel.text = self.activityContents[0].contents
+                    self.contentInfoLabel.text = self.activityContents[0].info[0]
+                    self.setupTokenLabel(progress: self.currentProgress)
                 } else {
                     print("Error fetching data")
                 }
