@@ -16,13 +16,15 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userPostCountLabel: UILabel!
     @IBOutlet weak var userPointCountLabel: UILabel!
     @IBOutlet weak var userBadgeCountLabel: UILabel!
+    @IBOutlet var imageProfile: UIButton!
     
-    
+    var users: userModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupLayout()
+        loadprofile()
         // Do any additional setup after loading the view.
         
         
@@ -47,6 +49,27 @@ class ProfileViewController: UIViewController {
         userPointCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         userBadgeCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         
+    }
+    
+    func loadprofile() {
+
+        
+        if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
+            //               cell.practiceDetailImage.image = image
+            imageProfile.setImage(image, for: .normal)
+        }
+        nameLabel.text = users?.fullname
+        userLevelLabel.text = users?.userLevel
+        
+        
+
+        if let point = users?.userPoints {
+        userPointCountLabel.text = "\(point)"
+        } else {
+            print("Doesn’t contain a number")
+        }
+       
+
     }
     
     

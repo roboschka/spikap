@@ -6,14 +6,19 @@
 //  Copyright © 2020 Aries Dwi Prasetiyo. All rights reserved.
 //
 
+
 import Foundation
+import UIKit
+import CloudKit
 
-
-struct userModel {
+class userModel: NSObject {
     var userID = 0
-    var fullname = ""
-    var userEmail = ""
-    var daysOnStreak = 0
-    var isOnStreak = false
-    var userPoints = 0
+    var fullname : String!
+    var userEmail : String!
+    var daysOnStreak : Int!
+    var isOnStreak : Bool!
+    var isTodayDone: Bool!
+    var userPoints : Int!
+    var userLevel: String!
+    var imageProfile: CKAsset!
 }

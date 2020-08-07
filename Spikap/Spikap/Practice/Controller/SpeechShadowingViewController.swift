@@ -85,6 +85,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+//        activityContents = guestStruct.currentActivity
         loadContents()
         
         
@@ -134,7 +135,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             fetchContent.append(content)
         }
         
-        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+        operation.queryCompletionBlock = {(cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityContents = fetchContent
@@ -169,6 +170,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     @IBAction func nextProgressButton(_ sender: Any) {
         currentProgress += 1
         if(currentProgress > totalProgress - 1) {
+            currentProgress = 0
             performSegue(withIdentifier: "toCongratulations", sender: nil)
         } else {
             questionLabel.text = activityContents[currentProgress].contents
