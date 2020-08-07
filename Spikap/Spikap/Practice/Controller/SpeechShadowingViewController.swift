@@ -92,7 +92,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
-                                switch authStatus {
+                switch authStatus {
                     case .authorized:
                         self.recordButton.isEnabled = true
  

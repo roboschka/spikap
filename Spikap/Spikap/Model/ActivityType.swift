@@ -16,6 +16,7 @@ class activityTypeData: NSObject {
     var typeName: String!
     var activites = [CKRecord.ID]()
     var coverImage: CKAsset!
+    var cardImage: CKAsset!
 }
 
 
