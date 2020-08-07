@@ -573,7 +573,7 @@
                                 </variation>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="trophy" translatesAutoresizingMaskIntoConstraints="NO" id="wbS-DS-82X">
-                                <rect key="frame" x="134" y="166" width="146" height="38.5"/>
+                                <rect key="frame" x="134" y="166" width="146" height="76"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="st8-Pr-pb6">
                                 <rect key="frame" x="20" y="792" width="374" height="50"/>
@@ -583,7 +583,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="5FW-1q-KaP">
-                                <rect key="frame" x="20" y="234.5" width="374" height="537.5"/>
+                                <rect key="frame" x="20" y="272" width="374" height="500"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8vT-mS-a3U" userLabel="CongratsTextView">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="148"/>
@@ -636,7 +636,7 @@
                                         </variation>
                                     </view>
                                     <view contentMode="scaleToFill" horizontalHuggingPriority="248" verticalHuggingPriority="248" translatesAutoresizingMaskIntoConstraints="NO" id="v0O-7A-Qh3">
-                                        <rect key="frame" x="0.0" y="150" width="374" height="387.5"/>
+                                        <rect key="frame" x="0.0" y="150" width="374" height="350"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="eRw-bV-jPW">
                                                 <rect key="frame" x="20" y="83.5" width="334" height="125"/>
@@ -841,7 +841,7 @@
                                             <action selector="recordTapped:" destination="rTQ-jX-0BX" eventType="touchUpInside" id="hAr-Z1-F2t"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you say?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6t-oE-3tv">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You can answer any of these" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6t-oE-3tv">
                                         <rect key="frame" x="48" y="46" width="318" height="24"/>
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -958,6 +958,7 @@
                                     <constraint firstItem="lgs-S3-coD" firstAttribute="leading" secondItem="0xx-aH-Edp" secondAttribute="leading" id="c77-7g-Etl"/>
                                     <constraint firstAttribute="trailing" secondItem="VSe-P3-geJ" secondAttribute="trailing" constant="158" id="iM1-Qt-ASw"/>
                                     <constraint firstItem="pEF-Lq-Mfb" firstAttribute="leading" secondItem="0xx-aH-Edp" secondAttribute="leading" constant="48" id="nnZ-61-Azw"/>
+                                    <constraint firstAttribute="height" constant="464" id="p2i-UA-A7c"/>
                                     <constraint firstItem="956-3e-tGb" firstAttribute="top" secondItem="0xx-aH-Edp" secondAttribute="top" constant="8" id="q19-NZ-WSD"/>
                                     <constraint firstAttribute="bottom" secondItem="lgs-S3-coD" secondAttribute="bottom" id="slf-QF-UG9"/>
                                     <constraint firstItem="VSe-P3-geJ" firstAttribute="leading" secondItem="0xx-aH-Edp" secondAttribute="leading" constant="158" id="t2X-gC-9uW"/>
@@ -1066,7 +1067,6 @@
                             <constraint firstItem="qVH-Ql-ItW" firstAttribute="top" secondItem="trU-SQ-748" secondAttribute="top" id="Kom-dk-PYC"/>
                             <constraint firstItem="qVH-Ql-ItW" firstAttribute="top" secondItem="qn2-H5-IKA" secondAttribute="bottom" constant="8" id="MlG-3z-YDE"/>
                             <constraint firstItem="5oS-SJ-hEK" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" constant="20" id="PBb-ah-XQG"/>
-                            <constraint firstItem="0xx-aH-Edp" firstAttribute="top" secondItem="CiL-Ki-EWK" secondAttribute="bottom" constant="34" id="QWO-cj-mWO"/>
                             <constraint firstItem="ZYV-7Z-XfV" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" id="UQS-4g-zI5"/>
                             <constraint firstItem="trU-SQ-748" firstAttribute="leading" secondItem="FnE-20-lLT" secondAttribute="leading" constant="20" id="Umd-Xc-U0P"/>
                             <constraint firstItem="CiL-Ki-EWK" firstAttribute="top" secondItem="qVH-Ql-ItW" secondAttribute="bottom" constant="8" id="Wmw-fS-GYd"/>
@@ -1075,7 +1075,6 @@
                             <constraint firstItem="FnE-20-lLT" firstAttribute="trailing" secondItem="qVH-Ql-ItW" secondAttribute="trailing" constant="20" id="bwi-qk-MrL"/>
                             <constraint firstItem="qVH-Ql-ItW" firstAttribute="leading" secondItem="trU-SQ-748" secondAttribute="trailing" constant="8" id="eQ4-c3-H15"/>
                             <constraint firstItem="ZYV-7Z-XfV" firstAttribute="top" secondItem="dZW-c9-vkx" secondAttribute="top" id="gps-eT-oD3"/>
-                            <constraint firstItem="0xx-aH-Edp" firstAttribute="top" secondItem="qn2-H5-IKA" secondAttribute="bottom" constant="220" id="gsQ-5n-XYu"/>
                             <constraint firstItem="0xx-aH-Edp" firstAttribute="bottom" secondItem="FnE-20-lLT" secondAttribute="bottom" id="n4a-Tq-0dY"/>
                             <constraint firstItem="FnE-20-lLT" firstAttribute="trailing" secondItem="qn2-H5-IKA" secondAttribute="trailing" constant="20" id="sUW-QQ-M3W"/>
                             <constraint firstItem="qn2-H5-IKA" firstAttribute="top" secondItem="ZYV-7Z-XfV" secondAttribute="bottom" constant="30" id="sYy-LR-KJm"/>
