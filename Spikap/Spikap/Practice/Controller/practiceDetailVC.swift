@@ -72,7 +72,7 @@ class practiceDetailVC: UIViewController {
             fetchActivities.append(activity)
         }
         
-        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+        operation.queryCompletionBlock = {(cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
                     self.activities = fetchActivities
