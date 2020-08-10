@@ -68,7 +68,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         setupNextButton()
         
         playAudioButton.isEnabled = true
-//        nextButton.isEnabled = false
+        nextButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -92,7 +92,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
-                                switch authStatus {
+                switch authStatus {
                     case .authorized:
                         self.recordButton.isEnabled = true
  
@@ -130,6 +130,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             content.recordID = record.recordID
             content.contents = record["contents"]
             content.contentToken = record["contentToken"]
+            content.pronunciation = record["pronunciation"]
             content.info = record["info"]
             
             fetchContent.append(content)
@@ -271,12 +272,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
                 if badToken.count == 0 {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
                     feedbackLabel.text = "Oops, we didn't catch that. Try again"
-//                    nextButton.isEnabled = false
+                    nextButton.isEnabled = false
                     wrongSound()
                 } else {
                     questionLabel.textColor = #colorLiteral(red: 0.8078431373, green: 0.02745098039, blue: 0.3333333333, alpha: 1)
                     feedbackLabel.text = "You're still struggling with: \(badToken.joined(separator: ", "))"
-//                    nextButton.isEnabled = false
+                    nextButton.isEnabled = false
                     wrongSound()
                 }
             }
@@ -391,7 +392,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     }
     
     func setupTokenLabel(progress: Int){
-        let tokens = activityContents[progress].contentToken
+        let tokens = activityContents[progress].pronunciation
         var finalString: String = ""
         for index in 0 ..< tokens!.count {
             let value = tokens![index]

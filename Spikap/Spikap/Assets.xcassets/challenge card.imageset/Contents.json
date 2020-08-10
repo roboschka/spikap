@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "self talk card.pdf",
+      "filename" : "challenge card.pdf",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "self talk card@2x.pdf",
+      "filename" : "challenge card@2x.pdf",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "self talk card@3x.pdf",
+      "filename" : "challenge card@3x.pdf",
       "idiom" : "universal",
       "scale" : "3x"
     }
