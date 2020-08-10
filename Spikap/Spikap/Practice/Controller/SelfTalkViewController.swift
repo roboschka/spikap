@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import Speech
+import CloudKit
 
 class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAudioRecorderDelegate{
     //MARK: Variables
@@ -74,26 +75,30 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadContents()
+        
         SFSpeechRecognizer.requestAuthorization { authStatus in
-                   OperationQueue.main.addOperation {
-                       switch authStatus {
-                           case .authorized:
-                               self.recordButton.isEnabled = true
-        
-                           case .denied:
-                               self.recordButton.isEnabled = false
-                               self.recordButton.setTitle("User denied access to speech recognition", for: .disabled)
-        
-                           case .restricted:
-                               self.recordButton.isEnabled = false
-                               self.recordButton.setTitle("Speech recognition restricted on this device", for: .disabled)
-        
-                           case .notDetermined:
-                               self.recordButton.isEnabled = false
-                               self.recordButton.setTitle("Speech recognition not yet authorized", for: .disabled)
-                       }
-                   }
+           OperationQueue.main.addOperation {
+               switch authStatus {
+                   case .authorized:
+                       self.recordButton.isEnabled = true
+
+                   case .denied:
+                       self.recordButton.isEnabled = false
+                       self.recordButton.setTitle("User denied access to speech recognition", for: .disabled)
+
+                   case .restricted:
+                       self.recordButton.isEnabled = false
+                       self.recordButton.setTitle("Speech recognition restricted on this device", for: .disabled)
+
+                   case .notDetermined:
+                       self.recordButton.isEnabled = false
+                       self.recordButton.setTitle("Speech recognition not yet authorized", for: .disabled)
                }
+           }
+        }
+        
     }
     
     func setUpView(){
@@ -107,6 +112,50 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         chatBotView.layer.cornerRadius = 15
         chatBotImage.image = UIImage(named: "mascot")
     }
+    
+    func loadContents() {
+        activityContents = []
+        let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+        
+        let pred = NSPredicate(format: "activity = %@", idToFetch)
+        let query = CKQuery(recordType: "ActivityContent", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+        var fetchContent = [activityContentData]()
+        
+        operation.recordFetchedBlock = {
+            record in
+            let content = activityContentData()
+            content.recordID = record.recordID
+            content.contents = record["contents"]
+            content.contentToken = record["contentToken"]
+            content.pronunciation = record["pronunciation"]
+            content.info = record["info"]
+            
+            fetchContent.append(content)
+        }
+        
+        operation.queryCompletionBlock = {(cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    self.activityContents = fetchContent
+                    //Initial data to be set
+                    self.chatBotLabel.text = self.activityContents[0].contents
+                    self.firstCardLabel.text = self.activityContents[0].info[0]
+                    self.secondCardLabel.text = self.activityContents[0].info[1]
+                } else {
+                    let alert = UIAlertController(title: "Error", message: "Fetching data is unsuccessful", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
+    
     @IBAction func goBack(_ sender: Any) {
         let alert = UIAlertController(title: "Are you sure you want to go back?", message: "You will loose your progress by going back", preferredStyle: .alert)
         
