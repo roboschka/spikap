@@ -14,6 +14,7 @@ class activityContentData: NSObject {
     var activity: CKRecord.ID!
     var contents: String!
     var contentToken: [String]!
+    var pronunciation: [String]!
     var forDay: Int!
     var info: [String]!
     var result: Int!
