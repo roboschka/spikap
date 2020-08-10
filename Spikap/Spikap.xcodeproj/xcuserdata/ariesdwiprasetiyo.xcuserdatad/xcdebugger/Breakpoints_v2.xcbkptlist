@@ -65,6 +65,7 @@
             startingLineNumber = "103"
             endingLineNumber = "103"
             landmarkName = "authorizationController(controller:didCompleteWithAuthorization:)"
+
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -81,6 +82,7 @@
             startingLineNumber = "77"
             endingLineNumber = "77"
             landmarkName = "loadOverview()"
+
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

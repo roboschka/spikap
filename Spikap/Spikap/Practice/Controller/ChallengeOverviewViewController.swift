@@ -75,7 +75,7 @@ class ChallengeOverviewViewController: UIViewController {
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityOverviews = fetchContent
-                    
+
                 } else {
                     print("Error fetching data")
                 }
