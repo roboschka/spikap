@@ -147,10 +147,6 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
         
     }
     
-    
-    
-    
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let homeuserVC = segue.destination as? homeVC {
 //            homeuserVC.userFromLogin  = sender as? userModel

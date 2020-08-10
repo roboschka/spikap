@@ -106,7 +106,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ab0-Co-ET5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1159.4202898550725" y="741.29464285714278"/>
+            <point key="canvasLocation" x="951" y="742"/>
         </scene>
         <!--Practice-->
         <scene sceneID="aOM-q6-aoU">
@@ -1123,8 +1123,8 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="egg-8W-oSs"/>
-        <segue reference="SIK-Ny-cUk"/>
-        <segue reference="f0L-c6-9IM"/>
+        <segue reference="PyP-eN-Kfx"/>
+        <segue reference="dzg-mD-3I2"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="back to practice button" width="336" height="50"/>

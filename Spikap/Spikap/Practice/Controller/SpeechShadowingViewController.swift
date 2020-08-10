@@ -75,11 +75,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         changeToSystemFont(label: topicLabel, fontSize: 20)
         
         topicLabel.text = activity.topic
-        
-        
-        
-        //Text to speech
-        
+
         
     }
     

@@ -27,6 +27,7 @@
 		6C3DD3E924CFC86F000B4D4D /* AuthenticationServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6C3DD3E824CFC86F000B4D4D /* AuthenticationServices.framework */; };
 		6C4720CE24C6B48300C72C70 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CD24C6B48300C72C70 /* LoginViewController.swift */; };
 		6C4720D024C6B4BB00C72C70 /* KeychainItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */; };
+		6C67D54C24E0F4AE00D2F9DE /* ActivityOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C67D54B24E0F4AE00D2F9DE /* ActivityOverview.swift */; };
 		6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60124B81B28003EEC87 /* homeVC.swift */; };
 		6CC1C60424B81B47003EEC87 /* practiceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60324B81B47003EEC87 /* practiceVC.swift */; };
 		6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC1C60524B81B73003EEC87 /* communityVC.swift */; };
@@ -45,7 +46,6 @@
 		6CF7521924D132FC005EA118 /* ActiviityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521824D132FC005EA118 /* ActiviityType.swift */; };
 		6CF7521B24D13456005EA118 /* Activity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521A24D13456005EA118 /* Activity.swift */; };
 		6CF7521D24D14467005EA118 /* ActivityContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521C24D14467005EA118 /* ActivityContent.swift */; };
-		6CF7521F24D1447D005EA118 /* ActivityOverview.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF7521E24D1447D005EA118 /* ActivityOverview.swift */; };
 		6CF84BB124D870BF00D304A2 /* ActivityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB024D870BF00D304A2 /* ActivityType.swift */; };
 		6CF84BB324D870DC00D304A2 /* ActivityData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB224D870DC00D304A2 /* ActivityData.swift */; };
 		6CF84BB524D8710700D304A2 /* ActivityContentData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF84BB424D8710700D304A2 /* ActivityContentData.swift */; };
@@ -90,6 +90,7 @@
 		6C3DD3E824CFC86F000B4D4D /* AuthenticationServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AuthenticationServices.framework; path = System/Library/Frameworks/AuthenticationServices.framework; sourceTree = SDKROOT; };
 		6C4720CD24C6B48300C72C70 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		6C4720CF24C6B4BA00C72C70 /* KeychainItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainItem.swift; sourceTree = "<group>"; };
+		6C67D54B24E0F4AE00D2F9DE /* ActivityOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityOverview.swift; sourceTree = "<group>"; };
 		6CC1C60124B81B28003EEC87 /* homeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = homeVC.swift; sourceTree = "<group>"; };
 		6CC1C60324B81B47003EEC87 /* practiceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = practiceVC.swift; path = Spikap/Practice/Controller/practiceVC.swift; sourceTree = SOURCE_ROOT; };
 		6CC1C60524B81B73003EEC87 /* communityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = communityVC.swift; sourceTree = "<group>"; };
@@ -110,7 +111,6 @@
 		6CF7521824D132FC005EA118 /* ActiviityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiviityType.swift; sourceTree = "<group>"; };
 		6CF7521A24D13456005EA118 /* Activity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Activity.swift; sourceTree = "<group>"; };
 		6CF7521C24D14467005EA118 /* ActivityContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContent.swift; sourceTree = "<group>"; };
-		6CF7521E24D1447D005EA118 /* ActivityOverview.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityOverview.swift; sourceTree = "<group>"; };
 		6CF84BB024D870BF00D304A2 /* ActivityType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityType.swift; sourceTree = "<group>"; };
 		6CF84BB224D870DC00D304A2 /* ActivityData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityData.swift; sourceTree = "<group>"; };
 		6CF84BB424D8710700D304A2 /* ActivityContentData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityContentData.swift; sourceTree = "<group>"; };
@@ -199,6 +199,7 @@
 				6CF84BB024D870BF00D304A2 /* ActivityType.swift */,
 				6CF84BB224D870DC00D304A2 /* ActivityData.swift */,
 				6CF84BB424D8710700D304A2 /* ActivityContentData.swift */,
+				6C67D54B24E0F4AE00D2F9DE /* ActivityOverview.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -361,7 +362,6 @@
 				6CF7521824D132FC005EA118 /* ActiviityType.swift */,
 				6CF7521A24D13456005EA118 /* Activity.swift */,
 				6CF7521C24D14467005EA118 /* ActivityContent.swift */,
-				6CF7521E24D1447D005EA118 /* ActivityOverview.swift */,
 			);
 			path = Cloudkit;
 			sourceTree = "<group>";
@@ -464,6 +464,7 @@
 				6C3DD3E724CF5C1E000B4D4D /* User.swift in Sources */,
 				6CF84BB524D8710700D304A2 /* ActivityContentData.swift in Sources */,
 				940F7F0024C54E060092251A /* PracticeTypeTableViewCell.swift in Sources */,
+				6C67D54C24E0F4AE00D2F9DE /* ActivityOverview.swift in Sources */,
 				47C90F8E24C9536300A72044 /* CongratulationsViewController.swift in Sources */,
 				478BC12E24C6835D005994AB /* Guest.swift in Sources */,
 				6CC1C60224B81B28003EEC87 /* homeVC.swift in Sources */,
@@ -478,7 +479,6 @@
 				6CC1C60624B81B73003EEC87 /* communityVC.swift in Sources */,
 				94437E7E24C93F5300FE5987 /* ChallengeOverviewViewController.swift in Sources */,
 				6CF7521524D02DDC005EA118 /* Badges.swift in Sources */,
-				6CF7521F24D1447D005EA118 /* ActivityOverview.swift in Sources */,
 				4704C29F24BEE5EE00447D20 /* UIKitExtension.swift in Sources */,
 				9445CE5124C75CE400D4D4E1 /* PracticeDetailTableViewCell.swift in Sources */,
 				6CF7521724D131EE005EA118 /* Model.swift in Sources */,

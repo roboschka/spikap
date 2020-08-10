@@ -20,6 +20,9 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     var question = ["Where did you go on holiday?","How was it? Did you have a good time?","What did you do there?","How long did you stay?","I have been to beijing once to attend a conference, but I did'nt have time to travel around.","Really? Where did you stay anyway?","Was it good?","I didn't go out because I took a charity job as volunteer tutor."]
     var firstAnswer = ["I went to Beijing with my family","Yes, Beijing was wonderful","We went to the Great Wall and other interesting places","We stayed for about seven days","Too bad. You could have stayed longer. It's not difficult to find cheap hotels in Beijing","We stayed at the Orange Hotel near the Palace Museum.","Yes, it was a great budget hotel and it offered free snacks everyday. How about your holiday?","Oh, that's good. I may want to try that on my next holiday."]
     var secondAnswer = ["I went to Beijing last holiday","Yes, Beijing is an awesome city","I went to see some pandas, they are amusing","We stayed for around one week","What a pity. You should have stayed longer. I'm sure it's easy to find cheap hotels in Beijing","At the Orange Hotel. It's nearer to tourist spot", "Yes, the room was clean and it offered free drinks everyday. How about your holiday?","That's great I may want to try that too"]
+    var activity: activityData!
+    var activityContents = [activityContentData]()
+    
     
     let synthesizer = AVSpeechSynthesizer()
     let audioEngine = AVAudioEngine()
@@ -383,8 +386,6 @@ extension SelfTalkViewController {
             
             if result.isFinal {
                 print(result.bestTranscription.formattedString)
-                
-                
                 for segment in result.bestTranscription.segments {
                     print("Segment confidence: \(segment.confidence) -> \(segment.substring)")
                     self.confidenceCheck.append(segment.confidence)
