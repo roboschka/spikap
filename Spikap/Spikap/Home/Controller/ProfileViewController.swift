@@ -43,8 +43,8 @@ class ProfileViewController: UIViewController {
         //hide edit profile button
         editProfileBtn.isHidden = true
         
-        nameLabel.font = FontHelper.getCompactRoundedFont(fontSize: 20, fontWeight: .bold)
-        userLevelLabel.font = FontHelper.getCompactRoundedFont(fontSize: 18, fontWeight: .regular)
+        nameLabel.font = FontHelper.getCompactRoundedFont(fontSize: nameLabel.font.pointSize, fontWeight: .bold)
+        userLevelLabel.font = FontHelper.getCompactRoundedFont(fontSize: userLevelLabel.font.pointSize, fontWeight: .regular)
         userPostCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         userPointCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         userBadgeCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
