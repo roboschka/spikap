@@ -39,7 +39,8 @@ class homeVC: UIViewController {
     @IBOutlet weak var userPointLabel: UILabel!
     @IBOutlet weak var levelPointLabel: UILabel!
     @IBOutlet weak var currentActivitiesLabel: UILabel!
-    @IBOutlet weak var progressBarWitdth: NSLayoutConstraint!
+    @IBOutlet weak var progressBarTrailingSpace: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -187,10 +188,9 @@ class homeVC: UIViewController {
         
         manageLevelPoint(levelName: guestStruct.guestLevel)
         
-        
-        changeToSystemFont(label: daysOnStreakLabel, fontSize: 22)
-        changeToSystemFont(label: userNameLabel, fontSize: 24)
-        changeToSystemFont(label: currentActivitiesLabel, fontSize: 22)
+        changeToSystemFont(label: daysOnStreakLabel, fontSize: userNameLabel.font.pointSize)
+        changeToSystemFont(label: userNameLabel, fontSize: userNameLabel.font.pointSize)
+        changeToSystemFont(label: currentActivitiesLabel, fontSize: currentActivitiesLabel.font.pointSize)
     }
     
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
@@ -198,11 +198,15 @@ class homeVC: UIViewController {
         progressBarBackgroundView.layer.borderWidth = 2.5
         progressBarBackgroundView.layer.borderColor = #colorLiteral(red: 0.8549019608, green: 0.8549019608, blue: 0.8549019608, alpha: 1)
         
-        let viewWidth = currentUserXP / levelXP * progressBarBackgroundView.frame.width
+        //trailing space based on size class
+        let viewWidth = (currentUserXP / levelXP * progressBarBackgroundView.frame.width) - progressBarTrailingSpace.constant
         
-        progressBarWitdth.constant = viewWidth
+        progressBarView.widthAnchor.constraint(equalToConstant: viewWidth).isActive = true
+        
         progressBarView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
         progressBarView.layer.cornerRadius = 10
+        
+        
         
         
         UserDefaults.standard.set(currentUserXP, forKey: "guestPoints");
