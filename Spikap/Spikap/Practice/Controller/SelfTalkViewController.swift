@@ -383,8 +383,6 @@ extension SelfTalkViewController {
             
             if result.isFinal {
                 print(result.bestTranscription.formattedString)
-                
-                
                 for segment in result.bestTranscription.segments {
                     print("Segment confidence: \(segment.confidence) -> \(segment.substring)")
                     self.confidenceCheck.append(segment.confidence)

@@ -87,7 +87,7 @@ class practiceDetailVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let challengeVC = segue.destination as? ChallengeOverviewViewController {
-            challengeVC.practiceId = sender as? Int
+            challengeVC.activity = sender as? activityData
         }
         if let SpeechShadowing = segue.destination as? SpeechShadowingViewController {
            SpeechShadowing.activity = sender as? activityData
@@ -118,6 +118,7 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(activities)
         self.performSegue(withIdentifier: "segueToSpeechShadowing", sender: activities[indexPath.row])
+        self.performSegue(withIdentifier: "segueToChallengeOverview", sender: activities[indexPath.row])
     }
     
  }

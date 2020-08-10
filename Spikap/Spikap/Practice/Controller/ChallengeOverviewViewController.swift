@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class ChallengeOverviewViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var dayDescriptionLabel: UILabel!
     @IBOutlet weak var practiceTypeLabel: UILabel!
     @IBOutlet weak var practiceLevelLabel: UILabel!
+    var activity: activityData!
+    var activityContents = [activityContentData]()
     
     var practiceId:Int?
     var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and post any topic you like","Go to community and post any topic you like"]
@@ -42,8 +45,47 @@ class ChallengeOverviewViewController: UIViewController {
         self.collectionView.selectItem(at: IndexPath.init(item: forDay, section: 0), animated: true, scrollPosition: [])
         dayLabel.text = "Day \(forDay + 1)"
         dayDescriptionLabel.text = challengeDesc[forDay]
+        loadContents()
     }
     
+    func loadContents() {
+           activityContents = []
+           let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+
+           let pred = NSPredicate(format: "activity = %@", idToFetch)
+           let query = CKQuery(recordType: "ActivityContent", predicate: pred)
+           let operation = CKQueryOperation(query: query)
+           operation.queuePriority = .veryHigh
+           operation.resultsLimit = 99
+           
+           var fetchContent = [activityContentData]()
+           
+           operation.recordFetchedBlock = {
+               record in
+               let content = activityContentData()
+               content.recordID = record.recordID
+               content.contents = record["contents"]
+               content.contentToken = record["contentToken"]
+               content.info = record["info"]
+               
+               fetchContent.append(content)
+           }
+           
+           operation.queryCompletionBlock = {(cursor, error) in
+               DispatchQueue.main.async {
+                   if error == nil {
+                       self.activityContents = fetchContent
+                    
+//                       self.questionLabel.text = self.activityContents[0].contents
+//                       self.contentInfoLabel.text = self.activityContents[0].info[0]
+//                       self.setupTokenLabel(progress: self.currentProgress)
+                   } else {
+                       print("Error fetching data")
+                   }
+               }
+           }
+           CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+       }
     func loadData(){
         switch practiceId {
         case 0:
