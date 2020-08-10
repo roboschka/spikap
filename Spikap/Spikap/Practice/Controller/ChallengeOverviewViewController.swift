@@ -49,6 +49,7 @@ class ChallengeOverviewViewController: UIViewController {
     }
     
     func loadOverview() {
+
         activityOverviews = []
         let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
 
