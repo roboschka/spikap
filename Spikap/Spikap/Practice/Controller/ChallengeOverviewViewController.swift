@@ -45,6 +45,7 @@ class ChallengeOverviewViewController: UIViewController {
         self.collectionView.selectItem(at: IndexPath.init(item: forDay, section: 0), animated: true, scrollPosition: [])
         dayLabel.text = "Day \(forDay + 1)"
         dayDescriptionLabel.text = challengeDesc[forDay]
+        loadData()
         loadOverview()
     }
     
@@ -84,23 +85,35 @@ class ChallengeOverviewViewController: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     func loadData(){
-        switch practiceId {
-        case 0:
-            practiceTypeLabel.text = "Challenge A"
-            practiceLevelLabel.text = "Beginner"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        case 1:
-            practiceTypeLabel.text = "Challenge B"
-            practiceLevelLabel.text = "Intermediate"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        case 2:
-            practiceTypeLabel.text = "Challenge C"
-            practiceLevelLabel.text = "Advanced"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        default:
-            break
+       
+        if (activity.recordID != nil) {
+//            challengeOverviewImage.image = activity.coverImage
+        } else {
+            print("error")
         }
-        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+        
+        practiceTypeLabel.text = activity.name
+        practiceLevelLabel.text = activity.level
+//
+//        switch practiceId {
+//        case 0:
+//            practiceTypeLabel.text = "Challenge A"
+//            practiceLevelLabel.text = "Beginner"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        case 1:
+//            practiceTypeLabel.text = "Challenge B"
+//            practiceLevelLabel.text = "Intermediate"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        case 2:
+//            practiceTypeLabel.text = "Challenge C"
+//            practiceLevelLabel.text = "Advanced"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        default:
+//            break
+//        }
+//        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+        
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
