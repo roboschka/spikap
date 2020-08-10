@@ -17,7 +17,7 @@ class homeVC: UIViewController {
     var user : userModel!
 
     var activityType: activityTypeData!
-    var activities : [Activity] = []
+    
     var activityContent : [ActivityContent] = []
     var isUser = false
 
@@ -160,8 +160,8 @@ class homeVC: UIViewController {
               let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
               alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
               self.present(alert, animated: true, completion: nil)
-            case .success(let activities):
-              self.activities = activities
+            case .success(let activities): break
+//              self.activities = activities
             }
         }
         ActivityContent.fetchActivitiesContent{ result in

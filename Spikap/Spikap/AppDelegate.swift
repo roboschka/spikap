@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                switch credentialState {
 //                case .authorized:
 //                    let email = KeychainItem.currentUserEmail ?? ""
-////                    DispatchQueue.main.async {
+////                        DispatchQueue.main.async {
 ////                        self.window?.rootViewController?.showLoginViewController()
 //
 //
