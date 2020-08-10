@@ -20,7 +20,7 @@ class Activity {
     let totalPoint: Int
     let coverImage: CKAsset?
     private(set) var contents: [ActivityContent]? = nil
-    private(set) var overviews: [ActivityOverview]? = nil
+//    private(set) var overviews: [ActivityOverview]? = nil
     
     init(record: CKRecord) {
         name = record["name"] as? String ?? ""
@@ -39,9 +39,9 @@ class Activity {
         }
         
         if let activityOverviewRecords = record["overviews"] as? [CKRecord.Reference]{
-            ActivityOverview.fetchActivitiesOverview(for: activityOverviewRecords) {
-                overviews in self.overviews = overviews
-            }
+//            ActivityOverview.fetchActivitiesOverview(for: activityOverviewRecords) {
+//                overviews in self.overviews = overviews
+//            }
         }
         
     }
