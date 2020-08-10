@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class ChallengeOverviewViewController: UIViewController {
 
@@ -19,6 +20,8 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var dayDescriptionLabel: UILabel!
     @IBOutlet weak var practiceTypeLabel: UILabel!
     @IBOutlet weak var practiceLevelLabel: UILabel!
+    var activity: activityData!
+    var activityOverviews = [activityOverviewData]()
     
     var practiceId:Int?
     var challengeDesc:[String] = ["Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your pronunciation using Vacation topic in speech shadowing","Practice your pronunciation using Sport topic in speech shadowing","Practice your pronunciation using Culture topic in speech shadowing","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Practice your speaking skills using Travelling topic in self-talk","Practice your speaking skills using Job Interview topic in self-talk","Practice your speaking skills using Ordering food topic in self-talk","Go to community and post any topic you like","Go to community and post any topic you like","Go to community and post any topic you like"]
@@ -42,26 +45,75 @@ class ChallengeOverviewViewController: UIViewController {
         self.collectionView.selectItem(at: IndexPath.init(item: forDay, section: 0), animated: true, scrollPosition: [])
         dayLabel.text = "Day \(forDay + 1)"
         dayDescriptionLabel.text = challengeDesc[forDay]
+        loadData()
+        loadOverview()
     }
     
-    func loadData(){
-        switch practiceId {
-        case 0:
-            practiceTypeLabel.text = "Challenge A"
-            practiceLevelLabel.text = "Beginner"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        case 1:
-            practiceTypeLabel.text = "Challenge B"
-            practiceLevelLabel.text = "Intermediate"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        case 2:
-            practiceTypeLabel.text = "Challenge C"
-            practiceLevelLabel.text = "Advanced"
-            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-        default:
-            break
+    func loadOverview() {
+
+        activityOverviews = []
+        let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+
+        let pred = NSPredicate(format: "activity = %@", idToFetch)
+        let query = CKQuery(recordType: "ActivityOverview", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+        var fetchContent = [activityOverviewData]()
+        
+        operation.recordFetchedBlock = {
+            record in
+            let content = activityOverviewData()
+            content.recordID = record.recordID
+            content.forDay = record["forDay"]
+            content.overviewProgress = record["progressDescription"]
+            
+            fetchContent.append(content)
         }
-        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+        
+        operation.queryCompletionBlock = {(cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    self.activityOverviews = fetchContent
+
+                } else {
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
+    func loadData(){
+       
+        if (activity.recordID != nil) {
+//            challengeOverviewImage.image = activity.coverImage
+        } else {
+            print("error")
+        }
+        
+        practiceTypeLabel.text = activity.name
+        practiceLevelLabel.text = activity.level
+//
+//        switch practiceId {
+//        case 0:
+//            practiceTypeLabel.text = "Challenge A"
+//            practiceLevelLabel.text = "Beginner"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        case 1:
+//            practiceTypeLabel.text = "Challenge B"
+//            practiceLevelLabel.text = "Intermediate"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        case 2:
+//            practiceTypeLabel.text = "Challenge C"
+//            practiceLevelLabel.text = "Advanced"
+//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
+//        default:
+//            break
+//        }
+//        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
+        
+        
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -101,7 +153,7 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dayLabel.text = "Day \(indexPath.row + 1)"
-        dayDescriptionLabel.text = challengeDesc[indexPath.row]
+        dayDescriptionLabel.text = activityOverviews[indexPath.row].overviewProgress
     }
     
     

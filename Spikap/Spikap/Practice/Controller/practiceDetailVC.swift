@@ -87,10 +87,13 @@ class practiceDetailVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let challengeVC = segue.destination as? ChallengeOverviewViewController {
-            challengeVC.practiceId = sender as? Int
+            challengeVC.activity = sender as? activityData
         }
         if let SpeechShadowing = segue.destination as? SpeechShadowingViewController {
            SpeechShadowing.activity = sender as? activityData
+        }
+        if let SelftoTalk = segue.destination as? SelfTalkViewController {
+           SelftoTalk.activity = sender as? activityData
         }
     }
 }
@@ -116,8 +119,14 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(activities)
-        self.performSegue(withIdentifier: "segueToSpeechShadowing", sender: activities[indexPath.row])
+        
+        if activityType.typeName == "Speech Shadowing" {
+            self.performSegue(withIdentifier: "segueToSpeechShadowing", sender: activities[indexPath.row])
+        } else if activityType.typeName == "Self Talk" {
+            self.performSegue(withIdentifier: "segueToSelfTalk", sender: activities[indexPath.row])
+        } else if activityType.typeName == "Challenges" {
+            self.performSegue(withIdentifier: "segueToChallengeOverview", sender: activities[indexPath.row])
+        }
     }
     
  }
