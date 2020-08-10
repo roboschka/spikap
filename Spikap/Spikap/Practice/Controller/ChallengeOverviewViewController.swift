@@ -75,6 +75,7 @@ class ChallengeOverviewViewController: UIViewController {
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityOverviews = fetchContent
+                    
                 } else {
                     print("Error fetching data")
                 }
@@ -139,7 +140,7 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dayLabel.text = "Day \(indexPath.row + 1)"
-        dayDescriptionLabel.text = challengeDesc[indexPath.row]
+        dayDescriptionLabel.text = activityOverviews[indexPath.row].overviewProgress
     }
     
     
