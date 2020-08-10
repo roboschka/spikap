@@ -49,40 +49,38 @@ class ChallengeOverviewViewController: UIViewController {
     }
     
     func loadOverview() {
-           activityOverviews = []
-           let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+        activityOverviews = []
+        let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
 
-           let pred = NSPredicate(format: "activity = %@", idToFetch)
-           let query = CKQuery(recordType: "ActivityOverview", predicate: pred)
-           let operation = CKQueryOperation(query: query)
-           operation.queuePriority = .veryHigh
-           operation.resultsLimit = 99
-           
-           var fetchOverview = [activityOverviewData]()
-           
-           operation.recordFetchedBlock = {
-               record in
-               let overview = activityOverviewData()
-               overview.recordID = record.recordID
-               overview.overviewProgress = record["progressDescription"]
-               overview.forDay = record["forDay"]
-               fetchOverview.append(overview)
-           }
-           
-           operation.queryCompletionBlock = {(cursor, error) in
-               DispatchQueue.main.async {
-                   if error == nil {
-                       self.activityOverviews = fetchOverview
-//                       self.questionLabel.text = self.activityContents[0].contents
-//                       self.contentInfoLabel.text = self.activityContents[0].info[0]
-//                       self.setupTokenLabel(progress: self.currentProgress)
-                   } else {
-                       print("Error fetching data")
-                   }
-               }
-    
-           CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
-       }
+        let pred = NSPredicate(format: "activity = %@", idToFetch)
+        let query = CKQuery(recordType: "ActivityOverview", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+        var fetchContent = [activityOverviewData]()
+        
+        operation.recordFetchedBlock = {
+            record in
+            let content = activityOverviewData()
+            content.recordID = record.recordID
+            content.forDay = record["forDay"]
+            content.overviewProgress = record["progressDescription"]
+            
+            fetchContent.append(content)
+        }
+        
+        operation.queryCompletionBlock = {(cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    self.activityOverviews = fetchContent
+                } else {
+                    print("Error fetching data")
+                }
+            }
+        }
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+    }
     func loadData(){
         switch practiceId {
         case 0:
