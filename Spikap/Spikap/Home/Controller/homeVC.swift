@@ -101,9 +101,10 @@ class homeVC: UIViewController {
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
             user.isTodayDone = record["isTodayDone"]
-
             user.imageProfile = record["imageProfile"]
-
+            user.currentActivityDay = record["currentActivityDay"]
+            user.currentActivityName = record["currentActivityName"]
+            
             fetchUser.append(user)
             fetchUser2 = user
         }
@@ -174,6 +175,9 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
             
+            for (index, name) in currentUser.currentActivityName.enumerated() {
+                currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+            }
             fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         }
         dayStreakCollection.reloadData()
