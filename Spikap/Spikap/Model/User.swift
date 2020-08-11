@@ -21,4 +21,6 @@ class userModel: NSObject {
     var userPoints : Int!
     var userLevel: String!
     var imageProfile: CKAsset!
+    
 }
+ var currentUser = userModel()
