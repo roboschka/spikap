@@ -71,6 +71,7 @@ class homeVC: UIViewController {
         if email != "" {
             isUser = true
             fetchUser(email: email)
+            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         } else {
             isUser = false
             fetchCurrentActivities(activeID: Array(guestStruct.activeNames.keys))
