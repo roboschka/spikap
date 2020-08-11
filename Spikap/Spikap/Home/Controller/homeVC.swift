@@ -67,7 +67,7 @@ class homeVC: UIViewController {
         super.viewDidAppear(animated)
         
         let email = KeychainItem.currentUserEmail ?? ""
-        
+        let fullname = KeychainItem.currentUserGivenName ?? ""
         if email != "" {
             isUser = true
             fetchUser(email: email)
@@ -82,7 +82,7 @@ class homeVC: UIViewController {
         print(isUser)
     }
     
-    func fetchUser(email: String) {
+    func fetchUser(email: String, fullname: String) {
         let pred = NSPredicate(format: "userEmail = %@", email)
         let query = CKQuery(recordType: "Members", predicate: pred)
         let operation = CKQueryOperation(query: query)
@@ -112,9 +112,17 @@ class homeVC: UIViewController {
         operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
-                   self.users = fetchUser
-                    currentUser = fetchUser2
-                    self.loadHomeVC()
+
+                    if fetchUser.count == 0 {
+                        Userextention.createUser(fullName: fullname , userEmail: email)
+                        self.fetchUser(email: email, fullname: fullname)
+                    } else {
+                        self.users = fetchUser
+                        currentUser = fetchUser2
+                        self.loadHomeVC()
+                    }
+                     
+
                 } else {
                     print("Error fetching data")
                 }

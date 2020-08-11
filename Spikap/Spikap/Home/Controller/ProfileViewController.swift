@@ -26,7 +26,7 @@ class ProfileViewController: UIViewController {
         setupLayout()
         loadprofile()
         // Do any additional setup after loading the view.
-        
+ 
         
     }
     
@@ -60,8 +60,6 @@ class ProfileViewController: UIViewController {
         }
         nameLabel.text = users?.fullname
         userLevelLabel.text = users?.userLevel
-        
-        
 
         if let point = users?.userPoints {
         userPointCountLabel.text = "\(point)"
@@ -71,16 +69,14 @@ class ProfileViewController: UIViewController {
        
 
     }
-    
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        if let editProfileVC = segue.destination as? EditProfileVC {
+           editProfileVC.users = sender as? userModel
+        }
     }
-    */
+    
+    @IBAction func EditButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "editProfile", sender: users)
+    }
 
 }
