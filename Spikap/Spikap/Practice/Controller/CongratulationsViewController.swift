@@ -37,6 +37,9 @@ class CongratulationsViewController: UIViewController {
         //isOnStreak
         UserDefaults.standard.set(true, forKey: "isOnStreak")
         guestStruct.isOnStreak = UserDefaults.standard.bool(forKey: "isOnStreak")
+        
+        //if congratulations datang dari challenge
+        //add forDay + 1
     }
     
     override func viewWillAppear(_ animated: Bool) {

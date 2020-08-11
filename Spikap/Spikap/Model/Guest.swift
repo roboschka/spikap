@@ -16,7 +16,7 @@ struct GuestModel {
     var isTodayDone: Bool = false
     var guestPoints: Int = 0
     var guestLevel: String = "Beginner"
-    var activeNames: [String] = ["Chalenge A", "Challenge B"]
+    var activeNames: [String:Int] = ["Challenge B": 5, "Challenge A": 6]
     var badgesId: [String] = []
     
 //    var currentActivity: [activityContentData] = []
