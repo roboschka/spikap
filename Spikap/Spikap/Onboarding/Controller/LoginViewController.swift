@@ -120,7 +120,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("Identity Token \(identityTokenString)")
             }
             
-//            Userextention.createUser(fullName: fullName, userEmail: email)
+
 //            self.performSegue(withIdentifier: "login", sender: email)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingTabBarVC") as! UITabBarController
             vc.modalPresentationStyle = .fullScreen

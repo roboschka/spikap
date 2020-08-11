@@ -111,6 +111,7 @@ class homeVC: UIViewController {
         operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
+
                     if fetchUser.count == 0 {
                         Userextention.createUser(fullName: fullname , userEmail: email)
                         self.fetchUser(email: email, fullname: fullname)
@@ -120,6 +121,7 @@ class homeVC: UIViewController {
                         self.loadHomeVC()
                     }
                      
+
                 } else {
                     print("Error fetching data")
                 }

@@ -22,6 +22,7 @@ class Userextention {
         userRecord["daysOnStreak"] = 0 as CKRecordValue
         userRecord["isOnStreak"] = true as CKRecordValue
         userRecord["userPoints"] = 0 as CKRecordValue
+
          userRecord["levelName"] = "Beginner" as CKRecordValue
         userRecord["isTodayDone"] = 1 as CKRecordValue
        
@@ -30,6 +31,7 @@ class Userextention {
         print("privateDatabse ", privateDatabase)
         
         
+
         privateDatabase.save(userRecord) { record, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -41,4 +43,5 @@ class Userextention {
         }
     }
     
+
 }
