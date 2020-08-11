@@ -142,6 +142,7 @@ class homeVC: UIViewController {
             let activity = activityData()
             activity.recordID = record.recordID
             activity.continueImage = record["continueImage"]
+            activity.name = record["name"]
             
             fetchActivity.append(activity)
         }
@@ -373,10 +374,18 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Data currentDay/forDay
-        let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
-        let value = guestStruct.activeNames[keyToGet]
+        if isUser {
+            let keyToGet = Array(currentUser.activeNames.keys)[indexPath.row]
+            let value = currentUser.activeNames[keyToGet]
+            print(currentActivity[indexPath.row].name)
+            print(value)
+        } else {
+            let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
+            let value = guestStruct.activeNames[keyToGet]
+            print(currentActivity[indexPath.row].name)
+            print(value)
+        }
         //Data untuk performSegue activity to ChallengeOverview
-        print(currentActivity[indexPath.row])
+       
     }
 }
