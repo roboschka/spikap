@@ -171,6 +171,8 @@ class homeVC: UIViewController {
             manageLevelUp(points: users[0].userPoints)
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
+            
+            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         }
         dayStreakCollection.reloadData()
     }
