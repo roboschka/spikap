@@ -11,6 +11,8 @@ import CloudKit
 
 class Userextention {
     static func createUser(fullName:String,userEmail:String){
+       let myContainer = CKContainer.init(identifier: "iCloud.com.aries.Spikap")
+        let privateDatabase = myContainer.publicCloudDatabase
         let userRecord = CKRecord(recordType: "Members")
         
         //Record or Table properties
@@ -20,12 +22,14 @@ class Userextention {
         userRecord["daysOnStreak"] = 0 as CKRecordValue
         userRecord["isOnStreak"] = true as CKRecordValue
         userRecord["userPoints"] = 0 as CKRecordValue
-        
-        let myContainer = CKContainer.init(identifier: "iCloud.com.aries.Spikap")
-        let privateDatabase = myContainer.publicCloudDatabase
+         userRecord["levelName"] = "Beginner" as CKRecordValue
+        userRecord["isTodayDone"] = 1 as CKRecordValue
+       
         
         print("myContainer", myContainer)
         print("privateDatabse ", privateDatabase)
+        
+        
         privateDatabase.save(userRecord) { record, error in
             DispatchQueue.main.async {
                 if let error = error {
@@ -37,39 +41,4 @@ class Userextention {
         }
     }
     
-
-//    static func getMemberBySpecificEmail(email:String, successCompletion:@escaping (userModel) -> Void, failCompletion:@escaping(String) -> Void){
-//        // use default container, we can set custom container by setting
-//        let myContainer = CKContainer.init(identifier: "iCloud.com.aries.Spikap")
-//        let privateContainer = myContainer.publicCloudDatabase
-//
-//        // fecth with array
-//        let predicate = NSPredicate(format: "userEmail = %@", email)
-//        let query = CKQuery(recordType: "Members", predicate: predicate)
-//        var model = userModel()
-//
-//        privateContainer.perform(query, inZoneWith: nil) { (result, error) in
-//            if let err = error {
-//                print(err.localizedDescription)
-//                return
-//            }
-//
-//            if let records = result {
-//                print("\n\n")
-//                records.forEach{
-//                    print($0)
-//                    guard let userEmail = $0["userEmail"], let fullname = $0["firstName"], let userPoints = $0["userPoints"], let daysOnStreak = $0["daysOnStreak"], let isOnStreak = $0["isOnStreak"] else {return}
-//
-//                    model.userEmail = userEmail as! String
-//                    model.fullname = fullname as! String
-//                    model.userPoints = userPoints as! Int
-//                    model.daysOnStreak = daysOnStreak as! Int
-//                    model.isOnStreak = isOnStreak as! Bool
-//                    successCompletion(model)
-//                }
-//                print("\n\n")
-//            }
-//
-//        }
-//    }
 }
