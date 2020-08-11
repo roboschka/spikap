@@ -19,12 +19,14 @@ class EditProfileVC: UIViewController {
     @IBOutlet weak var interestBtn: UIButton!
     @IBOutlet weak var logoutBtn: UIButton!
     
+    var users: userModel!
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         setupLayout()
         setupPicture()
+        
     }
     
     func setupPicture()
@@ -33,8 +35,11 @@ class EditProfileVC: UIViewController {
         profileImage.backgroundColor = color
         profileImage.layer.cornerRadius = 0.5 * profileImage.bounds.size.width
         //change user's picture here
-        profileImage.image = #imageLiteral(resourceName: "person1")
-        
+        if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
+            profileImage.image = image
+        }
+        nameTextField.text = users.fullname
+        emailTextField.text = users.userEmail
     }
     
     //example to use SF Compact Rounded from Helper Class
