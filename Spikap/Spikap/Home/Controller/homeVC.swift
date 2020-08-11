@@ -164,6 +164,7 @@ class homeVC: UIViewController {
 
            if let asset = users[0].imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             profileImageButton.setImage(image, for: .normal)
+            profileImageButton.imageView?.layer.cornerRadius = 0.5 * profileImageButton.bounds.size.width
            }
 
             userNameLabel.text = users[0].fullname
@@ -369,9 +370,9 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 275
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 275
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isUser {
