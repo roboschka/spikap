@@ -174,7 +174,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             contentInfoLabel.text = activityContents[currentProgress].info[0]
             setupTokenLabel(progress: currentProgress)
             progressBarView.reloadData()
-//            nextButton.isEnabled = false
+            nextButton.isEnabled = false
             questionLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             feedbackLabel.text = "Say the word!"
         }
