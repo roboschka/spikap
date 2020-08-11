@@ -72,7 +72,7 @@ class practiceDetailVC: UIViewController {
             fetchActivities.append(activity)
         }
         
-        operation.queryCompletionBlock = { [unowned self] (cursor, error) in
+        operation.queryCompletionBlock = {(cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
                     self.activities = fetchActivities
@@ -109,7 +109,7 @@ extension practiceDetailVC: UITableViewDelegate, UITableViewDataSource {
         if let asset = activities[indexPath.row].coverImage, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             cell.practiceDetailImage.image = image
         }
-        cell.practiceTopicLabel.text = activities[indexPath.row].topic
+        cell.practiceTopicLabel.text = activities[indexPath.row].level
         cell.practiceDetailLabel.text = activities[indexPath.row].name
         return cell
     }
