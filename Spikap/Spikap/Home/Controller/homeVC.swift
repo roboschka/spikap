@@ -291,9 +291,31 @@ class homeVC: UIViewController {
     
 }
 
-extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dayInAWeek
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var bounds: CGSize = CGSize.zero
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.bounds.width {
+            case 750:
+                bounds = CGSize(width: 44, height: 61)
+            default:
+                bounds =  CGSize(width: 46, height: 61)
+            }
+            
+        } else if UIDevice().userInterfaceIdiom == .pad {
+            if (UIDevice.current.userInterfaceIdiom == .pad && (UIScreen.main.bounds.size.height == 834 || UIScreen.main.bounds.size.height == 1194)) {
+                bounds = CGSize(width: 90, height: 110)
+            } else {
+                print(UIScreen.main.bounds.size)
+            }
+        }
+        return bounds
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
