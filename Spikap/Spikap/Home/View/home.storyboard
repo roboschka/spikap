@@ -449,7 +449,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lzh-6x-mdV">
-                                        <rect key="frame" x="181.5" y="66.5" width="51" height="21.5"/>
+                                        <rect key="frame" x="181.5" y="66.5" width="51.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -518,7 +518,8 @@
                                 <rect key="frame" x="20" y="812" width="374" height="30"/>
                                 <state key="normal" title="go to edit profile"/>
                                 <connections>
-                                    <segue destination="5RD-nb-AZE" kind="showDetail" id="DR5-6L-hbf"/>
+                                    <action selector="EditButton:" destination="XON-mU-j6a" eventType="touchUpInside" id="rUV-kc-Im7"/>
+                                    <segue destination="5RD-nb-AZE" kind="showDetail" identifier="editProfile" id="DR5-6L-hbf"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tR2-fx-ccK" userLabel="Stack View Login Apple ID">

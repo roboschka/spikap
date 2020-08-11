@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CloudKit
 
 struct GuestModel {
     var daysOnStreak: Int = 0
@@ -15,7 +16,7 @@ struct GuestModel {
     var isTodayDone: Bool = false
     var guestPoints: Int = 0
     var guestLevel: String = "Beginner"
-    var activitiesId: [String] = []
+    var activeNames: [String:Int] = ["Challenge B": 5, "Challenge A": 6]
     var badgesId: [String] = []
     
 //    var currentActivity: [activityContentData] = []

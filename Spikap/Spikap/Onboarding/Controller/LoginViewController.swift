@@ -93,9 +93,6 @@ class LoginViewController: UIViewController {
         self.present(vc, animated: false, completion: nil)
         
     }
-    
-    
-    
 }
 
 extension LoginViewController: ASAuthorizationControllerDelegate {
@@ -123,6 +120,7 @@ extension LoginViewController: ASAuthorizationControllerDelegate {
                 print("Identity Token \(identityTokenString)")
             }
             
+
 //            self.performSegue(withIdentifier: "login", sender: email)
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "LandingTabBarVC") as! UITabBarController
             vc.modalPresentationStyle = .fullScreen

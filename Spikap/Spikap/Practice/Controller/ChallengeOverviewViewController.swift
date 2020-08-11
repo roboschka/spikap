@@ -20,6 +20,8 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var dayDescriptionLabel: UILabel!
     @IBOutlet weak var practiceTypeLabel: UILabel!
     @IBOutlet weak var practiceLevelLabel: UILabel!
+    @IBOutlet weak var pointsLabel: UILabel!
+    var image:[UIImage] = [#imageLiteral(resourceName: "challenge a background"),#imageLiteral(resourceName: "challenge b background")]
     var activity: activityData!
     var activityOverviews = [activityOverviewData]()
     
@@ -85,15 +87,31 @@ class ChallengeOverviewViewController: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     func loadData(){
-       
-        if (activity.recordID != nil) {
-//            challengeOverviewImage.image = activity.coverImage
-        } else {
-            print("error")
-        }
-        
         practiceTypeLabel.text = activity.name
         practiceLevelLabel.text = activity.level
+        if activity.name == "Chalenge A" {
+            challengeOverviewImage.image = image[0]
+        } else if activity.name == "Challenge B" {
+            challengeOverviewImage.image = image[1]
+        }
+        
+        switch guestStruct.guestLevel {
+        case "Beginner":
+            pointsLabel.text = "\(guestStruct.guestPoints)/500"
+            break;
+        case "Medium":
+            pointsLabel.text = "\(guestStruct.guestPoints)/1000"
+            break;
+        case "Intermediate":
+            pointsLabel.text = "\(guestStruct.guestPoints)/2500"
+            break;
+        case "Advanced":
+            pointsLabel.text = "\(guestStruct.guestPoints)/5000"
+            break;
+        default:
+            pointsLabel.text = "\(guestStruct.guestPoints)/0"
+            break
+        }
 //
 //        switch practiceId {
 //        case 0:
@@ -165,5 +183,14 @@ extension ChallengeOverviewViewController: UICollectionViewDelegateFlowLayout {
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+}
+
+extension CKAsset {
+    func toUIImage() -> UIImage? {
+        if let data = NSData(contentsOf: self.fileURL!) {
+            return UIImage(data: data as Data)
+        }
+        return nil
     }
 }

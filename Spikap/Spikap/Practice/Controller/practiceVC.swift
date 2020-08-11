@@ -20,7 +20,6 @@ class practiceVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        setup()
         tableView.register(UINib(nibName: "PracticeTypeTableViewCell", bundle: nil), forCellReuseIdentifier: "practiceTypeCell")
         // Do any additional setup after loading the view.
         configureNavigationBar(largeTitleColor: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0), backgroundColor: #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1), tintColor: .white, title: "Practice", preferredLargeTitle: true, fontSize: 40)
@@ -29,6 +28,7 @@ class practiceVC: UIViewController {
         tableView.dataSource = self
         
         UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
+        print(currentUser.fullname)
        
     }
     override func viewWillAppear(_ animated: Bool) {

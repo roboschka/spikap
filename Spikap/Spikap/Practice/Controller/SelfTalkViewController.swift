@@ -69,9 +69,9 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         changeToSystemFont(label: topicLabel, fontSize: 20)
         
         topicLabel.text = topic
-        firstCardLabel.text = firstAnswer[0]
-        secondCardLabel.text = secondAnswer[0]
-        chatBotLabel.text = question[0]
+//        firstCardLabel.text = firstAnswer[0]
+//        secondCardLabel.text = secondAnswer[0]
+//        chatBotLabel.text = question[0]
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -325,9 +325,9 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
         if(currentProgress > totalProgress - 1) {
             performSegue(withIdentifier: "toCongratulations", sender: nil)
         } else {
-            firstCardLabel.text = firstAnswer[currentProgress]
-            secondCardLabel.text = secondAnswer[currentProgress]
-            chatBotLabel.text = question[currentProgress]
+            firstCardLabel.text = activityContents[currentProgress].info[0]
+            secondCardLabel.text = activityContents[currentProgress].info[1]
+            chatBotLabel.text = activityContents[currentProgress].contents
             progressBarView.reloadData()
             speechView.isHidden = false
             userReplyLabel.text = "..."
@@ -440,7 +440,7 @@ extension SelfTalkViewController {
                     self.confidenceCheck.append(segment.confidence)
                 }
                 
-                self.checkPronounciationResult(self.result, self.firstAnswer[self.currentProgress], self.secondAnswer[self.currentProgress])
+                self.checkPronounciationResult(self.result, self.activityContents[self.currentProgress].info[0], self.activityContents[self.currentProgress].info[1])
                 
                 self.audioEngine.stop()
                 node.removeTap(onBus: 0)
