@@ -92,6 +92,8 @@ class homeVC: UIViewController {
         
        
         var fetchUser = [userModel]()
+        var fetchUser2 = userModel()
+        
         operation.recordFetchedBlock = {
            record in
            let user  = userModel()
@@ -108,12 +110,14 @@ class homeVC: UIViewController {
 
             
             fetchUser.append(user)
+            fetchUser2 = user
         }
         
         operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
                    self.users = fetchUser
+                    currentUser = fetchUser2
                     self.loadHomeVC()
                 } else {
                     print("Error fetching data")
