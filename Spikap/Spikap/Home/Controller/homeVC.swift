@@ -73,7 +73,7 @@ class homeVC: UIViewController {
             fetchUser(email: email)
         } else {
             isUser = false
-            fetchCurrentActivities(activeID: guestStruct.activeNames)
+            fetchCurrentActivities(activeID: Array(guestStruct.activeNames.keys))
         }
         
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
@@ -144,7 +144,6 @@ class homeVC: UIViewController {
         }
         
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
-        
     }
     
     func loadHomeVC(){
@@ -357,5 +356,13 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 275
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        //Data currentDay/forDay
+        let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
+        let value = guestStruct.activeNames[keyToGet]
+        //Data untuk performSegue activity to ChallengeOverview
+        print(currentActivity[indexPath.row])
     }
 }
