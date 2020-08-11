@@ -16,6 +16,7 @@ class activityData: NSObject {
     var topic: String!
     var level: String!
     var coverImage: CKAsset!
+    var continueImage: CKAsset!
     var totalProgress: Int!
     var activityTypeId: CKRecord.ID!
 }

@@ -19,6 +19,7 @@ class homeVC: UIViewController {
     var activityType: activityTypeData!
     
     var activityContent : [ActivityContent] = []
+    var currentActivity = [activityData]()
     var isUser = false
 
     var dayInAWeek = 7
@@ -39,7 +40,8 @@ class homeVC: UIViewController {
     @IBOutlet weak var userPointLabel: UILabel!
     @IBOutlet weak var levelPointLabel: UILabel!
     @IBOutlet weak var currentActivitiesLabel: UILabel!
-    @IBOutlet weak var progressBarWitdth: NSLayoutConstraint!
+    @IBOutlet weak var progressBarTrailingSpace: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,36 +61,32 @@ class homeVC: UIViewController {
         UIApplication.shared.statusBarUIView?.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.6352941176, blue: 0.8980392157, alpha: 1)
         progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
         
-        refresh()
-       
-        
+//        refresh()
     }
-//    var user = userModel()
     override func viewDidAppear(_ animated: Bool) {
-        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
-
+        super.viewDidAppear(animated)
         
         let email = KeychainItem.currentUserEmail ?? ""
         
         if email != "" {
             isUser = true
+            fetchUser(email: email)
         } else {
             isUser = false
+            fetchCurrentActivities(activeID: guestStruct.activeNames)
         }
         
-        fetch(email: email)
-//        loadHomeVC()
+        progressBarSetup(CGFloat(guestStruct.guestPoints), manageLevelXP(levelName: guestStruct.guestLevel))
+        
         print(isUser)
     }
     
-    func fetch(email: String){
-       
+    func fetchUser(email: String) {
         let pred = NSPredicate(format: "userEmail = %@", email)
         let query = CKQuery(recordType: "Members", predicate: pred)
         let operation = CKQueryOperation(query: query)
         operation.queuePriority = .veryHigh
         operation.resultsLimit = 99
-        
        
         var fetchUser = [userModel]()
         operation.recordFetchedBlock = {
@@ -104,8 +102,6 @@ class homeVC: UIViewController {
 
             user.imageProfile = record["imageProfile"]
 
-
-            
             fetchUser.append(user)
         }
         
@@ -122,11 +118,39 @@ class homeVC: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     
+    func fetchCurrentActivities(activeID: [String]) {
+        let pred = NSPredicate(format: "name IN %@", activeID)
+        let query = CKQuery(recordType: "Activity", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        
+        var fetchActivity = [activityData]()
+        operation.recordFetchedBlock = {
+            record in
+            let activity = activityData()
+            activity.recordID = record.recordID
+            activity.continueImage = record["continueImage"]
+            
+            fetchActivity.append(activity)
+        }
+        
+        operation.queryCompletionBlock = {(cursor, error) in
+            DispatchQueue.main.async {
+                if error == nil {
+                    self.currentActivity = fetchActivity
+                    self.activitesTableView.reloadData()
+                }
+            }
+        }
+        
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
+        
+    }
+    
     func loadHomeVC(){
         if isUser{
 
            if let asset = users[0].imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
-//               cell.practiceDetailImage.image = image
             profileImageButton.setImage(image, for: .normal)
            }
 
@@ -137,44 +161,7 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
         }
-
         dayStreakCollection.reloadData()
-
-    }
-    
-    
-    @objc private func refresh() {
-        Model.currentModel.refresh{ error in
-          if let error = error {
-            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
-          }
-        }
-        
-      
-        Activity.fetchActivities{ result in
-            switch result {
-            case .failure(let error):
-              let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-              alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-              self.present(alert, animated: true, completion: nil)
-            case .success(let activities): break
-//              self.activities = activities
-            }
-        }
-        ActivityContent.fetchActivitiesContent{ result in
-            switch result {
-            case .failure(let error):
-              let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-              alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
-              self.present(alert, animated: true, completion: nil)
-            case .success(let activityContent):
-              self.activityContent = activityContent
-            }
-        }
-        
     }
     
 
@@ -187,10 +174,9 @@ class homeVC: UIViewController {
         
         manageLevelPoint(levelName: guestStruct.guestLevel)
         
-        
-        changeToSystemFont(label: daysOnStreakLabel, fontSize: 22)
-        changeToSystemFont(label: userNameLabel, fontSize: 24)
-        changeToSystemFont(label: currentActivitiesLabel, fontSize: 22)
+        changeToSystemFont(label: daysOnStreakLabel, fontSize: userNameLabel.font.pointSize)
+        changeToSystemFont(label: userNameLabel, fontSize: userNameLabel.font.pointSize)
+        changeToSystemFont(label: currentActivitiesLabel, fontSize: currentActivitiesLabel.font.pointSize)
     }
     
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
@@ -198,12 +184,13 @@ class homeVC: UIViewController {
         progressBarBackgroundView.layer.borderWidth = 2.5
         progressBarBackgroundView.layer.borderColor = #colorLiteral(red: 0.8549019608, green: 0.8549019608, blue: 0.8549019608, alpha: 1)
         
-        let viewWidth = currentUserXP / levelXP * progressBarBackgroundView.frame.width
+        //trailing space based on size class
+        let viewWidth = (currentUserXP / levelXP * progressBarBackgroundView.frame.width) - progressBarTrailingSpace.constant
         
-        progressBarWitdth.constant = viewWidth
+        progressBarView.widthAnchor.constraint(equalToConstant: viewWidth).isActive = true
+        
         progressBarView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
         progressBarView.layer.cornerRadius = 10
-        
         
         UserDefaults.standard.set(currentUserXP, forKey: "guestPoints");
     }
@@ -354,13 +341,17 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
 
 extension homeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return currentActivity.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "activitiesCell") as! ActivitiesTableViewCell
         cell.selectionStyle = .none
-//        cell.activitiesImageView.image =
+        if let asset = currentActivity[indexPath.row].continueImage,
+           let data = try? Data(contentsOf: asset.fileURL!),
+           let image = UIImage(data: data) {
+            cell.activitiesImageView.image = image
+        }
         return cell
     }
     
