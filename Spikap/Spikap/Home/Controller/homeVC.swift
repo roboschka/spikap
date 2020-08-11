@@ -70,8 +70,7 @@ class homeVC: UIViewController {
         let fullname = KeychainItem.currentUserGivenName ?? ""
         if email != "" {
             isUser = true
-            fetchUser(email: email)
-            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
+            fetchUser(email: email, fullname: fullname)
         } else {
             isUser = false
             fetchCurrentActivities(activeID: Array(guestStruct.activeNames.keys))
@@ -172,6 +171,8 @@ class homeVC: UIViewController {
             manageLevelUp(points: users[0].userPoints)
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
+            
+            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         }
         dayStreakCollection.reloadData()
     }
