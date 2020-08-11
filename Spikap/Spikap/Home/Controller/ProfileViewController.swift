@@ -41,7 +41,7 @@ class ProfileViewController: UIViewController {
     func setupLayout()
     {
         //hide edit profile button
-        editProfileBtn.isHidden = true
+        editProfileBtn.isHidden = false
         
         nameLabel.font = FontHelper.getCompactRoundedFont(fontSize: nameLabel.font.pointSize, fontWeight: .bold)
         userLevelLabel.font = FontHelper.getCompactRoundedFont(fontSize: userLevelLabel.font.pointSize, fontWeight: .regular)
