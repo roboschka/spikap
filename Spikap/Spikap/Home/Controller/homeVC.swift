@@ -177,10 +177,15 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
             
+            
+            
             for (index, name) in currentUser.currentActivityName.enumerated() {
                 currentUser.activeNames[name] = currentUser.currentActivityDay[index]
             }
             fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
+            
+           
+            
         }
         dayStreakCollection.reloadData()
     }
@@ -400,10 +405,6 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
             cell.activitiesImageView.image = image
         }
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 275
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
