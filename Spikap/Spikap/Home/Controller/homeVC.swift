@@ -340,7 +340,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                         cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
                     }
                 } else if currentDay > users[0].daysOnStreak {
-                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                    if (indexPath.row >= (currentDay - users[0].daysOnStreak - 1) && indexPath.row < currentDay-1) {
                         cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
                     }
                 }
