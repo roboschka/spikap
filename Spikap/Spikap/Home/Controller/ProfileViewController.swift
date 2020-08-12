@@ -17,6 +17,7 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var userPointCountLabel: UILabel!
     @IBOutlet weak var userBadgeCountLabel: UILabel!
     @IBOutlet var imageProfile: UIButton!
+    @IBOutlet weak var loginBtn: UIStackView!
     
     var users: userModel!
     
@@ -40,12 +41,18 @@ class ProfileViewController: UIViewController {
     {
         //hide edit profile button
         editProfileBtn.isHidden = false
+        loginBtn.isHidden = true
         
         nameLabel.font = FontHelper.getCompactRoundedFont(fontSize: nameLabel.font.pointSize, fontWeight: .bold)
         userLevelLabel.font = FontHelper.getCompactRoundedFont(fontSize: userLevelLabel.font.pointSize, fontWeight: .regular)
         userPostCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         userPointCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
         userBadgeCountLabel.font = FontHelper.getCompactRoundedFont(fontSize: 30, fontWeight: .regular)
+        
+        
+       
+        editProfileBtn.titleLabel?.font = FontHelper.getCompactRoundedFont(fontSize: editProfileBtn.titleLabel?.font.pointSize ?? 17, fontWeight: .bold)
+        editProfileBtn.layer.cornerRadius = 10
         
     }
     
