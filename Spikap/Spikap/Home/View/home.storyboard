@@ -77,6 +77,7 @@
                                         <rect key="frame" x="174" y="124" width="612" height="40"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFn-0x-wYT">
+
                                                 <rect key="frame" x="8" y="8" width="100" height="24"/>
                                                 <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -262,6 +263,7 @@
                                         </variation>
                                     </label>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="a4q-wb-cTr">
+
                                         <rect key="frame" x="8" y="52" width="778" height="70"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
@@ -354,6 +356,7 @@
                                 </variation>
                             </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9rc-gv-naV">
+
                                 <rect key="frame" x="0.0" y="590" width="834" height="539"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </tableView>
@@ -399,11 +402,22 @@
                         <outlet property="userLevelLabel" destination="lb6-MD-b9o" id="Gdc-DV-l7I"/>
                         <outlet property="userNameLabel" destination="8fb-hS-L1t" id="W3g-07-seX"/>
                         <outlet property="userPointLabel" destination="nWm-QG-hT8" id="sEG-G3-4sj"/>
+                        <segue destination="AKI-rc-Lde" kind="show" identifier="segueToChallengeOverview" id="UQQ-LC-nBz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KpP-oq-EKc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-643.47826086956525" y="741.29464285714278"/>
+        </scene>
+        <!--challengeOverview-->
+        <scene sceneID="uk5-as-W5t">
+            <objects>
+                <viewControllerPlaceholder storyboardName="practice" referencedIdentifier="challengeOverview" id="AKI-rc-Lde" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="8Hk-W8-ufO"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SVm-za-m7F" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-643" y="1205"/>
         </scene>
         <!--Home-->
         <scene sceneID="qzh-Qf-qTA">
@@ -459,6 +473,7 @@
                                         </variation>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ViB-FF-N6l">
+
                                         <rect key="frame" x="729" y="46" width="65" height="46"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <state key="normal" title="Done">
@@ -516,6 +531,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aKX-kp-ci4">
+
                                 <rect key="frame" x="20" y="1124" width="794" height="30"/>
                                 <state key="normal" title="go to edit profile"/>
                                 <connections>
@@ -680,6 +696,7 @@
     <resources>
         <image name="exp point star" width="25" height="25"/>
         <image name="guest" width="75" height="76"/>
+
         <image name="house" catalog="system" width="64" height="54"/>
     </resources>
 </document>
