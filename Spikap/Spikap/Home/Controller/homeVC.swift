@@ -21,7 +21,9 @@ class homeVC: UIViewController {
     var activityContent : [ActivityContent] = []
     var currentActivity = [activityData]()
     var isUser = false
-
+    
+    var value:Int?
+    
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     let dayYear = Calendar.current.ordinality(of: .day, in: .year, for: Date())
@@ -287,6 +289,7 @@ class homeVC: UIViewController {
             profileDetailVC.users = sender as? userModel
         }else if let challengeOverviewVC = segue.destination as? ChallengeOverviewViewController {
             challengeOverviewVC.activity = sender as? activityData
+            challengeOverviewVC.forDay = value!
         }
     }
     
@@ -398,24 +401,23 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 275
-//    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 275
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isUser {
             let keyToGet = Array(currentUser.activeNames.keys)[indexPath.row]
-            let value = currentUser.activeNames[keyToGet]
+            value = currentUser.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         } else {
             let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
-            let value = guestStruct.activeNames[keyToGet]
+            value = guestStruct.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         }
         //Data untuk performSegue activity to ChallengeOverview
-        print(currentActivity[indexPath.row])
         self.performSegue(withIdentifier: "segueToChallengeOverview", sender: currentActivity[indexPath.row])
 
     }
