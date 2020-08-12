@@ -37,6 +37,7 @@ class EditProfileVC: UIViewController {
         //change user's picture here
         if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             profileImage.image = image
+            profileImage.layer.cornerRadius = 0.5 * profileImage.bounds.width
         }
         nameTextField.text = users.fullname
         emailTextField.text = users.userEmail

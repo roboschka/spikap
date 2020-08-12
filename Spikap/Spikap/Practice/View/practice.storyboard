@@ -142,7 +142,7 @@
         <!--Challenge Overview View Controller-->
         <scene sceneID="g5z-RP-70G">
             <objects>
-                <viewController id="FZh-kv-CED" customClass="ChallengeOverviewViewController" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="challengeOverview" id="FZh-kv-CED" customClass="ChallengeOverviewViewController" customModule="Spikap" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mri-Hv-zBs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -355,7 +355,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="PracticeProgressCell" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-WK-l04" customClass="PracticeProgressCollectionViewCell" customModule="Spikap" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PracticeProgressCell" translatesAutoresizingMaskIntoConstraints="NO" id="3lE-WK-l04" customClass="PracticeProgressCollectionViewCell" customModule="Spikap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="eoX-ue-Vaa">
@@ -786,7 +786,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="PracticeProgressCell" translatesAutoresizingMaskIntoConstraints="NO" id="UKh-E0-JOw" customClass="PracticeProgressCollectionViewCell" customModule="Spikap" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="PracticeProgressCell" translatesAutoresizingMaskIntoConstraints="NO" id="UKh-E0-JOw" customClass="PracticeProgressCollectionViewCell" customModule="Spikap" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="33" height="43"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="vr0-Y5-jD0">
@@ -1119,7 +1119,7 @@
                         <outlet property="userReplyLabel" destination="rI2-Kv-23e" id="Fe8-No-acV"/>
                         <outlet property="userReplyVoice" destination="v2F-h7-cRi" id="fWX-UD-Ood"/>
                         <outlet property="userView" destination="FzX-ZA-BfX" id="ysw-uu-jNZ"/>
-                        <segue destination="Xxo-kK-UTe" kind="presentation" modalPresentationStyle="fullScreen" id="SIK-Ny-cUk"/>
+                        <segue destination="Xxo-kK-UTe" kind="presentation" identifier="toCongratulations" modalPresentationStyle="fullScreen" id="SIK-Ny-cUk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bdn-12-MYn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

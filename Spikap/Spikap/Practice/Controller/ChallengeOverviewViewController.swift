@@ -89,7 +89,7 @@ class ChallengeOverviewViewController: UIViewController {
     func loadData(){
         practiceTypeLabel.text = activity.name
         practiceLevelLabel.text = activity.level
-        if activity.name == "Chalenge A" {
+        if activity.name == "Challenge A" {
             challengeOverviewImage.image = image[0]
         } else if activity.name == "Challenge B" {
             challengeOverviewImage.image = image[1]

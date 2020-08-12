@@ -105,6 +105,7 @@ extension practiceVC: UITableViewDataSource, UITableViewDelegate{
     }
     
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "practiceTypeCell") as! PracticeTypeTableViewCell
         cell.selectionStyle = .none
@@ -119,8 +120,8 @@ extension practiceVC: UITableViewDataSource, UITableViewDelegate{
          self.performSegue(withIdentifier: "practiceTypeSegue", sender: type[indexPath.row])
     }
     
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 275
-    }
+//
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 275
+//    }
 }

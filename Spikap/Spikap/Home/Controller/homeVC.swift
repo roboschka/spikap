@@ -21,7 +21,9 @@ class homeVC: UIViewController {
     var activityContent : [ActivityContent] = []
     var currentActivity = [activityData]()
     var isUser = false
-
+    
+    var value:Int?
+    
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     let dayYear = Calendar.current.ordinality(of: .day, in: .year, for: Date())
@@ -101,9 +103,10 @@ class homeVC: UIViewController {
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
             user.isTodayDone = record["isTodayDone"]
-
             user.imageProfile = record["imageProfile"]
-
+            user.currentActivityDay = record["currentActivityDay"]
+            user.currentActivityName = record["currentActivityName"]
+            
             fetchUser.append(user)
             fetchUser2 = user
         }
@@ -164,6 +167,7 @@ class homeVC: UIViewController {
 
            if let asset = users[0].imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             profileImageButton.setImage(image, for: .normal)
+            profileImageButton.imageView?.layer.cornerRadius = 0.5 * profileImageButton.bounds.size.width
            }
 
             userNameLabel.text = users[0].fullname
@@ -173,6 +177,9 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
             
+            for (index, name) in currentUser.currentActivityName.enumerated() {
+                currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+            }
             fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         }
         dayStreakCollection.reloadData()
@@ -280,7 +287,10 @@ class homeVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileDetailVC = segue.destination as? ProfileViewController {
-           profileDetailVC.users = sender as? userModel
+            profileDetailVC.users = sender as? userModel
+        }else if let challengeOverviewVC = segue.destination as? ChallengeOverviewViewController {
+            challengeOverviewVC.activity = sender as? activityData
+            challengeOverviewVC.forDay = value!
         }
     }
     
@@ -291,9 +301,31 @@ class homeVC: UIViewController {
     
 }
 
-extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dayInAWeek
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var bounds: CGSize = CGSize.zero
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.bounds.width {
+            case 750:
+                bounds = CGSize(width: 44, height: 61)
+            default:
+                bounds =  CGSize(width: 46, height: 61)
+            }
+            
+        } else if UIDevice().userInterfaceIdiom == .pad {
+            if (UIDevice.current.userInterfaceIdiom == .pad && (UIScreen.main.bounds.size.height == 834 || UIScreen.main.bounds.size.height == 1194)) {
+                bounds = CGSize(width: 90, height: 110)
+            } else {
+                print(UIScreen.main.bounds.size)
+            }
+        }
+        return bounds
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -377,16 +409,17 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isUser {
             let keyToGet = Array(currentUser.activeNames.keys)[indexPath.row]
-            let value = currentUser.activeNames[keyToGet]
+            value = currentUser.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         } else {
             let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
-            let value = guestStruct.activeNames[keyToGet]
+            value = guestStruct.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         }
         //Data untuk performSegue activity to ChallengeOverview
-       
+        self.performSegue(withIdentifier: "segueToChallengeOverview", sender: currentActivity[indexPath.row])
+
     }
 }

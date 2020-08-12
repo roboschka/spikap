@@ -21,6 +21,9 @@ class userModel: NSObject {
     var userPoints : Int!
     var userLevel: String!
     var imageProfile: CKAsset!
-    var activeNames: [String:Int] = ["Challenge A": 6, "Challenge B": 4]
+    var activeNames: [String:Int] = [:]
+    
+    var currentActivityName: [String]!
+    var currentActivityDay: [Int]!
 }
  var currentUser = userModel()
