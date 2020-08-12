@@ -43,6 +43,7 @@ class homeVC: UIViewController {
     @IBOutlet weak var levelPointLabel: UILabel!
     @IBOutlet weak var currentActivitiesLabel: UILabel!
     @IBOutlet weak var progressBarTrailingSpace: NSLayoutConstraint!
+    @IBOutlet weak var emptyActivitiesLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -83,6 +84,7 @@ class homeVC: UIViewController {
         print(isUser)
     }
     
+    //MARK: Fetch Functions
     func fetchUser(email: String, fullname: String) {
         let pred = NSPredicate(format: "userEmail = %@", email)
         let query = CKQuery(recordType: "Members", predicate: pred)
@@ -162,6 +164,7 @@ class homeVC: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     
+    //MARK: LoadVC
     func loadHomeVC(){
         if isUser{
 
@@ -177,15 +180,15 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
             
-            
-            
-            for (index, name) in currentUser.currentActivityName.enumerated() {
-                currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+            if currentUser.currentActivityName != nil {
+                emptyActivitiesLabel.isHidden = true
+                for (index, name) in currentUser.currentActivityName.enumerated() {
+                    currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+                }
+                fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
+            } else {
+                emptyActivitiesLabel.isHidden = false
             }
-            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
-            
-           
-            
         }
         dayStreakCollection.reloadData()
     }
@@ -203,6 +206,18 @@ class homeVC: UIViewController {
         changeToSystemFont(label: daysOnStreakLabel, fontSize: userNameLabel.font.pointSize)
         changeToSystemFont(label: userNameLabel, fontSize: userNameLabel.font.pointSize)
         changeToSystemFont(label: currentActivitiesLabel, fontSize: currentActivitiesLabel.font.pointSize)
+        
+        tabBarCustomization()
+    }
+    
+    //MARK: Other Functions
+    func tabBarCustomization(){
+        tabBarController?.tabBar.backgroundImage = UIImage.colorForNavBar(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+        tabBarController?.tabBar.shadowImage = UIImage.colorForNavBar(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
+        tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        tabBarController?.tabBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        tabBarController?.tabBar.unselectedItemTintColor = .lightGray
     }
     
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
@@ -306,6 +321,7 @@ class homeVC: UIViewController {
     
 }
 
+//MARK: CollectionView
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dayInAWeek
@@ -320,7 +336,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             case 750:
                 bounds = CGSize(width: 44, height: 61)
             default:
-                bounds =  CGSize(width: 46, height: 61)
+                bounds =  CGSize(width: 44, height: 61)
             }
             
         } else if UIDevice().userInterfaceIdiom == .pad {
@@ -338,6 +354,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         cell.streakIndicator.layer.cornerRadius = 0.5 * cell.streakIndicator.bounds.size.width
         cell.streakIndicator.layer.borderWidth = 1.5
         cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         if isUser {
             if (users[0].isOnStreak) {
@@ -391,6 +408,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
 }
 
+//MARK: Table View
 extension homeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentActivity.count
