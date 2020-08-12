@@ -26,8 +26,6 @@ class ProfileViewController: UIViewController {
         setupLayout()
         loadprofile()
         // Do any additional setup after loading the view.
- 
-        
     }
     
     @IBAction func goBack(_ sender: Any) {
@@ -57,6 +55,7 @@ class ProfileViewController: UIViewController {
         if let asset = users?.imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             //               cell.practiceDetailImage.image = image
             imageProfile.setImage(image, for: .normal)
+            imageProfile.imageView?.layer.cornerRadius = imageProfile.bounds.width * 0.5
         }
         nameLabel.text = users?.fullname
         userLevelLabel.text = users?.userLevel
