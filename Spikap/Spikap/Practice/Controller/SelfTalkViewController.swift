@@ -116,9 +116,12 @@ class SelfTalkViewController: UIViewController, SFSpeechRecognizerDelegate, AVAu
     func loadContents() {
         activityContents = []
         let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
+        let sort = NSSortDescriptor(key: "modificationDate", ascending: true)
         
         let pred = NSPredicate(format: "activity = %@", idToFetch)
         let query = CKQuery(recordType: "ActivityContent", predicate: pred)
+        query.sortDescriptors = [sort]
+        
         let operation = CKQueryOperation(query: query)
         operation.queuePriority = .veryHigh
         operation.resultsLimit = 99

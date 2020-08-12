@@ -67,10 +67,10 @@ class homeVC: UIViewController {
         super.viewDidAppear(animated)
         
         let email = KeychainItem.currentUserEmail ?? ""
-        
+        let fullname = KeychainItem.currentUserGivenName ?? ""
         if email != "" {
             isUser = true
-            fetchUser(email: email)
+            fetchUser(email: email, fullname: fullname)
         } else {
             isUser = false
             fetchCurrentActivities(activeID: Array(guestStruct.activeNames.keys))
@@ -81,7 +81,7 @@ class homeVC: UIViewController {
         print(isUser)
     }
     
-    func fetchUser(email: String) {
+    func fetchUser(email: String, fullname: String) {
         let pred = NSPredicate(format: "userEmail = %@", email)
         let query = CKQuery(recordType: "Members", predicate: pred)
         let operation = CKQueryOperation(query: query)
@@ -101,9 +101,10 @@ class homeVC: UIViewController {
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
             user.isTodayDone = record["isTodayDone"]
-
             user.imageProfile = record["imageProfile"]
-
+            user.currentActivityDay = record["currentActivityDay"]
+            user.currentActivityName = record["currentActivityName"]
+            
             fetchUser.append(user)
             fetchUser2 = user
         }
@@ -111,9 +112,17 @@ class homeVC: UIViewController {
         operation.queryCompletionBlock = { [unowned self] (cursor, error) in
             DispatchQueue.main.async {
                 if error == nil {
-                   self.users = fetchUser
-                    currentUser = fetchUser2
-                    self.loadHomeVC()
+
+                    if fetchUser.count == 0 {
+                        Userextention.createUser(fullName: fullname , userEmail: email)
+                        self.fetchUser(email: email, fullname: fullname)
+                    } else {
+                        self.users = fetchUser
+                        currentUser = fetchUser2
+                        self.loadHomeVC()
+                    }
+                     
+
                 } else {
                     print("Error fetching data")
                 }
@@ -134,6 +143,7 @@ class homeVC: UIViewController {
             let activity = activityData()
             activity.recordID = record.recordID
             activity.continueImage = record["continueImage"]
+            activity.name = record["name"]
             
             fetchActivity.append(activity)
         }
@@ -155,6 +165,7 @@ class homeVC: UIViewController {
 
            if let asset = users[0].imageProfile, let data = try? Data(contentsOf: asset.fileURL!), let image = UIImage(data: data) {
             profileImageButton.setImage(image, for: .normal)
+            profileImageButton.imageView?.layer.cornerRadius = 0.5 * profileImageButton.bounds.size.width
            }
 
             userNameLabel.text = users[0].fullname
@@ -163,6 +174,11 @@ class homeVC: UIViewController {
             manageLevelUp(points: users[0].userPoints)
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
+            
+            for (index, name) in currentUser.currentActivityName.enumerated() {
+                currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+            }
+            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
         }
         dayStreakCollection.reloadData()
     }
@@ -281,9 +297,31 @@ class homeVC: UIViewController {
     
 }
 
-extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource {
+extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dayInAWeek
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        var bounds: CGSize = CGSize.zero
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.bounds.width {
+            case 750:
+                bounds = CGSize(width: 44, height: 61)
+            default:
+                bounds =  CGSize(width: 46, height: 61)
+            }
+            
+        } else if UIDevice().userInterfaceIdiom == .pad {
+            if (UIDevice.current.userInterfaceIdiom == .pad && (UIScreen.main.bounds.size.height == 834 || UIScreen.main.bounds.size.height == 1194)) {
+                bounds = CGSize(width: 90, height: 110)
+            } else {
+                print(UIScreen.main.bounds.size)
+            }
+        }
+        return bounds
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -360,16 +398,25 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 275
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 275
+//    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //Data currentDay/forDay
-        let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
-        let value = guestStruct.activeNames[keyToGet]
+        if isUser {
+            let keyToGet = Array(currentUser.activeNames.keys)[indexPath.row]
+            let value = currentUser.activeNames[keyToGet]
+            print(currentActivity[indexPath.row].name)
+            print(value)
+        } else {
+            let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
+            let value = guestStruct.activeNames[keyToGet]
+            print(currentActivity[indexPath.row].name)
+            print(value)
+        }
         //Data untuk performSegue activity to ChallengeOverview
         print(currentActivity[indexPath.row])
         self.performSegue(withIdentifier: "segueToChallengeOverview", sender: currentActivity[indexPath.row])
+
     }
 }
