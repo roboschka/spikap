@@ -94,44 +94,46 @@ class ChallengeOverviewViewController: UIViewController {
         } else if activity.name == "Challenge B" {
             challengeOverviewImage.image = image[1]
         }
-        
-        switch guestStruct.guestLevel {
-        case "Beginner":
-            pointsLabel.text = "\(guestStruct.guestPoints)/500"
-            break;
-        case "Medium":
-            pointsLabel.text = "\(guestStruct.guestPoints)/1000"
-            break;
-        case "Intermediate":
-            pointsLabel.text = "\(guestStruct.guestPoints)/2500"
-            break;
-        case "Advanced":
-            pointsLabel.text = "\(guestStruct.guestPoints)/5000"
-            break;
-        default:
-            pointsLabel.text = "\(guestStruct.guestPoints)/0"
-            break
-        }
-//
-//        switch practiceId {
-//        case 0:
-//            practiceTypeLabel.text = "Challenge A"
-//            practiceLevelLabel.text = "Beginner"
-//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-//        case 1:
-//            practiceTypeLabel.text = "Challenge B"
-//            practiceLevelLabel.text = "Intermediate"
-//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-//        case 2:
-//            practiceTypeLabel.text = "Challenge C"
-//            practiceLevelLabel.text = "Advanced"
-//            challengeOverviewImage.image = #imageLiteral(resourceName: "challenge a background")
-//        default:
-//            break
-//        }
-//        dayDescriptionLabel.text = "Practice your pronunciation using Vacation topic in speech shadowing"
-        
-        
+        pointsLabel.text = ""
+        if currentUser.userEmail != nil{
+            switch  currentUser.userLevel{
+            case "Beginner":
+                pointsLabel.text = String(currentUser.userPoints) + "/500"
+                break;
+            case "Medium":
+                pointsLabel.text = String(currentUser.userPoints) + "/1000"
+                break;
+            case "Intermediate":
+                pointsLabel.text = String(currentUser.userPoints) + "/2500"
+                break;
+            case "Advanced":
+                pointsLabel.text = String(currentUser.userPoints) + "/5000"
+                break;
+            default:
+                pointsLabel.text = String(currentUser.userPoints) + "/0"
+                break
+            }
+            practiceLevelLabel.text = String(currentUser.userLevel)
+        } else {
+            switch guestStruct.guestLevel {
+            case "Beginner":
+                pointsLabel.text = "\(guestStruct.guestPoints)/500"
+                break;
+            case "Medium":
+                pointsLabel.text = "\(guestStruct.guestPoints)/1000"
+                break;
+            case "Intermediate":
+                pointsLabel.text = "\(guestStruct.guestPoints)/2500"
+                break;
+            case "Advanced":
+                pointsLabel.text = "\(guestStruct.guestPoints)/5000"
+                break;
+            default:
+                pointsLabel.text = "\(guestStruct.guestPoints)/0"
+                break
+            }
+            practiceLevelLabel.text = String(guestStruct.guestLevel)
+        }       
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
