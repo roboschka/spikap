@@ -268,7 +268,9 @@ class homeVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileDetailVC = segue.destination as? ProfileViewController {
-           profileDetailVC.users = sender as? userModel
+            profileDetailVC.users = sender as? userModel
+        }else if let challengeOverviewVC = segue.destination as? ChallengeOverviewViewController {
+            challengeOverviewVC.activity = sender as? activityData
         }
     }
     
@@ -368,5 +370,6 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
         let value = guestStruct.activeNames[keyToGet]
         //Data untuk performSegue activity to ChallengeOverview
         print(currentActivity[indexPath.row])
+        self.performSegue(withIdentifier: "segueToChallengeOverview", sender: currentActivity[indexPath.row])
     }
 }
