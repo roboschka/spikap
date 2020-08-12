@@ -26,8 +26,6 @@ class ProfileViewController: UIViewController {
         setupLayout()
         loadprofile()
         // Do any additional setup after loading the view.
- 
-        
     }
     
     @IBAction func goBack(_ sender: Any) {
