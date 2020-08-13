@@ -21,7 +21,9 @@ class homeVC: UIViewController {
     var activityContent : [ActivityContent] = []
     var currentActivity = [activityData]()
     var isUser = false
-
+    
+    var value:Int?
+    
     var dayInAWeek = 7
     var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     let dayYear = Calendar.current.ordinality(of: .day, in: .year, for: Date())
@@ -41,6 +43,7 @@ class homeVC: UIViewController {
     @IBOutlet weak var levelPointLabel: UILabel!
     @IBOutlet weak var currentActivitiesLabel: UILabel!
     @IBOutlet weak var progressBarTrailingSpace: NSLayoutConstraint!
+    @IBOutlet weak var emptyActivitiesLabel: UILabel!
     
     
     override func viewDidLoad() {
@@ -81,6 +84,7 @@ class homeVC: UIViewController {
         print(isUser)
     }
     
+    //MARK: Fetch Functions
     func fetchUser(email: String, fullname: String) {
         let pred = NSPredicate(format: "userEmail = %@", email)
         let query = CKQuery(recordType: "Members", predicate: pred)
@@ -101,9 +105,10 @@ class homeVC: UIViewController {
             user.userEmail =  record["userEmail"]
             user.userLevel = record ["levelName"]
             user.isTodayDone = record["isTodayDone"]
-
             user.imageProfile = record["imageProfile"]
-
+            user.currentActivityDay = record["currentActivityDay"]
+            user.currentActivityName = record["currentActivityName"]
+            
             fetchUser.append(user)
             fetchUser2 = user
         }
@@ -159,6 +164,7 @@ class homeVC: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     
+    //MARK: LoadVC
     func loadHomeVC(){
         if isUser{
 
@@ -174,7 +180,15 @@ class homeVC: UIViewController {
             manageLevelPoint(levelName: users[0].userLevel)
             progressBarSetup(CGFloat(users[0].userPoints), manageLevelXP(levelName: users[0].userLevel))
             
-            fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
+            if currentUser.currentActivityName != nil {
+                emptyActivitiesLabel.isHidden = true
+                for (index, name) in currentUser.currentActivityName.enumerated() {
+                    currentUser.activeNames[name] = currentUser.currentActivityDay[index]
+                }
+                fetchCurrentActivities(activeID: Array(currentUser.activeNames.keys))
+            } else {
+                emptyActivitiesLabel.isHidden = false
+            }
         }
         dayStreakCollection.reloadData()
     }
@@ -192,6 +206,18 @@ class homeVC: UIViewController {
         changeToSystemFont(label: daysOnStreakLabel, fontSize: userNameLabel.font.pointSize)
         changeToSystemFont(label: userNameLabel, fontSize: userNameLabel.font.pointSize)
         changeToSystemFont(label: currentActivitiesLabel, fontSize: currentActivitiesLabel.font.pointSize)
+        
+        tabBarCustomization()
+    }
+    
+    //MARK: Other Functions
+    func tabBarCustomization(){
+        tabBarController?.tabBar.backgroundImage = UIImage.colorForNavBar(color: #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0))
+        tabBarController?.tabBar.shadowImage = UIImage.colorForNavBar(color: #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1))
+        tabBarController?.tabBar.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        tabBarController?.tabBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        tabBarController?.tabBar.unselectedItemTintColor = .lightGray
     }
     
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
@@ -207,6 +233,7 @@ class homeVC: UIViewController {
         progressBarView.backgroundColor = UIColor(red: 1.00, green: 0.62, blue: 0.31, alpha: 1.00)
         progressBarView.layer.cornerRadius = 10
         
+
         UserDefaults.standard.set(currentUserXP, forKey: "guestPoints");
     }
     
@@ -280,7 +307,10 @@ class homeVC: UIViewController {
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let profileDetailVC = segue.destination as? ProfileViewController {
-           profileDetailVC.users = sender as? userModel
+            profileDetailVC.users = sender as? userModel
+        }else if let challengeOverviewVC = segue.destination as? ChallengeOverviewViewController {
+            challengeOverviewVC.activity = sender as? activityData
+            challengeOverviewVC.forDay = value!
         }
     }
     
@@ -291,6 +321,7 @@ class homeVC: UIViewController {
     
 }
 
+//MARK: CollectionView
 extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dayInAWeek
@@ -305,7 +336,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             case 750:
                 bounds = CGSize(width: 44, height: 61)
             default:
-                bounds =  CGSize(width: 46, height: 61)
+                bounds =  CGSize(width: 44, height: 61)
             }
             
         } else if UIDevice().userInterfaceIdiom == .pad {
@@ -323,6 +354,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         cell.streakIndicator.layer.cornerRadius = 0.5 * cell.streakIndicator.bounds.size.width
         cell.streakIndicator.layer.borderWidth = 1.5
         cell.streakIndicator.layer.borderColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
+        cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
         if isUser {
             if (users[0].isOnStreak) {
@@ -331,7 +363,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                         cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
                     }
                 } else if currentDay > users[0].daysOnStreak {
-                    if (indexPath.row >= (currentDay - guestStruct.daysOnStreak - 1) && indexPath.row < currentDay-1) {
+                    if (indexPath.row >= (currentDay - users[0].daysOnStreak - 1) && indexPath.row < currentDay-1) {
                         cell.streakIndicator.layer.backgroundColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
                     }
                 }
@@ -376,6 +408,7 @@ extension homeVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
 }
 
+//MARK: Table View
 extension homeVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return currentActivity.count
@@ -392,23 +425,20 @@ extension homeVC: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 275
-//    }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if isUser {
             let keyToGet = Array(currentUser.activeNames.keys)[indexPath.row]
-            let value = currentUser.activeNames[keyToGet]
+            value = currentUser.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         } else {
             let keyToGet = Array(guestStruct.activeNames.keys)[indexPath.row]
-            let value = guestStruct.activeNames[keyToGet]
+            value = guestStruct.activeNames[keyToGet]!
             print(currentActivity[indexPath.row].name)
             print(value)
         }
         //Data untuk performSegue activity to ChallengeOverview
-       
+        self.performSegue(withIdentifier: "segueToChallengeOverview", sender: currentActivity[indexPath.row])
+
     }
 }
