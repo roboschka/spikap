@@ -52,6 +52,7 @@ class ChallengeOverviewViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         self.collectionView.selectItem(at: IndexPath.init(item: forDay, section: 0), animated: true, scrollPosition: [])
         dayLabel.text = "Day \(forDay + 1)"
+        
         dayDescriptionLabel.text = challengeDesc[forDay]
         loadData()
         loadOverview()
@@ -179,11 +180,11 @@ class ChallengeOverviewViewController: UIViewController {
     
     func fetchActivityForDay(){
         var currentDay: Int = 0
-        if forDay == 0 {
-            currentDay = 0
-        } else {
-            currentDay = forDay - 1
-        }
+//        if forDay == 0 {
+//            currentDay = 0
+//        } else {
+//            currentDay = forDay - 1
+//        }
         let pred = NSPredicate(format: "recordID = %@", activityOverviews[currentDay].activity)
         let query = CKQuery(recordType: "Activity", predicate: pred)
         let operation = CKQueryOperation(query: query)
@@ -268,8 +269,11 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "challengeCollectionViewCell", for: indexPath) as! ChallengeCollectionViewCell        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "challengeCollectionViewCell", for: indexPath) as! ChallengeCollectionViewCell
         
+        if forDay == nil {
+            forDay = 0
+        }
         if forDay > indexPath.row {
             cell.daysView.backgroundColor = UIColor(red: 255/255, green: 157/255, blue: 80/255, alpha: 1)
             cell.daysLabel.textColor = UIColor.white
@@ -285,10 +289,13 @@ extension ChallengeOverviewViewController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         dayLabel.text = "Day \(indexPath.row + 1)"
-        if currentUser.userEmail != nil{
+        
+        if indexPath.row < activityOverviews.count {
             dayDescriptionLabel.text = activityOverviews[indexPath.row].overviewProgress
+            startButton.isEnabled = true
         } else {
-            dayDescriptionLabel.text = challengeDesc[indexPath.row]
+            dayDescriptionLabel.text = "Stay tuned! This practice is still coming soon..."
+            startButton.isEnabled = false
         }
     }
     
