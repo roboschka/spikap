@@ -135,10 +135,67 @@ class ChallengeOverviewViewController: UIViewController {
             practiceLevelLabel.text = String(guestStruct.guestLevel)
         }       
     }
+    
+    func updateCurrentActivity(challengeName: String, forDay: Int) {
+        currentUser.currentActivityName.append(challengeName)
+        currentUser.currentActivityDay.append(forDay)
+        
+        let pred = NSPredicate(format: "activity = %@", activity.recordID)
+        let query = CKQuery(recordType: "Activity", predicate: pred)
+        let operation = CKQueryOperation(query: query)
+        operation.queuePriority = .veryHigh
+        operation.resultsLimit = 99
+        
+        var fetchContent = activityData()
+        
+        
+        CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.fetch(withRecordID: activity.recordID) { (record, error) in
+            DispatchQueue.main.async {
+                if error != nil {
+                    return
+                }
+                
+                guard let record = record else { return }
+                record["currentActivityName"] = currentUser.currentActivityName as CKRecordValue
+                record["currentActivityDay"] = currentUser.currentActivityDay as CKRecordValue
+                
+                CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.save(record) { (record, error) in
+                    if error != nil {
+                        return
+                    }
+                    guard let record = record else { return }
+                    currentUser.currentActivityName = record["currentActivityName"]
+                    currentUser.currentActivityDay = record["currentActivityDay"]
+                }
+            }
+        }
+    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
     }
     @IBAction func startTapped(_ sender: Any) {
+//        if currentUser.userEmail != nil {
+//            if currentUser.currentActivityName != nil {
+//                for name in currentUser.currentActivityName {
+//                    if (name != activity.name) {
+//                        updateCurrentActivity(challengeName: activity.name, forDay: forDay)
+//                    }
+//                }
+//            } else {
+//                updateCurrentActivity(challengeName: activity.name, forDay: forDay)
+//            }
+//
+//        } else {
+//            if guestStruct.activeNames != nil {
+//                for key in guestStruct.activeNames.keys {
+//                    if key != activity.name {
+//                        guestStruct.activeNames[activity.name] = forDay
+//                    }
+//                }
+//            } else {
+//                guestStruct.activeNames[activity.name] = forDay
+//            }
+//        }
         switch forDay {
         case 0...8:
             performSegue(withIdentifier: "segueChallengeToSpeech", sender: nil)

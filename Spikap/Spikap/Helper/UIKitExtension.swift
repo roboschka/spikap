@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-//MARK: UIViewController Extension
+//MARK: UIViewController
 extension UIViewController {
     
     
@@ -67,6 +67,7 @@ extension UIViewController {
 
 }
 
+//MARK: UITableViewCell
 extension UITableViewCell {
     func changeToSystemFont(label: UILabel, fontSize: CGFloat) {
         let systemFont = UIFont.systemFont(ofSize: fontSize, weight: .bold)
@@ -81,7 +82,7 @@ extension UITableViewCell {
     }
 }
 
-
+//MARK: UIView
 extension UIView {
     func setGradientColor(colorOne: UIColor, colorTwo:UIColor ){
         
@@ -96,7 +97,24 @@ extension UIView {
     }
 }
 
+//MARK: UIImage
+extension UIImage {
+    class func colorForNavBar(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0.0, y: 0.0, width: 1.0, height: 0.5)
+        UIGraphicsBeginImageContext(rect.size)
+        let context = UIGraphicsGetCurrentContext()
+        
+        context!.setFillColor(color.cgColor)
+        context!.fill(rect)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return image!
+    }
+}
 
+//MARK: UIApplication
 extension UIApplication {
 var statusBarUIView: UIView? {
 
