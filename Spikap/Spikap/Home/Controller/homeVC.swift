@@ -207,6 +207,12 @@ class homeVC: UIViewController {
         changeToSystemFont(label: userNameLabel, fontSize: userNameLabel.font.pointSize)
         changeToSystemFont(label: currentActivitiesLabel, fontSize: currentActivitiesLabel.font.pointSize)
         
+        if guestStruct.activeNames.count != 0 {
+            emptyActivitiesLabel.isHidden = true
+        } else {
+            emptyActivitiesLabel.isHidden = false
+        }
+        
         tabBarCustomization()
     }
     
