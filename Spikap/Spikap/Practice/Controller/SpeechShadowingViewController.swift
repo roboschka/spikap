@@ -73,10 +73,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     
     override func viewWillAppear(_ animated: Bool) {
         changeToSystemFont(label: topicLabel, fontSize: 20)
-        
         topicLabel.text = activity.topic
-
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
