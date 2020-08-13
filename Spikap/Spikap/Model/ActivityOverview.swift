@@ -12,7 +12,7 @@ import UIKit
 
 class activityOverviewData: NSObject {
     var recordID: CKRecord.ID!
-    var activity: CKRecord.ID!
+    var activity: CKRecord.Reference!
     var overviewProgress: String!
     var forDay: Int!
 }
