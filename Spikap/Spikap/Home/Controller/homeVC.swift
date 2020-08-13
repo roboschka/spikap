@@ -224,6 +224,7 @@ class homeVC: UIViewController {
         tabBarController?.tabBar.barTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         tabBarController?.tabBar.tintColor = #colorLiteral(red: 0.2509803922, green: 0.7098039216, blue: 0.9529411765, alpha: 1)
         tabBarController?.tabBar.unselectedItemTintColor = .lightGray
+        tabBarController?.tabBar.isHidden = false
     }
     
     func progressBarSetup(_ currentUserXP: CGFloat, _ levelXP: CGFloat){
