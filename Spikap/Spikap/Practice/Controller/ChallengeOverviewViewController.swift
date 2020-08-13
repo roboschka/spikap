@@ -21,6 +21,12 @@ class ChallengeOverviewViewController: UIViewController {
     @IBOutlet weak var practiceTypeLabel: UILabel!
     @IBOutlet weak var practiceLevelLabel: UILabel!
     @IBOutlet weak var pointsLabel: UILabel!
+    
+    struct dataToPass {
+        var activity = activityData()
+        var forDay = 0
+    }
+    
     var image:[UIImage] = [#imageLiteral(resourceName: "challenge a background"),#imageLiteral(resourceName: "challenge b background")]
     var activity: activityData!
     var activityToPass: activityData!
@@ -203,8 +209,8 @@ class ChallengeOverviewViewController: UIViewController {
             DispatchQueue.main.async {
                 if error == nil {
                     self.activityToPass = fetchContent
-                    
-                    self.performSegue(withIdentifier: "segueChallengeToSpeech", sender: self.activityToPass)
+                    let passing = dataToPass(activity: self.activityToPass, forDay: self.forDay+1)
+                    self.performSegue(withIdentifier: "segueChallengeToSpeech", sender: passing)
                 } else {
                     print("Error fetching data")
                 }
@@ -213,8 +219,10 @@ class ChallengeOverviewViewController: UIViewController {
         CKContainer.init(identifier: "iCloud.com.aries.Spikap").publicCloudDatabase.add(operation)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let segueData = sender as? dataToPass else { return }
         if let SpeechShadowing = segue.destination as? SpeechShadowingViewController {
-           SpeechShadowing.activity = sender as? activityData
+            SpeechShadowing.activity = segueData.activity
+            SpeechShadowing.forDay = segueData.forDay
         }
 
     }
