@@ -78,8 +78,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -94,8 +94,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -110,8 +110,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "250"
-            endingLineNumber = "250"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,73 +126,9 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "242"
-            endingLineNumber = "242"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "checkSpeechToText()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E03407C8-D9FB-4920-9465-F60B39028D99"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
-            landmarkName = "loadContents()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "F5129C9B-8FA1-42F7-AB78-28EC1F50773D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "139"
-            endingLineNumber = "139"
-            landmarkName = "loadContents()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2666E417-9C55-4330-A09D-1E0645DE3831"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
-            landmarkName = "loadContents()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "47141C3A-CABC-4756-9BF0-2934B51874AA"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "loadContents()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -206,8 +142,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "402"
-            endingLineNumber = "402"
+            startingLineNumber = "408"
+            endingLineNumber = "408"
             landmarkName = "unknown"
             landmarkType = "0">
          </BreakpointContent>
@@ -222,8 +158,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "401"
-            endingLineNumber = "401"
+            startingLineNumber = "407"
+            endingLineNumber = "407"
             landmarkName = "SpeechShadowingViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -238,8 +174,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "258"
-            endingLineNumber = "258"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -254,8 +190,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "263"
-            endingLineNumber = "263"
+            startingLineNumber = "269"
+            endingLineNumber = "269"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -270,8 +206,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "270"
-            endingLineNumber = "270"
+            startingLineNumber = "276"
+            endingLineNumber = "276"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -286,8 +222,8 @@
             filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "274"
-            endingLineNumber = "274"
+            startingLineNumber = "280"
+            endingLineNumber = "280"
             landmarkName = "checkSpeechToText()"
             landmarkType = "7">
          </BreakpointContent>
@@ -494,8 +430,8 @@
             filePath = "Spikap/Home/Controller/homeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "317"
-            endingLineNumber = "317"
+            startingLineNumber = "318"
+            endingLineNumber = "318"
             landmarkName = "prepare(for:sender:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -510,8 +446,8 @@
             filePath = "Spikap/Home/Controller/homeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "322"
-            endingLineNumber = "322"
+            startingLineNumber = "323"
+            endingLineNumber = "323"
             landmarkName = "homeVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -526,8 +462,8 @@
             filePath = "Spikap/Home/Controller/homeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
             landmarkName = "homeVC"
             landmarkType = "3">
          </BreakpointContent>
@@ -542,8 +478,8 @@
             filePath = "Spikap/Home/Controller/homeVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "335"
-            endingLineNumber = "335"
+            startingLineNumber = "336"
+            endingLineNumber = "336"
             landmarkName = "homeVC"
             landmarkType = "21">
          </BreakpointContent>
@@ -654,8 +590,8 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "140"
-            endingLineNumber = "140"
+            startingLineNumber = "147"
+            endingLineNumber = "147"
             landmarkName = "updateCurrentActivity(challengeName:forDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -670,8 +606,8 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
+            startingLineNumber = "148"
+            endingLineNumber = "148"
             landmarkName = "updateCurrentActivity(challengeName:forDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -686,57 +622,10 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "182"
-            endingLineNumber = "182"
-            landmarkName = "startTapped(_:)"
+            startingLineNumber = "189"
+            endingLineNumber = "189"
+            landmarkName = "fetchActivityForDay()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "FEFE9622-A688-41ED-BD51-853938A6B2F8 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "FEFE9622-A688-41ED-BD51-853938A6B2F8 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "FEFE9622-A688-41ED-BD51-853938A6B2F8 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "724">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -749,8 +638,8 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "159"
-            endingLineNumber = "159"
+            startingLineNumber = "166"
+            endingLineNumber = "166"
             landmarkName = "updateCurrentActivity(challengeName:forDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -759,22 +648,6 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DBCDC3E6-EEFF-4ECB-8912-CE4E41C4B302"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "updateCurrentActivity(challengeName:forDay:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3F31BC5F-40BE-4E28-9BFC-E095373215F6"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -790,6 +663,22 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
+            uuid = "3F31BC5F-40BE-4E28-9BFC-E095373215F6"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
+            landmarkName = "updateCurrentActivity(challengeName:forDay:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
             uuid = "E2310485-4B75-48FF-BF9E-CDE4DA984D27"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
@@ -797,8 +686,8 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
+            startingLineNumber = "175"
+            endingLineNumber = "175"
             landmarkName = "updateCurrentActivity(challengeName:forDay:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -813,57 +702,10 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "startTapped(_:)"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "fetchActivityForDay()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4B933E57-6D76-4B35-860A-C9F94D894B6F - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "4B933E57-6D76-4B35-860A-C9F94D894B6F - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "4B933E57-6D76-4B35-860A-C9F94D894B6F - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "724">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -876,64 +718,17 @@
             filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "startTapped(_:)"
+            startingLineNumber = "204"
+            endingLineNumber = "204"
+            landmarkName = "fetchActivityForDay()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "9F5BC366-C3B3-4021-AB3A-DB7F5FA35935 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "9F5BC366-C3B3-4021-AB3A-DB7F5FA35935 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "9F5BC366-C3B3-4021-AB3A-DB7F5FA35935 - a3d3191f9cda3816"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Spikap.ChallengeOverviewViewController.startTapped(Any) -&gt; ()"
-                  moduleName = "Spikap"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/mariajeffina/Documents/GitHub%20Repos/spikap/Spikap/Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "200"
-                  endingLineNumber = "200"
-                  offsetFromSymbolStart = "724">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "DF0A9327-50E9-4CE4-BF97-5B4DF8580152"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spikap/Home/Controller/homeVC.swift"
@@ -949,7 +744,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EDEFED0E-962E-46A7-8ED9-87147F5415B2"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spikap/Home/Controller/homeVC.swift"
@@ -965,7 +760,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "409F529E-2686-4EE0-A6C8-EF1ACE4FF999"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Spikap/Home/Controller/homeVC.swift"
@@ -973,6 +768,150 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "213"
             endingLineNumber = "213"
+            landmarkName = "viewWillAppear(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB0A4123-D9E5-482D-BDD9-40F94605FEDD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "213"
+            endingLineNumber = "213"
+            landmarkName = "fetchActivityForDay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C5781F2D-A7E4-4D30-BCBF-5087EB861F64"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/ChallengeOverviewViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
+            landmarkName = "fetchActivityForDay()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "10A8F582-089F-4BE4-92A5-A2DFFD74701A"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "115"
+            endingLineNumber = "115"
+            landmarkName = "loadContents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "CED658E0-82A5-4B87-ADF8-C2BB16FD4891"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
+            landmarkName = "loadContents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4C06408-1772-4E6B-9089-A8551910FDAD"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
+            landmarkName = "loadContents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AD37D094-9B46-4C2A-803E-49BE47693E9B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "142"
+            endingLineNumber = "142"
+            landmarkName = "loadContents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "532A56E0-251A-41E1-A96E-D5A7C9515417"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Practice/Controller/SpeechShadowingViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "119"
+            endingLineNumber = "119"
+            landmarkName = "loadContents()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "69244EEC-4164-4D1D-BAE3-5295D131B418"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Home/Controller/homeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "227"
+            endingLineNumber = "227"
+            landmarkName = "tabBarCustomization()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "949D2E62-F3B4-412F-9EF8-7F2FCFDEF468"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Spikap/Home/Controller/homeVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "209"
+            endingLineNumber = "209"
             landmarkName = "viewWillAppear(_:)"
             landmarkType = "7">
          </BreakpointContent>
