@@ -20,6 +20,10 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var totalProgress = 8
     var currentProgress = 0
     var activity: activityData!
+    var forDay: Int!
+    
+    var passedData: (activity: activityData, forDay: Int)?
+    
     var activityContents = [activityContentData]()
     
     var content = ""
@@ -81,8 +85,6 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
 //        activityContents = guestStruct.currentActivity
         loadContents()
         
-        
-        
         SFSpeechRecognizer.requestAuthorization { authStatus in
             OperationQueue.main.addOperation {
                 switch authStatus {
@@ -108,8 +110,12 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     func loadContents() {
         activityContents = []
         let idToFetch = CKRecord.Reference(recordID: activity.recordID, action: .none)
-
-        let pred = NSPredicate(format: "activity = %@", idToFetch)
+        
+        if forDay == nil {
+            forDay = 0
+        }
+        
+        let pred = NSPredicate(format: "activity = %@ AND forDay = %d", idToFetch, forDay)
         let query = CKQuery(recordType: "ActivityContent", predicate: pred)
         let operation = CKQueryOperation(query: query)
         operation.queuePriority = .veryHigh
