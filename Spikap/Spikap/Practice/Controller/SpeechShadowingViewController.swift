@@ -40,6 +40,11 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
     var recognitionTask: SFSpeechRecognitionTask?
     let synthesizer = AVSpeechSynthesizer()
     
+    var audioFilePath : URL!
+    var exportURLs: [URL] = []
+    var fileSeparator: Character = "."
+    var fileSplitAppend: String = "-split-"
+    
     var recordingSession: AVAudioSession!
     var audioRecorder: AVAudioRecorder!
     var audioPlayer: AVAudioPlayer?
@@ -172,6 +177,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
         if(currentProgress > totalProgress - 1) {
             currentProgress = 0
             performSegue(withIdentifier: "toCongratulations", sender: nil)
+            
         } else {
             questionLabel.text = activityContents[currentProgress].contents
             contentInfoLabel.text = activityContents[currentProgress].info[0]
@@ -191,6 +197,7 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             recordButton.setImage(#imageLiteral(resourceName: "mic button"), for: .normal)
             playAudioButton.isEnabled = true
 //            checkResult()
+//            mySplitAudio()
             
         } else {
             try! startRecording()
@@ -403,6 +410,87 @@ class SpeechShadowingViewController: UIViewController, AVAudioRecorderDelegate, 
             }
         }
         tokenLabel.text = finalString
+    }
+    
+    //MARK: Split Audio
+    func mySplitAudio(){
+        exportURLs = []
+        let fileURL: URL = audioFilePath
+        let asset: AVAsset = AVAsset(url: fileURL)
+        
+        let splitSourceFileURL = audioFilePath.absoluteString.split(separator: fileSeparator)
+        
+        //get the length of the audio file asset
+        let duration = CMTimeGetSeconds(asset.duration)
+        
+        //determine segments to be chopped
+        let numOfSegments = 2
+        
+        for index in 0..<numOfSegments {
+            splitAudio(asset: asset, segment: index, splitSourceFileURL: splitSourceFileURL, numOfSegments: numOfSegments, duration: duration)
+        }
+        return
+    }
+        
+    func splitAudio(asset: AVAsset, segment: Int, splitSourceFileURL: Array<Substring>, numOfSegments: Int, duration: Float64) {
+        //Create a new AVAssetExportSession
+        let exporter = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A)
+        
+        //set output file type to m4a
+        exporter?.outputFileType = AVFileType.m4a
+        
+        //Create time range for exporting
+        let startTime = CMTimeMake(value: Int64(Int(ceil(duration))/numOfSegments * segment), timescale: 1)
+        let endTime = CMTimeMake(value: Int64(Int(ceil(duration))/numOfSegments * (segment + 1)), timescale: 1)
+        print("Duration -> ", duration)
+        print("Start time -> ", startTime)
+        print("End time -> ", endTime)
+        
+        //Set time range for exporting
+        exporter?.timeRange = CMTimeRangeFromTimeToTime(start: startTime, end: endTime)
+        
+        //Set the output file path
+//        let outputFileURL = URL(string: "\(splitSourceFileURL[0])\(fileSplitAppend)\(segment)\(fileSeparator)\(splitSourceFileURL[1])")
+        let outputFileURL = URL(string: "file:///Users/mariajeffina/Desktop/audio-\(segment).m4a")
+        exporter?.outputURL = outputFileURL
+        
+        //Do actual exporting
+        exporter?.exportAsynchronously(completionHandler: {
+            switch exporter?.status {
+            case .failed:
+                print(segment)
+                print("Export failed.")
+                if let e = exporter?.error {
+                    print(e)
+                }
+            default:
+                
+                print("Export complete")
+                self.exportURLs.append((exporter?.outputURL)!)
+                self.STTFromFileURL(fileURLs: self.exportURLs)
+            }
+        })
+        
+        return
+    }
+        
+    func STTFromFileURL(fileURLs: [URL]){
+        let recognizer = SFSpeechRecognizer(locale: Locale(identifier: "en"))
+        
+        for url in fileURLs {
+            let request = SFSpeechURLRecognitionRequest(url: url)
+            recognizer?.recognitionTask(with: request) { (result, error) in
+               guard let result = result else {
+                  // Recognition failed, so check error for details and handle it
+                  return
+               }
+
+               // Print the speech that has been recognized so far
+               if result.isFinal {
+                  print("Speech in the file is \(result.bestTranscription.formattedString)")
+               }
+            }
+        }
     }
 }
 
